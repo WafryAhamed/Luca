@@ -5,7 +5,7 @@ import styles from './App.module.css';
 
 
 function App() {
-  const[messages, setMessages] = useState([]);
+  const[messages, setMessages] = useState([MESSAGES]);
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -18,5 +18,39 @@ function App() {
     </div>
   );
 }
+
+
+const MESSAGES =[
+{
+role: "user",
+content:
+"Hello, who are you?"
+},
+{
+role: "LUCA",
+content:
+"Hello, who are you?"
+},
+{
+role: "user",
+content:
+"Hello, who are you?"
+},
+{
+role: "LUCA",
+content:
+"Hello, who are you?"
+},
+{
+role: "user",
+content:
+"Hello, who are you?"
+},
+{
+role: "LUCA",
+content:
+"Hello, who are you?"
+}
+];
 
 export default App;

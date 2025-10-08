@@ -3,8 +3,8 @@ import Chat from './components/Chat/Chat';
 import Controls from './components/Controls/Controls';
 import styles from './App.module.css';
 
-// Define MESSAGES *before* using it
-const MESSAGES = [
+
+/*const MESSAGES = [
   {
     role: "user",
     content: "Hello, who are you?"
@@ -29,10 +29,10 @@ const MESSAGES = [
     role: "LUCA",
     content: "Thanks! How can I assist you today?"
   }
-];
+]; */
 
 function App() {
-  const [messages, setMessages] = useState(MESSAGES); // No extra array wrapper
+  const [messages, setMessages] = useState([]);
 
   return (
     <div className={styles.App}>

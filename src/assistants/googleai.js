@@ -11,7 +11,7 @@ const getGoogleAI = () => {
 export class Assistant {
   #model;
 
-  // ✅ Use a valid v1beta model name
+ 
   constructor(model = "gemini-2.5-flash") {
     this.#model = model;
   }

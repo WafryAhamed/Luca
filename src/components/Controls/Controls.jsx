@@ -1,26 +1,25 @@
-import { useState } from 'react'; 
-import styles from './Controls.module.css';
+import { useState } from "react";
+import styles from "./Controls.module.css";
 
+// ✅ Wrap in default export
 export default function Controls({ onSend }) {
   const [content, setContent] = useState("");
-  
+
   function handleContentChange(event) {
     setContent(event.target.value);
   }
 
-  // ✅ Renamed: this function SENDS the message
-  function handleSend() { 
-    if (content.trim().length > 0) {
+  function handleContentSend() {
+    if (content.length > 0) {
       onSend(content);
       setContent("");
     }
   }
 
-  // ✅ Renamed: this handles Enter key
-  function handleKeyDown(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
+  function handleEnterPress(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      handleSend(); // ✅ calls the send function
+      handleContentSend();
     }
   }
 
@@ -29,17 +28,13 @@ export default function Controls({ onSend }) {
       <div className={styles.TextAreaContainer}>
         <textarea
           className={styles.TextArea}
-          placeholder="Talk with Luca"
+          placeholder="with LUCA, everything is possible..."
           value={content}
-          onChange={handleContentChange} 
-          onKeyDown={handleKeyDown}  // ✅ use key handler here
+          onChange={handleContentChange}
+          onKeyDown={handleEnterPress}
         />
       </div>
-      <button
-        className={styles.Button}
-        onClick={handleSend}  // ✅ use send function here
-        type="button"
-      >
+      <button className={styles.Button} onClick={handleContentSend}>
         <SendIcon />
       </button>
     </div>
@@ -55,7 +50,7 @@ function SendIcon() {
       width="24px"
       fill="#5f6368"
     >
-      <path d="M120-120v-720l720 360-720 360Z" />
+      <path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
     </svg>
   );
 }

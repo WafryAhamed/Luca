@@ -1,52 +1,45 @@
-import { useState } from 'react';
-import Chat from './components/Chat/Chat';
-import Controls from './components/Controls/Controls';
-import styles from './App.module.css';
+import { useState } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Chat } from "./components/Chat/Chat";
+import Controls from "./components/Controls/Controls";
+import styles from "./App.module.css";
 
 
-/*const MESSAGES = [
-  {
-    role: "user",
-    content: "Hello, who are you?"
-  },
-  {
-    role: "LUCA",
-    content: "I'm LUCA, your AI assistant!"
-  },
-  {
-    role: "user",
-    content: "What can you do?"
-  },
-  {
-    role: "LUCA",
-    content: "I can help answer questions, explain concepts, and chat with you!"
-  },
-  {
-    role: "user",
-    content: "That's cool!"
-  },
-  {
-    role: "LUCA",
-    content: "Thanks! How can I assist you today?"
-  }
-]; */
+
+
+const googleai = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
+const gemini = googleai.getGenerativeModel({ model: "gemini-1.5-flash" });
+const chat = gemini.startChat({ history: [] });
 
 function App() {
   const [messages, setMessages] = useState([]);
 
-function handleContentSend(content){
- setMessages((prevMessages) => [...prevMessages, { role: 'user', content }]);}
- 
+  function addMessage(message) {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  }
+
+  async function handleContentSend(content) {
+    addMessage({ content, role: "user" });
+    try {
+      const result = await chat.sendMessage(content);
+      addMessage({ content: result.response.text(), role: "assistant" });
+    } catch (error) {
+      addMessage({
+        content: "Sorry, I couldn't process your request. Please try again!",
+        role: "system",
+      });
+    }
+  }
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
         <img className={styles.Logo} src="/robot-Luca.svg" alt="LUCA Bot" />
-        <h2 className={styles.Title}>AI Chatbot</h2>
+        <h2 className={styles.Title}>LUCA</h2>
       </header>
       <div className={styles.ChatContainer}>
         <Chat messages={messages} />
       </div>
-      <Controls onSend={handleContentSend}/>
+      <Controls onSend={handleContentSend} />
     </div>
   );
 }

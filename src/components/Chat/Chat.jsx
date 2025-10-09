@@ -12,7 +12,7 @@ export function Chat({ messages }) {
       {[WELCOME_MESSAGE, ...messages].map(({ role, content, time }, index) => (
         <div key={index} className={`${styles.Message} ${styles[role]}`}>
           <div className={styles.Bubble}>{content}</div>
-          <span className={styles.Time}>{time}</span>
+          <span className={s.Time}>{time}</span>
         </div>
       ))}
     </div>

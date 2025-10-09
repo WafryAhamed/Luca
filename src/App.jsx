@@ -9,19 +9,18 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   function addMessage(message) {
-    setMessages((prevMessages) => [...prevMessages, message]);
+    setMessages(prevMessages => [...prevMessages, message]);
   }
 
   async function handleContentSend(content) {
     addMessage({ content, role: "user" });
     try {
-      // Pass current messages (which now includes the new user message)
-      const result = await assistant.chat(messages);
+      const result = await assistant.chat([...messages, { content, role: "user" }]);
       addMessage({ content: result, role: "assistant" });
     } catch (error) {
       addMessage({
         content: "Sorry, I couldn't process your request. Please try again!",
-        role: "assistant", // ✅ Changed from "system" to "assistant"
+        role: "assistant",
       });
     }
   }

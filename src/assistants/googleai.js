@@ -11,7 +11,6 @@ const getGoogleAI = () => {
 export class Assistant {
   #model;
 
- 
   constructor(model = "gemini-2.5-flash") {
     this.#model = model;
   }
@@ -29,8 +28,7 @@ export class Assistant {
         .join("\n");
 
       const result = await model.generateContent(prompt);
-      const response = result.response;
-      return response.text() || "";
+      return result?.response?.text() || "";
     } catch (error) {
       console.error("Assistant error:", error);
       throw error;

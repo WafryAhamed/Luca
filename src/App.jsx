@@ -15,15 +15,17 @@ function App() {
   async function handleContentSend(content) {
     addMessage({ content, role: "user" });
     try {
-      const result = await assistant.chat(content);
+      // Pass current messages (which now includes the new user message)
+      const result = await assistant.chat(messages);
       addMessage({ content: result, role: "assistant" });
     } catch (error) {
       addMessage({
         content: "Sorry, I couldn't process your request. Please try again!",
-        role: "system",
+        role: "assistant", // ✅ Changed from "system" to "assistant"
       });
     }
   }
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>

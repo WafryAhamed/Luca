@@ -1,20 +1,38 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const googleai = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
+const getGoogleAI = () => {
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+  if (!apiKey) {
+    throw new Error("Missing VITE_GOOGLE_API_KEY in environment");
+  }
+  return new GoogleGenerativeAI(apiKey);
+};
 
 export class Assistant {
-  #chat;
+  #model;
 
-  constructor(model = "gemini-1.5-flash") {
-    const gemini = googleai.getGenerativeModel({ model });
-    this.#chat = gemini.startChat({ history: [] });
+  // ✅ Use a valid v1beta model name
+  constructor(model = "gemini-2.5-flash") {
+    this.#model = model;
   }
 
-  async chat(content) {
+  async chat(messages) {
     try {
-      const result = await this.#chat.sendMessage(content);
-      return result.response.text();
+      const googleai = getGoogleAI();
+      const model = googleai.getGenerativeModel({ model: this.#model });
+
+      const prompt = messages
+        .map(msg => {
+          const prefix = msg.role === "user" ? "User: " : "Assistant: ";
+          return prefix + msg.content;
+        })
+        .join("\n");
+
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      return response.text() || "";
     } catch (error) {
+      console.error("Assistant error:", error);
       throw error;
     }
   }

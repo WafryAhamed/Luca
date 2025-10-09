@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPEN_AI_API_KEY,
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
@@ -12,15 +12,15 @@ export class Assistant {
     this.#model = model;
   }
 
-  async chat(content, history) {
+  async chat(history) { // ✅ Removed 'content' parameter
     try {
       const result = await openai.chat.completions.create({
         model: this.#model,
-        messages: [...history, { content, role: "user" }],
+        messages: history, // ✅ Send history directly (no duplicate append)
       });
-
-      return result.choices[0].message.content;
+      return result.choices[0]?.message?.content || "";
     } catch (error) {
+      console.error("Assistant Error:", error);
       throw error;
     }
   }

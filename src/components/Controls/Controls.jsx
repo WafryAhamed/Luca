@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./Controls.module.css";
 
-// ✅ Wrap in default export
 export default function Controls({ onSend }) {
   const [content, setContent] = useState("");
 

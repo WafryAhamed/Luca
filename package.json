@@ -12,7 +12,11 @@
   "dependencies": {
     "@google/genai": "^1.23.0",
     "@google/generative-ai": "^0.24.1",
-    "openai": "^6.2.0"
+    "emoji-picker-react": "^4.14.0",
+    "framer-motion": "^12.23.22",
+    "openai": "^6.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

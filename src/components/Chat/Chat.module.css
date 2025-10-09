@@ -1,20 +1,51 @@
 .Chat {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
-  padding: 8px;
-  overflow-y: auto;
+  gap: 1.2rem;
+}
 
-  .Message {
-    width: 90%;
-    padding: 16px;
-    border-radius: 16px;
-    font-size: 14px;
+.Message {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  transition: all 0.3s ease;
+}
 
-    &[data-role="user"] {
-      align-self: flex-end;
-      background: #f3f3f3;
-    }
-  }
+.assistant {
+  align-self: flex-start;
+}
+
+.user {
+  align-self: flex-end;
+}
+
+.Bubble {
+  padding: 12px 18px;
+  border-radius: 16px;
+  line-height: 1.5;
+  word-break: break-word;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.assistant .Bubble {
+  background: rgba(0, 170, 255, 0.15);
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  color: #dceeff;
+}
+
+.user .Bubble {
+  background: linear-gradient(135deg, #007bff, #00aaff);
+  color: #fff;
+}
+
+.Bubble:hover {
+  transform: scale(1.02);
+}
+
+.Time {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 4px;
+  align-self: flex-end;
 }

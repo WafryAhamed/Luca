@@ -1,29 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 .App {
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
   height: 100vh;
-  padding: 16px;
+  background: linear-gradient(135deg, #0a0f1f, #1b2838);
+  color: #fff;
 }
 
 .Header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
 }
 
 .Logo {
-  width: 64px;
-  height: 64px;
+  width: 45px;
+  margin-right: 10px;
 }
 
 .Title {
-  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #00aaff;
 }
 
 .ChatContainer {
-  flex-grow: 1;
-  width: 100%;
-  background: #ffffff;
-  border-radius: 16px;
+  flex: 1;
   overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Typing animation */
+.TypingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #00aaff;
+  opacity: 0.85;
+  font-size: 0.85rem;
+  padding-left: 0.5rem;
+}
+
+.Dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00aaff;
+  animation: blink 1.4s infinite both;
+}
+
+.Dot:nth-child(1) { animation-delay: 0s; }
+.Dot:nth-child(2) { animation-delay: 0.2s; }
+.Dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
 }

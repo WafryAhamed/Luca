@@ -9,7 +9,7 @@ export default function Controls({ onSend }) {
   }
 
   function handleContentSend() {
-    if (content.length > 0) {
+    if (content.trim().length > 0) {
       onSend(content);
       setContent("");
     }
@@ -24,15 +24,13 @@ export default function Controls({ onSend }) {
 
   return (
     <div className={styles.Controls}>
-      <div className={styles.TextAreaContainer}>
-        <textarea
-          className={styles.TextArea}
-          placeholder="with LUCA, everything is possible..."
-          value={content}
-          onChange={handleContentChange}
-          onKeyDown={handleEnterPress}
-        />
-      </div>
+      <textarea
+        className={styles.TextArea}
+        placeholder="Chat with LUCA... Ask me anything!"
+        value={content}
+        onChange={handleContentChange}
+        onKeyDown={handleEnterPress}
+      />
       <button className={styles.Button} onClick={handleContentSend}>
         <SendIcon />
       </button>
@@ -44,10 +42,10 @@ function SendIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="26px"
       viewBox="0 -960 960 960"
-      width="24px"
-      fill="#5f6368"
+      width="26px"
+      fill="white"
     >
       <path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
     </svg>

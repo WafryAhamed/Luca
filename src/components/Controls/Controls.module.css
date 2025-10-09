@@ -10,7 +10,7 @@
   padding: 8px 16px;
   line-height: 0;
   border-radius: 16px;
-  background: #ffffff;
+  background: #4c7ca3;
 }
 
 .TextArea {
@@ -26,14 +26,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
   outline: none;
-  background: #00d0d0;
+  background: #61bdff;
 }
 
 .Button svg {
-  fill: #f3f3f3;
+  fill: #000000;
 }

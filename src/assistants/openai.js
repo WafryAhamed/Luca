@@ -12,11 +12,11 @@ export class Assistant {
     this.#model = model;
   }
 
-  async chat(history) { // ✅ Removed 'content' parameter
+  async chat(history) { 
     try {
       const result = await openai.chat.completions.create({
         model: this.#model,
-        messages: history, // ✅ Send history directly (no duplicate append)
+        messages: history, 
       });
       return result.choices[0]?.message?.content || "";
     } catch (error) {

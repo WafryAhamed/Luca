@@ -1,3 +1,4 @@
+// components/Controls/Controls.jsx
 import { useState } from "react";
 import styles from "./Controls.module.css";
 

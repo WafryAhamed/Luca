@@ -1,3 +1,5 @@
+/* Chat.module.css */
+
 .Chat {
   display: flex;
   flex-direction: column;
@@ -19,28 +21,42 @@
   align-self: flex-end;
 }
 
+.BubbleWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
 .Bubble {
   padding: 12px 18px;
   border-radius: 16px;
   line-height: 1.5;
   word-break: break-word;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease, transform 0.2s ease;
+  background: rgba(10, 15, 20, 0.5);
+  border: 1px solid rgba(0, 229, 197, 0.1);
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(0, 229, 197, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .assistant .Bubble {
-  background: rgba(0, 170, 255, 0.15);
-  border: 1px solid rgba(0, 170, 255, 0.3);
+  background: rgba(0, 229, 197, 0.08);
+  border-color: rgba(0, 229, 197, 0.2);
   color: #dceeff;
 }
 
 .user .Bubble {
-  background: linear-gradient(135deg, #007bff, #00aaff);
-  color: #fff;
+  background: linear-gradient(135deg, #00E5C5, #00C5A5);
+  color: #000;
+  text-shadow: none;
+  border: none;
 }
 
 .Bubble:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 229, 197, 0.3);
 }
 
 .Time {
@@ -48,4 +64,41 @@
   opacity: 0.7;
   margin-top: 4px;
   align-self: flex-end;
+  color: #aaa;
+}
+
+.CopyButton,
+.EditButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 229, 197, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  color: #00E5C5;
+  font-size: 12px;
+  box-shadow: 0 0 6px rgba(0, 229, 197, 0.2);
+  z-index: 10;
+}
+
+.EditButton {
+  right: 36px;
+}
+
+.Message:hover .CopyButton,
+.Message:hover .EditButton {
+  opacity: 1;
+}
+
+.CopyButton:hover,
+.EditButton:hover {
+  background: rgba(0, 229, 197, 0.3);
 }

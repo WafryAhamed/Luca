@@ -11,6 +11,7 @@ function App() {
   const chatEndRef = useRef(null);
 
   // Auto-scroll to latest message
+ // change the theme 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -38,7 +39,7 @@ function App() {
       });
     }
   }
-
+ // change the theme  // change the theme 
   return (
     <div className={styles.App}>
       <header className={styles.Header}>

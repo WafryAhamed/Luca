@@ -11,6 +11,8 @@ function App() {
   const chatEndRef = useRef(null);
 
   // Auto-scroll to latest message
+
+  // change the theme  // change the theme 
  // change the theme 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });

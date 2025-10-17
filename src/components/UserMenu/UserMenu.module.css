@@ -1,0 +1,40 @@
+/* components/UserMenu/UserMenu.module.css */
+
+.UserMenu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(13, 11, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
+  z-index: 10;
+  min-width: 160px;
+}
+
+.UserMenuItem {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+}
+
+.UserMenuItem:hover {
+  background: rgba(185, 103, 255, 0.1);
+  color: #B967FF;
+}
+
+.UserMenuItem:last-child {
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+
+.UserMenuItem:last-child:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+}

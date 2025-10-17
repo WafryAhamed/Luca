@@ -1,42 +1,285 @@
-/* App.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
 
 .App {
   font-family: 'Manrope', sans-serif;
   display: flex;
-  flex-direction: column;
   height: 100vh;
-  background: #0A0F14;
+  background: #0D0B1A;
   color: #fff;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* === GLOBAL PURPLE SCROLLBAR (for any missed container) === */
+.App ::-webkit-scrollbar {
+  width: 6px;
+}
+.App ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.App ::-webkit-scrollbar-thumb {
+  background: rgba(185, 103, 255, 0.3);
+  border-radius: 10px;
+}
+.App ::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 103, 255, 0.6);
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
+}
+
+/* === LEFT SIDEBAR === */
+.Sidebar {
+  width: 280px;
+  background: rgba(13, 11, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(185, 103, 255, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+/* Left Sidebar Scrollbar */
+.Sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.Sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.Sidebar::-webkit-scrollbar-thumb {
+  background: rgba(185, 103, 255, 0.3);
+  border-radius: 10px;
+}
+.Sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 103, 255, 0.6);
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
+}
+
+/* Sidebar Content */
+.SidebarHeader {
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.NewChatButton {
+  background: rgba(185, 103, 255, 0.1);
+  color: #B967FF;
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Manrope', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.NewChatButton:hover {
+  background: rgba(185, 103, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.SearchInput {
+  background: rgba(185, 103, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: 'Manrope', sans-serif;
+  margin: 0 1.5rem;
+  width: calc(100% - 3rem);
+}
+
+.ChatListSection {
+  padding: 0 1.5rem;
+  font-size: 0.85rem;
+  color: #aaa;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.ChatItem {
+  background: rgba(185, 103, 255, 0.05);
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.ChatItem:hover {
+  background: rgba(185, 103, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.UserFooter {
+  margin-top: auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #B967FF;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.UserFooter:hover {
+  color: #fff;
+}
+
+/* === RIGHT SIDEBAR === */
+.RightSidebar {
+  width: 200px;
+  background: rgba(13, 11, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(185, 103, 255, 0.1);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+  overflow-y: auto;
+}
+
+/* Right Sidebar Scrollbar */
+.RightSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.RightSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.RightSidebar::-webkit-scrollbar-thumb {
+  background: rgba(185, 103, 255, 0.3);
+  border-radius: 10px;
+}
+.RightSidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 103, 255, 0.6);
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
+}
+
+.UserAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(185, 103, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.5);
+  margin: 8px;
+}
+
+.UserAvatar:hover {
+  background: rgba(185, 103, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ✅ FIXED USER MENU — VISIBLE ON TOP */
+.UserMenu {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: rgba(13, 11, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.UserMenuItem {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+}
+.UserMenuItem:hover {
+  background: rgba(185, 103, 255, 0.1);
+  color: #B967FF;
+}
+.UserMenuItem:last-child {
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+.UserMenuItem:last-child:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+}
+
+/* === CENTERED CHAT AREA === */
+.ChatContainer {
+  flex: 1;
+  max-width: 800px;
+  min-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: rgba(13, 11, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 5;
+  padding: 1rem;
 }
 
 .Header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 1.2rem;
-  background: rgba(10, 15, 20, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 229, 197, 0.1);
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  background: rgba(13, 11, 26, 0.8);
+  border-bottom: 1px solid rgba(185, 103, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .Logo {
   width: 45px;
+  align-items: center;
   margin-right: 10px;
-  filter: drop-shadow(0 0 3px #00E5C5);
+  filter: drop-shadow(0 0 3px #B967FF);
 }
 
 .Title {
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: #00E5C5;
-  text-shadow: 0 0 6px rgba(0, 229, 197, 0.5);
+  color: #B967FF;
+  text-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
 }
 
-.ChatContainer {
+.ChatBody {
   flex: 1;
   overflow-y: auto;
   padding: 1.5rem;
@@ -44,55 +287,50 @@
   flex-direction: column;
   gap: 1rem;
   scroll-behavior: smooth;
-  background: #0A0F14;
+  background: transparent;
   position: relative;
 }
 
-/* Modern Scrollbar (2026-style) */
-.ChatContainer::-webkit-scrollbar {
+/* ✅ MODERN CHAT SCROLLBAR — PURPLE GLASS */
+.ChatBody::-webkit-scrollbar {
   width: 6px;
 }
-
-.ChatContainer::-webkit-scrollbar-track {
-  background: rgba(10, 15, 20, 0.5);
+.ChatBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ChatBody::-webkit-scrollbar-thumb {
+  background: rgba(185, 103, 255, 0.3);
   border-radius: 10px;
 }
-
-.ChatContainer::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 197, 0.3);
-  border-radius: 10px;
-  transition: background 0.2s ease;
-}
-
-.ChatContainer::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 229, 197, 0.6);
+.ChatBody::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 103, 255, 0.6);
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
 }
 
 .TypingIndicator {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #00E5C5;
+  color: #B967FF;
   opacity: 0.85;
   font-size: 0.85rem;
   padding-left: 0.5rem;
-  text-shadow: 0 0 4px rgba(0, 229, 197, 0.5);
+  text-shadow: 0 0 4px rgba(185, 103, 255, 0.5);
 }
 
 .Dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #00E5C5;
+  background: #B967FF;
   animation: blink 1.4s infinite both;
-  box-shadow: 0 0 6px rgba(0, 229, 197, 0.5);
+  box-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
 }
-
 .Dot:nth-child(1) { animation-delay: 0s; }
 .Dot:nth-child(2) { animation-delay: 0.2s; }
 .Dot:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes blink {
   0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-  40% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(0, 229, 197, 0.8); }
+  40% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(185, 103, 255, 0.8); }
 }

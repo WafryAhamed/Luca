@@ -1,0 +1,132 @@
+/* src/OnboardingPage.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
+
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0D0B1A;
+  z-index: -1;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Manrope', sans-serif;
+  padding: 1rem;
+}
+
+.Card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(13, 11, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.Logo img {
+  width: 50px;
+  filter: drop-shadow(0 0 4px #B967FF);
+}
+
+.Logo h1 {
+  font-size: 2rem;
+  color: #B967FF;
+  margin: 0;
+  text-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
+}
+
+.Title {
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.Subtitle {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.Features {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 0 1rem;
+  color: #e0d6ff;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.Features li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.Features li::before {
+  content: "•";
+  color: #B967FF;
+  font-size: 1.4rem;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+.CtaButton {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #B967FF, #9A4DFF);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(185, 103, 255, 0.3);
+  margin-top: 1rem;
+}
+
+.CtaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 103, 255, 0.5);
+}
+
+.Footer {
+  margin-top: 1.5rem;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.LinkButton {
+  background: none;
+  border: none;
+  color: #B967FF;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.LinkButton:hover {
+  text-decoration: underline;
+}

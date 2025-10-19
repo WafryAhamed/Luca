@@ -4,10 +4,10 @@
   font-family: 'Manrope', sans-serif;
   display: flex;
   height: 100vh;
-  background: #0D0B1A;
+  background: transparent; 
   color: #fff;
-  overflow: hidden;
-  position: relative;
+  overflow:visible;
+  position: fixed;
   z-index: 1;
 }
 
@@ -29,7 +29,11 @@
 
 /* === LEFT SIDEBAR === */
 .Sidebar {
-  width: 280px;
+  flex: 1;
+  max-width: 900px;
+  min-width: 500px;
+  width: 100%;
+  margin: 0 auto;
   background: rgba(13, 11, 26, 0.8);
   backdrop-filter: blur(10px);
   border-right: 1px solid rgba(185, 103, 255, 0.1);
@@ -144,9 +148,8 @@
 
 /* === RIGHT SIDEBAR === */
 .RightSidebar {
-  width: 200px;
-  background: rgba(13, 11, 26, 0.8);
-  backdrop-filter: blur(10px);
+  width: 0px; /* Fixed narrow width for desktop */
+  background: transparent; /* Make sidebar transparent */
   border-left: 1px solid rgba(185, 103, 255, 0.1);
   position: fixed;
   top: 0;
@@ -157,23 +160,22 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 0;
-  overflow-y: auto;
+  overflow: visible; /* Allow content to overflow for slide effect */
 }
 
-/* Right Sidebar Scrollbar */
-.RightSidebar::-webkit-scrollbar {
-  width: 6px;
-}
-.RightSidebar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.RightSidebar::-webkit-scrollbar-thumb {
-  background: rgba(185, 103, 255, 0.3);
-  border-radius: 10px;
-}
-.RightSidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(185, 103, 255, 0.6);
-  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
+/* Blur overlay behind the sidebar */
+.RightSidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 11, 26, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0;
+  z-index: -1;
 }
 
 .UserAvatar {
@@ -190,7 +192,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 0 8px rgba(185, 103, 255, 0.5);
-  margin: 8px;
+  margin: 16px 12px 0 0; /* Adjusted margin for better positioning */
 }
 
 .UserAvatar:hover {
@@ -198,47 +200,56 @@
   transform: scale(1.05);
 }
 
-/* ✅ FIXED USER MENU — VISIBLE ON TOP */
+/* User Menu positioning */
 .UserMenu {
   position: absolute;
-  top: 60px;
-  right: 10px;
+  top: 70px;
+  right: 12px;
   background: rgba(13, 11, 26, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(185, 103, 255, 0.2);
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
   z-index: 1000;
-  min-width: 160px;
+  min-width: 180px;
 }
 
-.UserMenuItem {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  color: #fff;
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.9rem;
-}
-.UserMenuItem:hover {
-  background: rgba(185, 103, 255, 0.1);
-  color: #B967FF;
-}
-.UserMenuItem:last-child {
-  color: #ff6b6b;
-  margin-top: 0.5rem;
-}
-.UserMenuItem:last-child:hover {
-  background: rgba(255, 107, 107, 0.1);
-  color: #ff6b6b;
+/* === RESPONSIVE RIGHT SIDEBAR === */
+@media (max-width: 768px) {
+  .RightSidebar {
+    width: 0;
+    transition: width 0.3s ease;
+  }
+  
+  .RightSidebar.show-menu {
+    width: 280px;
+  }
+  
+  .RightSidebar::before {
+    border-radius: 16px 0 0 16px;
+  }
+  
+  .UserAvatar {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    margin: 0;
+    z-index: 1001;
+  }
+  
+  .UserMenu {
+    right: 16px;
+    top: 60px;
+    width: 250px;
+  }
 }
 
 /* === CENTERED CHAT AREA === */
 .ChatContainer {
   flex: 1;
-  max-width: 800px;
+  max-width: 900px;
   min-width: 500px;
   width: 100%;
   margin: 0 auto;

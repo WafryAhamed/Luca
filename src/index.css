@@ -11,6 +11,7 @@ body {
   font-family: var(--font-sans);
   width: 100%;
   max-width: 640px;
+  background-color: aquamarine;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

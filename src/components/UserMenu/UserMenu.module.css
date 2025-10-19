@@ -3,15 +3,18 @@
 .UserMenu {
   position: absolute;
   top: 60px;
-  right: 0;
+  right: 10px;
   background: rgba(13, 11, 26, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px); /* ← Increased blur from 10px to 12px */
   border: 1px solid rgba(185, 103, 255, 0.2);
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
-  z-index: 10;
-  min-width: 160px;
+  z-index: 1000;
+  min-width: 240px; /* ← Increased from 200px to 240px */
+  max-width: 280px; /* ← Added to cap width on large screens */
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .UserMenuItem {
@@ -22,6 +25,9 @@
   color: #fff;
   font-family: 'Manrope', sans-serif;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .UserMenuItem:hover {
@@ -29,12 +35,192 @@
   color: #B967FF;
 }
 
-.UserMenuItem:last-child {
+.ToolSection {
+  padding: 0.4rem 1rem;
+  color: #aaa;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0.5rem 0;
+}
+
+.Divider {
+  height: 1px;
+  background: rgba(185, 103, 255, 0.1);
+  margin: 0.5rem 0;
+}
+
+.LogoutItem {
   color: #ff6b6b;
   margin-top: 0.5rem;
 }
 
-.UserMenuItem:last-child:hover {
+.LogoutItem:hover {
   background: rgba(255, 107, 107, 0.1);
   color: #ff6b6b;
+}
+
+/* Tool Panel (when a tool is open) */
+.ToolPanel {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: rgba(13, 11, 26, 0.95);
+  backdrop-filter: blur(12px); /* ← Increased blur from 10px to 12px */
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
+  z-index: 1000;
+  min-width: 300px; /* ← Increased from 280px to 300px */
+  max-width: 340px; /* ← Added for consistency */
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+}
+
+.ToolHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.BackButton {
+  background: none;
+  border: none;
+  color: #B967FF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.BackButton:hover {
+  color: #e0d6ff;
+}
+
+.ToolHeader h3 {
+  margin: 0;
+  color: #B967FF;
+  font-size: 1.2rem;
+}
+
+.TimerDisplay {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem 0;
+  color: #e0d6ff;
+  text-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
+}
+
+.ToolButtons {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.ToolButton {
+  flex: 1;
+  padding: 0.5rem;
+  background: rgba(185, 103, 255, 0.1);
+  color: #B967FF;
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ToolButton:hover {
+  background: rgba(185, 103, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.ToolHint {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.ToolInput,
+.ToolTextarea {
+  width: 100%;
+  padding: 0.6rem;
+  background: rgba(20, 18, 30, 0.5);
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  margin-bottom: 0.8rem;
+  resize: vertical;
+}
+
+.FileInput {
+  margin-bottom: 1rem;
+}
+
+.FileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.FileItem {
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  color: #e0d6ff;
+}
+
+.NotesList {
+  margin-top: 1rem;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.NoteItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.1);
+}
+
+.DeleteButton {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+.ResponseBox {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(185, 103, 255, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid #B967FF;
+}
+
+.ResponseBox h4 {
+  margin: 0 0 0.5rem 0;
+  color: #B967FF;
+  font-size: 1rem;
+}
+
+.ResponseBox pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: 'Manrope', monospace;
+  font-size: 0.85rem;
+  color: #e0d6ff;
 }

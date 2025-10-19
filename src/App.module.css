@@ -4,7 +4,7 @@
   font-family: 'Manrope', sans-serif;
   display: flex;
   height: 100vh;
-  background: transparent; 
+  background: transparent; /* === chat blur */
   color: #fff;
   overflow:visible;
   position: fixed;

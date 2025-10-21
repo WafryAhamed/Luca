@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Assistant } from "./assistants/googleai";
-import Chat from "./components/Chat/Chat";
+import { Chat } from "./components/Chat/Chat";
 import Controls from "./components/Controls/Controls";
 import Background from "./components/Background/Background";
 import Features from "./components/Features/Features";

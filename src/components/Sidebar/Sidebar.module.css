@@ -1,20 +1,75 @@
-.Sidebar {
-  width: 280px;
-  background: rgba(13, 11, 26, 0.8);
+/* Hamburger Button - Fixed on left edge */
+.MenuButton {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 25;
+  background: rgba(185, 103, 255, 0.2);
+  color: #B967FF;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
   backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(185, 103, 255, 0.1);
+}
+
+.MenuButton:hover {
+  background: rgba(185, 103, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Sidebar Base */
+.Sidebar {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 10;
+  width: 280px;
+  background: rgba(13, 11, 26, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(185, 103, 255, 0.2);
+  z-index: 20;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
   gap: 1rem;
 }
 
-/* Scrollable area: everything except footer */
+.Sidebar.open {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.CloseButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.CloseButton:hover {
+  background: rgba(185, 103, 255, 0.3);
+}
+
+/* Scrollable Content */
 .SidebarScrollable {
   flex: 1;
   overflow-y: auto;
@@ -25,9 +80,6 @@
 }
 
 .SidebarHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
@@ -39,16 +91,9 @@
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
   font-family: 'Manrope', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.NewChatButton:hover {
-  background: rgba(185, 103, 255, 0.2);
-  transform: translateY(-1px);
 }
 
 .SearchInput {
@@ -59,34 +104,70 @@
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
   outline: none;
-  font-family: 'Manrope', sans-serif;
   width: 100%;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Navigation */
+.NavSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.SectionHeader {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(185, 103, 255, 0.05);
+  color: #B967FF;
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: 'Manrope', sans-serif;
+}
+
+.SectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 0.5rem;
 }
 
 .ChatListSection {
   font-size: 0.85rem;
   color: #aaa;
   font-weight: 500;
+  margin-top: 0.4rem;
 }
 
-.ChatItem {
+.ChatItem,
+.ToolItem {
   background: rgba(185, 103, 255, 0.05);
   border: 1px solid rgba(185, 103, 255, 0.1);
   border-radius: 8px;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Manrope', sans-serif;
   font-size: 0.85rem;
-  line-height: 1.4;
+  color: #e0d6ff;
+  font-family: 'Manrope', sans-serif;
 }
 
-.ChatItem:hover {
-  background: rgba(185, 103, 255, 0.1);
-  transform: translateX(2px);
+.NavItem {
+  padding: 0.6rem 1rem;
+  background: rgba(185, 103, 255, 0.05);
+  border: 1px solid rgba(185, 103, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #B967FF;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
 }
 
-/* Footer stays at bottom, never scrolls */
+/* Footer */
 .UserFooter {
   padding: 1rem 1.5rem;
   display: flex;
@@ -94,13 +175,7 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   color: #B967FF;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  margin-top: auto; /* pushes it to bottom */
-}
-
-.UserFooter:hover {
-  color: #fff;
+  margin-top: auto;
 }
 
 .UserAvatar {
@@ -114,12 +189,21 @@
   justify-content: center;
   font-weight: 600;
   font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 8px rgba(185, 103, 255, 0.5);
 }
 
-.UserAvatar:hover {
-  background: rgba(185, 103, 255, 0.3);
-  transform: scale(1.05);
+/* Responsive */
+@media (max-width: 768px) {
+  .Sidebar {
+    width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Sidebar {
+    width: 240px;
+  }
+  .MenuButton {
+    top: 12px;
+    left: 12px;
+  }
 }

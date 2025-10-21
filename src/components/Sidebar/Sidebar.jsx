@@ -53,12 +53,15 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
     <>
       {/* Hamburger menu button (visible only on mobile) */}
       <button
-        className={styles.MenuButton}
+        className={`${styles.MenuButton} ${isOpen ? styles.hidden : ""}`}
         onClick={() => setIsOpen(true)}
         aria-label="Open menu"
-        style={{ display: isOpen ? "none" : "flex" }}
       >
-        ☰
+        <div className={styles.HamburgerIcon}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>
 
       {/* Sidebar */}
@@ -69,7 +72,10 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
           onClick={() => setIsOpen(false)}
           aria-label="Close menu"
         >
-          ✕
+          <div className={styles.CloseIcon}>
+            <span></span>
+            <span></span>
+          </div>
         </button>
 
         <div className={styles.SidebarScrollable}>

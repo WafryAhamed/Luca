@@ -17,6 +17,7 @@
   justify-content: center;
   box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .MenuButton:hover {
@@ -49,24 +50,84 @@
   transform: translateX(0);
 }
 
-/* Close Button */
+/* Close Button - Smooth Glowing Chevron */
 .CloseButton {
   position: absolute;
   top: 12px;
   right: 12px;
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #b967ff;
   border: none;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  font-size: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
   cursor: pointer;
   z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.4);
+  animation: chevronGlow 2s infinite alternate ease-in-out;
+}
+
+.CloseButton::before {
+  content: '‹';
+  display: inline-block;
+  color: #b967ff;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .CloseButton:hover {
-  background: rgba(185, 103, 255, 0.3);
+  background: rgba(185, 103, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.CloseButton:hover::before {
+  color: #d29aff;
+  transform: translateX(-2px);
+}
+
+/* Glowing Pulse Animation */
+@keyframes chevronGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(185, 103, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(185, 103, 255, 0.8);
+  }
+}
+
+/* --- Modern Icon Styles --- */
+
+/* Hidden hamburger when sidebar is open */
+.hidden {
+  display: none !important;
+}
+
+/* Modern hamburger icon */
+.HamburgerIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.HamburgerIcon span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #b967ff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.MenuButton:hover .HamburgerIcon span {
+  background: #d29aff;
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
 }
 
 /* Scrollable Content */

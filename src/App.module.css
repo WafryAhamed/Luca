@@ -1,22 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
 
+/* === MAIN APP CONTAINER === */
 .App {
   font-family: 'Manrope', sans-serif;
   display: flex;
   height: 100vh;
-  background: transparent; /* === chat blur */
+  background: transparent;
   color: #fff;
   overflow: visible;
   position: fixed;
   z-index: 1;
-
-  /* ✅ Adjustment to pull chat area slightly left */
   justify-content: flex-start;
-  margin-left: 0;       /* ✅ ensures no unwanted gap */
-  padding-left: 0px; /* fine-tune how close chat area sits near sidebar */
+  margin-left: 0;
+  padding-left: 0;
 }
 
-/* === GLOBAL PURPLE SCROLLBAR (for any missed container) === */
+/* === GLOBAL SCROLLBAR === */
 .App ::-webkit-scrollbar {
   width: 6px;
 }
@@ -54,12 +53,9 @@
   overflow-y: auto;
 }
 
-/* Left Sidebar Scrollbar */
+/* Sidebar scrollbar */
 .Sidebar::-webkit-scrollbar {
   width: 6px;
-}
-.Sidebar::-webkit-scrollbar-track {
-  background: transparent;
 }
 .Sidebar::-webkit-scrollbar-thumb {
   background: rgba(185, 103, 255, 0.3);
@@ -70,7 +66,7 @@
   box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
 }
 
-/* Sidebar Content */
+/* Sidebar Header */
 .SidebarHeader {
   padding: 0 1.5rem;
   display: flex;
@@ -79,6 +75,7 @@
   margin-bottom: 1rem;
 }
 
+/* New Chat Button */
 .NewChatButton {
   background: rgba(185, 103, 255, 0.1);
   color: #B967FF;
@@ -88,7 +85,6 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -98,6 +94,7 @@
   transform: translateY(-1px);
 }
 
+/* Sidebar Elements */
 .SearchInput {
   background: rgba(185, 103, 255, 0.05);
   color: #fff;
@@ -106,11 +103,9 @@
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
   outline: none;
-  font-family: 'Manrope', sans-serif;
   margin: 0 1.5rem;
   width: calc(100% - 3rem);
 }
-
 .ChatListSection {
   padding: 0 1.5rem;
   font-size: 0.85rem;
@@ -118,7 +113,6 @@
   font-weight: 500;
   margin-top: 1rem;
 }
-
 .ChatItem {
   background: rgba(185, 103, 255, 0.05);
   border: 1px solid rgba(185, 103, 255, 0.1);
@@ -127,7 +121,6 @@
   margin: 0.5rem 0;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'Manrope', sans-serif;
   font-size: 0.85rem;
   line-height: 1.4;
 }
@@ -135,7 +128,6 @@
   background: rgba(185, 103, 255, 0.1);
   transform: translateX(2px);
 }
-
 .UserFooter {
   margin-top: auto;
   padding: 1rem 1.5rem;
@@ -153,7 +145,7 @@
 
 /* === RIGHT SIDEBAR === */
 .RightSidebar {
-  width: 0px;
+  width: 0;
   background: transparent;
   border-left: 1px solid rgba(185, 103, 255, 0.1);
   position: fixed;
@@ -164,24 +156,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 0;
   overflow: visible;
 }
-
 .RightSidebar::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(13, 11, 26, 0.8);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-radius: 0;
   z-index: -1;
 }
 
+/* Avatar */
 .UserAvatar {
   width: 36px;
   height: 36px;
@@ -198,19 +186,18 @@
   box-shadow: 0 0 8px rgba(185, 103, 255, 0.5);
   margin: 16px 12px 0 0;
 }
-
 .UserAvatar:hover {
   background: rgba(185, 103, 255, 0.3);
   transform: scale(1.05);
 }
 
+/* User Menu */
 .UserMenu {
   position: absolute;
   top: 70px;
   right: 12px;
   background: rgba(13, 11, 26, 0.95);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(185, 103, 255, 0.2);
   border-radius: 12px;
   padding: 1rem;
@@ -219,33 +206,7 @@
   min-width: 180px;
 }
 
-/* === RESPONSIVE RIGHT SIDEBAR === */
-@media (max-width: 768px) {
-  .RightSidebar {
-    width: 0;
-    transition: width 0.3s ease;
-  }
-  .RightSidebar.show-menu {
-    width: 280px;
-  }
-  .RightSidebar::before {
-    border-radius: 16px 0 0 16px;
-  }
-  .UserAvatar {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    margin: 0;
-    z-index: 1001;
-  }
-  .UserMenu {
-    right: 16px;
-    top: 60px;
-    width: 250px;
-  }
-}
-
-/* === CENTERED CHAT AREA === */
+/* === CHAT CONTAINER === */
 .ChatContainer {
   flex: 1;
   max-width: 900px;
@@ -262,36 +223,90 @@
   position: relative;
   z-index: 5;
   padding: 1rem;
-
-  /* ✅ Pull chat slightly left to be nearer to sidebar */
-  margin-left: -130px; /* Adjust as you like (-100 to -150 works great) */
+  margin-left: -130px;
 }
 
-/* === Responsive Chat Container Alignment === */
-@media (max-width: 1024px) {
+/* === RESPONSIVE LAYOUTS === */
+
+/* Laptops */
+@media (max-width: 1366px) {
   .ChatContainer {
-    padding-left: 10px;
-    margin-left: 0;
+    margin-left: -80px;
+    width: 95%;
   }
 }
 
+/* Tablets */
+@media (max-width: 1024px) {
+  .ChatContainer {
+    margin-left: 0;
+    padding-left: 10px;
+    width: 95%;
+  }
+}
+
+/* Medium Tablets & Foldables */
+@media (max-width: 820px) {
+  .ChatContainer {
+    margin-left: 0;
+    width: 100%;
+    border-radius: 8px;
+  }
+  .Sidebar { min-width: 260px; }
+  .RightSidebar { display: none; }
+}
+
+/* Phones (All Brands) */
 @media (max-width: 768px) {
   .ChatContainer {
-    padding-left: 16px;
     margin-left: 0;
     width: 100%;
     border-radius: 0;
   }
+  .Sidebar {
+    position: absolute;
+    width: 250px;
+    left: -260px;
+    transition: left 0.3s ease;
+  }
+  .Sidebar.open { left: 0; }
+  .RightSidebar { display: none; }
 }
 
+/* Small Phones (iPhone SE, Redmi, Vivo Y, etc.) */
 @media (max-width: 480px) {
   .ChatContainer {
-    padding-left: 12px;
-    padding-right: 12px;
     width: 100%;
+    border-radius: 0;
+    padding: 12px;
+  }
+  .Sidebar { width: 220px; }
+  .NewChatButton {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .UserAvatar {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
   }
 }
 
+/* Ultra Small Devices (360px and below) */
+@media (max-width: 360px) {
+  .ChatContainer { padding: 8px; width: 100%; }
+  .NewChatButton {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+  .UserAvatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+}
+
+/* === HEADER & BODY === */
 .Header {
   display: flex;
   align-items: center;
@@ -299,24 +314,20 @@
   padding: 0.8rem 1rem;
   background: rgba(13, 11, 26, 0.8);
   border-bottom: 1px solid rgba(185, 103, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-
 .Logo {
   width: 45px;
-  align-items: center;
   margin-right: 10px;
   filter: drop-shadow(0 0 3px #B967FF);
 }
-
 .Title {
   font-size: 1.6rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
   color: #B967FF;
   text-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
 }
 
+/* Chat Body */
 .ChatBody {
   flex: 1;
   overflow-y: auto;
@@ -326,15 +337,9 @@
   gap: 1rem;
   scroll-behavior: smooth;
   background: transparent;
-  position: relative;
 }
-
-/* ✅ MODERN CHAT SCROLLBAR — PURPLE GLASS */
 .ChatBody::-webkit-scrollbar {
   width: 6px;
-}
-.ChatBody::-webkit-scrollbar-track {
-  background: transparent;
 }
 .ChatBody::-webkit-scrollbar-thumb {
   background: rgba(185, 103, 255, 0.3);
@@ -342,9 +347,9 @@
 }
 .ChatBody::-webkit-scrollbar-thumb:hover {
   background: rgba(185, 103, 255, 0.6);
-  box-shadow: 0 0 8px rgba(185, 103, 255, 0.8);
 }
 
+/* Typing Indicator */
 .TypingIndicator {
   display: flex;
   align-items: center;
@@ -353,18 +358,14 @@
   opacity: 0.85;
   font-size: 0.85rem;
   padding-left: 0.5rem;
-  text-shadow: 0 0 4px rgba(185, 103, 255, 0.5);
 }
-
 .Dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #B967FF;
   animation: blink 1.4s infinite both;
-  box-shadow: 0 0 6px rgba(185, 103, 255, 0.5);
 }
-.Dot:nth-child(1) { animation-delay: 0s; }
 .Dot:nth-child(2) { animation-delay: 0.2s; }
 .Dot:nth-child(3) { animation-delay: 0.4s; }
 

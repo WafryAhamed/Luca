@@ -116,6 +116,15 @@
   animation: chevronGlow 2s infinite alternate ease-in-out;
 }
 
+/* 🔥 Added spacing between "New Chat" and Chevron 🔥 */
+.SidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding-right: 30px; /* <-- Adjust this value to increase or decrease space */
+}
+
 .CloseButton::before {
   content: '‹';
   display: inline-block;
@@ -151,10 +160,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.SidebarHeader {
-  margin-bottom: 0.5rem;
 }
 
 .NewChatButton {

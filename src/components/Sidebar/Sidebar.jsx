@@ -71,7 +71,9 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
           className={styles.CloseButton}
           onClick={() => setIsOpen(false)}
           aria-label="Close menu"
-        ></button>
+        >
+          ‹
+        </button>
 
         <div className={styles.SidebarScrollable}>
           {/* New Chat */}

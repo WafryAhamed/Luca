@@ -6,9 +6,14 @@
   height: 100vh;
   background: transparent; /* === chat blur */
   color: #fff;
-  overflow:visible;
+  overflow: visible;
   position: fixed;
   z-index: 1;
+
+  /* ✅ Adjustment to pull chat area slightly left */
+  justify-content: flex-start;
+  margin-left: 0;       /* ✅ ensures no unwanted gap */
+  padding-left: 0px; /* fine-tune how close chat area sits near sidebar */
 }
 
 /* === GLOBAL PURPLE SCROLLBAR (for any missed container) === */
@@ -148,8 +153,8 @@
 
 /* === RIGHT SIDEBAR === */
 .RightSidebar {
-  width: 0px; /* Fixed narrow width for desktop */
-  background: transparent; /* Make sidebar transparent */
+  width: 0px;
+  background: transparent;
   border-left: 1px solid rgba(185, 103, 255, 0.1);
   position: fixed;
   top: 0;
@@ -160,10 +165,9 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 0;
-  overflow: visible; /* Allow content to overflow for slide effect */
+  overflow: visible;
 }
 
-/* Blur overlay behind the sidebar */
 .RightSidebar::before {
   content: '';
   position: absolute;
@@ -192,7 +196,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 0 8px rgba(185, 103, 255, 0.5);
-  margin: 16px 12px 0 0; /* Adjusted margin for better positioning */
+  margin: 16px 12px 0 0;
 }
 
 .UserAvatar:hover {
@@ -200,7 +204,6 @@
   transform: scale(1.05);
 }
 
-/* User Menu positioning */
 .UserMenu {
   position: absolute;
   top: 70px;
@@ -222,15 +225,12 @@
     width: 0;
     transition: width 0.3s ease;
   }
-  
   .RightSidebar.show-menu {
     width: 280px;
   }
-  
   .RightSidebar::before {
     border-radius: 16px 0 0 16px;
   }
-  
   .UserAvatar {
     position: absolute;
     right: 16px;
@@ -238,7 +238,6 @@
     margin: 0;
     z-index: 1001;
   }
-  
   .UserMenu {
     right: 16px;
     top: 60px;
@@ -263,6 +262,34 @@
   position: relative;
   z-index: 5;
   padding: 1rem;
+
+  /* ✅ Pull chat slightly left to be nearer to sidebar */
+  margin-left: -130px; /* Adjust as you like (-100 to -150 works great) */
+}
+
+/* === Responsive Chat Container Alignment === */
+@media (max-width: 1024px) {
+  .ChatContainer {
+    padding-left: 10px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ChatContainer {
+    padding-left: 16px;
+    margin-left: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .ChatContainer {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+  }
 }
 
 .Header {

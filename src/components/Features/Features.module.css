@@ -1,12 +1,12 @@
 .Features {
-  padding: 1rem 1.5rem 1.2rem;
+  padding: 0.7rem 1rem 0.9rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  background: rgba(20, 16, 35, 0.6);
-  backdrop-filter: blur(14px) saturate(150%);
-  border-bottom: 1px solid rgba(185, 103, 255, 0.15);
-  border-radius: 0 0 16px 16px;
+  gap: 0.9rem;
+  background: rgba(20, 16, 35, 0.5);
+  backdrop-filter: blur(12px) saturate(160%);
+  border-bottom: 1px solid rgba(185, 103, 255, 0.12);
+  border-radius: 0 0 14px 14px;
   transition: all 0.3s ease;
 }
 
@@ -14,40 +14,40 @@
 .Subjects {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.55rem;
   justify-content: flex-start;
 }
 
 /* Subject Buttons */
 .SubjectTag {
-  background: rgba(185, 103, 255, 0.08);
+  background: rgba(185, 103, 255, 0.06);
   color: #cbb7ff;
-  border: 1px solid rgba(185, 103, 255, 0.2);
-  border-radius: 25px;
-  padding: 0.45rem 1.1rem;
-  font-size: 0.9rem;
+  border: 1px solid rgba(185, 103, 255, 0.15);
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: 'Manrope', sans-serif;
-  box-shadow: 0 0 8px rgba(185, 103, 255, 0.1);
+  box-shadow: 0 0 6px rgba(185, 103, 255, 0.08);
 }
 
 .SubjectTag:hover {
-  background: rgba(185, 103, 255, 0.2);
-  border-color: rgba(185, 103, 255, 0.4);
+  background: rgba(185, 103, 255, 0.18);
+  border-color: rgba(185, 103, 255, 0.35);
   color: #fff;
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 0 14px rgba(185, 103, 255, 0.3);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.25);
 }
 
-/* When a subject is clicked */
+/* Active subject button */
 .Active {
-  background: linear-gradient(135deg, rgba(185, 103, 255, 0.35), rgba(120, 64, 200, 0.4));
+  background: linear-gradient(135deg, rgba(185, 103, 255, 0.35), rgba(120, 64, 200, 0.45));
   border: 1px solid rgba(185, 103, 255, 0.6);
-  color: #ffffff;
-  box-shadow: 0 0 16px rgba(185, 103, 255, 0.45);
-  transform: scale(1.06);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
+  transform: scale(1.05);
 }
 
 /* Suggestions Section */
@@ -55,57 +55,64 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.9rem;
+  gap: 0.45rem;
+  font-size: 0.8rem;
   color: #bcbcbc;
   font-family: 'Manrope', sans-serif;
   letter-spacing: 0.2px;
   transition: opacity 0.3s ease;
 }
 
+.TryLabel {
+  color: #aaa;
+  font-weight: 500;
+  margin-right: 0.2rem;
+  font-size: 0.8rem;
+}
+
 /* Suggestion buttons */
 .Suggestion {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
   color: #eee;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 0.4rem 0.9rem;
+  border-radius: 12px;
+  padding: 0.3rem 0.7rem;
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: 'Manrope', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .Suggestion:hover {
   background: rgba(185, 103, 255, 0.25);
   color: #fff;
-  border-color: rgba(185, 103, 255, 0.4);
-  box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+  border-color: rgba(185, 103, 255, 0.35);
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.25);
   transform: translateY(-1px);
 }
 
-/* Subtle fade for “Try” section when updated dynamically */
+/* Subtle fade for “Try” section */
 .Suggestions {
   animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ✨ Responsive Design for 2025 Devices */
+/* 💠 Responsive Tweaks (Modern Devices 2025) */
 @media (max-width: 1024px) {
   .Features {
-    padding: 0.8rem 1rem 1rem;
+    padding: 0.7rem 0.8rem 0.9rem;
   }
   .SubjectTag {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    padding: 0.28rem 0.7rem;
   }
   .Suggestion {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.8rem;
+    font-size: 0.73rem;
+    padding: 0.28rem 0.6rem;
   }
 }
 
@@ -114,42 +121,42 @@
     justify-content: center;
   }
   .Features {
-    background: rgba(25, 20, 45, 0.75);
+    background: rgba(25, 20, 45, 0.7);
   }
 }
 
 @media (max-width: 480px) {
   .Features {
-    padding: 0.8rem;
-    gap: 0.8rem;
+    padding: 0.6rem;
+    gap: 0.7rem;
   }
   .Subjects {
-    gap: 0.5rem;
+    gap: 0.45rem;
   }
   .SubjectTag {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
   }
   .Suggestion {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.55rem;
   }
 }
 
-/* Ultra responsiveness for modern phones (iPhone, Samsung, Pixel, Vivo, Redmi) */
+/* For compact modern phones (iPhone, Samsung, Vivo, Redmi, Google Pixel) */
 @media (max-width: 390px) {
   .Features {
-    padding: 0.6rem;
+    padding: 0.5rem;
   }
   .Subjects {
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
   .SubjectTag {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.75rem;
+    padding: 0.22rem 0.55rem;
+    font-size: 0.7rem;
   }
   .Suggestion {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.22rem 0.5rem;
+    font-size: 0.68rem;
   }
 }

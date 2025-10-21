@@ -2,8 +2,13 @@ import { useState } from "react";
 import styles from "./Features.module.css";
 
 const subjects = [
-  "Math", "Physics", "Chemistry", "Biology",
-  "History", "Literature", "Coding", "Philosophy"
+  "Math",
+  "Science",
+  "English",
+  "History",
+  "Sinhala",
+  "Tamil",
+  "Coding"
 ];
 
 // Default suggestions (when no subject is selected)
@@ -17,52 +22,46 @@ const defaultSuggestions = [
 // Subject-wise dynamic suggestions (Sri Lankan school style)
 const subjectSuggestions = {
   Math: [
-    "Solve a Grade 11 algebra question",
+    "Solve a Grade 10 algebra question",
     "Explain Pythagoras theorem",
     "Find the area of a circle",
     "Simplify this expression"
   ],
-  Physics: [
+  Science: [
     "Explain Newton’s laws of motion",
-    "What is Ohm’s Law?",
-    "Describe the concept of energy conservation",
-    "How does gravity affect motion?"
+    "What is photosynthesis?",
+    "Describe the human digestive system",
+    "Explain energy transformation"
   ],
-  Chemistry: [
-    "Explain the periodic table trends",
-    "What is an acid and a base?",
-    "Describe chemical bonding",
-    "Write a balanced chemical equation"
-  ],
-  Biology: [
-    "Explain photosynthesis",
-    "What is cell division?",
-    "Describe the human respiratory system",
-    "How do plants reproduce?"
+  English: [
+    "Summarize 'The Village by the Sea'",
+    "Write a short essay on friendship",
+    "Explain a metaphor with an example",
+    "Who is the main character in Macbeth?"
   ],
   History: [
     "Who was King Dutugemunu?",
-    "Explain the significance of Anuradhapura Kingdom",
-    "Describe the Kotte period",
-    "What happened during the Kandyan Convention?"
+    "Explain the importance of Anuradhapura Kingdom",
+    "What was the Kandyan Convention?",
+    "Describe the British colonial period in Sri Lanka"
   ],
-  Literature: [
-    "Summarize 'The Village by the Sea'",
-    "Who is the protagonist in 'Romeo and Juliet'?",
-    "Explain the theme of friendship in 'The Merchant of Venice'",
-    "Analyze a Sri Lankan short story"
+  Sinhala: [
+    "සිංහල නාම පද කියන්න",
+    "සිංහල කවි විභාගය කියන්න",
+    "සිංහල වාක්‍ය ව්‍යුහය විස්තර කරන්න",
+    "සිංහල සාහිත්‍යයෙන් කෙටි රචනාවක් ලියන්න"
+  ],
+  Tamil: [
+    "தமிழ் இலக்கணம் விளக்கவும்",
+    "சங்க இலக்கியம் பற்றி கூறவும்",
+    "ஒரு சிறு கட்டுரை எழுதவும்",
+    "தமிழ் கவிதை பொருள் கூறவும்"
   ],
   Coding: [
     "Explain what a function is in Python",
     "Write a simple HTML page",
-    "What is a variable in programming?",
-    "Explain loops with an example"
-  ],
-  Philosophy: [
-    "What is ethics?",
-    "Explain Aristotle’s theory of virtue",
-    "What is meant by existentialism?",
-    "Describe Buddhist philosophy on suffering"
+    "Explain loops with an example",
+    "What is a variable in programming?"
   ]
 };
 
@@ -94,7 +93,7 @@ export default function Features({ onSubjectSelect }) {
       </div>
 
       <div className={styles.Suggestions}>
-        <span>Try: </span>
+        <span className={styles.TryLabel}>Try:</span>
         {suggestions.map((s, i) => (
           <button
             key={i}

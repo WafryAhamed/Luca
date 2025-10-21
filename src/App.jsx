@@ -82,7 +82,7 @@ function App() {
         <div className={styles.ChatContainer}>
           <header className={styles.Header}>
             <img className={styles.Logo} src="/robot-Luca.svg" alt="LUCA Bot" />
-            <h2 className={styles.Title}>LUCA</h2>
+            <h5 className={styles.Title}>LUCAa</h5>
           </header>
 
           <Features onSubjectSelect={handleSubjectSelect} />

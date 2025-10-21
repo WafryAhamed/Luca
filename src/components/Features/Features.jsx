@@ -13,10 +13,11 @@ const subjects = [
 
 // Default suggestions (when no subject is selected)
 const defaultSuggestions = [
-  "Explain quantum entanglement",
-  "Solve this equation",
-  "Summarize Hamlet",
-  "How does photosynthesis work?"
+   "Write a simple Python program to add two numbers",
+  "පරිච්ඡේදයක් ලියන්න — මගේ පාසල",
+  "What is HTML used for?",
+  "இலக்கணத்தில் வினைச்சொல் என்றால் என்ன?"
+  
 ];
 
 // Subject-wise dynamic suggestions (Sri Lankan school style)

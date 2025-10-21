@@ -51,7 +51,7 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
 
   return (
     <>
-      {/* Hamburger menu button (visible only on mobile) */}
+      {/* ☰ Hamburger menu button (visible only when sidebar closed) */}
       <button
         className={`${styles.MenuButton} ${isOpen ? styles.hidden : ""}`}
         onClick={() => setIsOpen(true)}
@@ -66,17 +66,12 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
 
       {/* Sidebar */}
       <div className={`${styles.Sidebar} ${isOpen ? styles.open : ""}`}>
-        {/* Close button (only on mobile) */}
+        {/* ‹ Chevron close button */}
         <button
           className={styles.CloseButton}
           onClick={() => setIsOpen(false)}
           aria-label="Close menu"
-        >
-          <div className={styles.CloseIcon}>
-            <span></span>
-            <span></span>
-          </div>
-        </button>
+        ></button>
 
         <div className={styles.SidebarScrollable}>
           {/* New Chat */}

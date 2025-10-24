@@ -94,7 +94,7 @@ export default function UserMenu({ onClose }) {
     );
   }
 
-  // 🔹 Stopwatch
+  // 🔹 Stopwatch code
   if (activeTool === "stopwatch") {
     return (
       <div className={styles.ToolPanel}>
@@ -126,7 +126,7 @@ export default function UserMenu({ onClose }) {
     );
   }
 
-  // 🔹 Notes Saver
+  // 🔹 Notes Saver code
   if (activeTool === "notes") {
     return (
       <div className={styles.ToolPanel}>
@@ -156,7 +156,7 @@ export default function UserMenu({ onClose }) {
     );
   }
 
-  // 🔹 Main Menu
+  // 🔹 Main Menu code
   return (
     <div className={styles.UserMenu}>
       <div className={styles.UserMenuItem} onClick={onClose}>Settings</div>

@@ -94,7 +94,7 @@ export default function UserMenu({ onClose }) {
     );
   }
 
-  // 🔹 Stopwatch 
+  // 🔹 Stopwatch code is here
   if (activeTool === "stopwatch") {
     return (
       <div className={styles.ToolPanel}>

@@ -40,7 +40,10 @@ export default function Background() {
             <feColorMatrix
               in="blur"
               mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              values="1 0 0 0 0  
+                      0 1 0 0 0  
+                      0 0 1 0 0  
+                      0 0 0 14 -6"
               result="goo"
             />
             <feBlend in="SourceGraphic" in2="goo" />

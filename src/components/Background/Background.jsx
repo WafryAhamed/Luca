@@ -11,9 +11,9 @@ export default function Background() {
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    const mouse = { x: width / 2, y: height / 2, radius: 130 };
     let particles = [];
-    const numParticles = 80;
-    const mouse = { x: width / 2, y: height / 2 };
+    const numParticles = 90;
 
     class Particle {
       constructor(x, y, radius, color, speedX, speedY) {
@@ -24,14 +24,29 @@ export default function Background() {
         this.speedX = speedX;
         this.speedY = speedY;
       }
+
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        // Bounce effect
+        // Bounce from edges
         if (this.x < 0 || this.x > width) this.speedX *= -1;
         if (this.y < 0 || this.y > height) this.speedY *= -1;
+
+        // Interact with mouse
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const angle = Math.atan2(dy, dx);
+          const force = (mouse.radius - dist) / mouse.radius;
+          const forceX = Math.cos(angle) * force * 2;
+          const forceY = Math.sin(angle) * force * 2;
+          this.x -= forceX;
+          this.y -= forceY;
+        }
       }
+
       draw() {
         ctx.beginPath();
         const gradient = ctx.createRadialGradient(
@@ -55,10 +70,12 @@ export default function Background() {
       for (let i = 0; i < numParticles; i++) {
         const x = Math.random() * width;
         const y = Math.random() * height;
-        const radius = Math.random() * 3 + 1;
-        const color = `rgba(${90 + Math.random() * 40}, ${40 + Math.random() * 20}, ${160 + Math.random() * 40}, 0.3)`;
-        const speedX = (Math.random() - 0.5) * 0.6;
-        const speedY = (Math.random() - 0.5) * 0.6;
+        const radius = Math.random() * 2.5 + 1;
+        const color = `rgba(${90 + Math.random() * 40}, ${40 + Math.random() * 20}, ${
+          160 + Math.random() * 40
+        }, 0.35)`;
+        const speedX = (Math.random() - 0.5) * 0.4;
+        const speedY = (Math.random() - 0.5) * 0.4;
         particles.push(new Particle(x, y, radius, color, speedX, speedY));
       }
     }
@@ -83,7 +100,7 @@ export default function Background() {
     }
 
     function animate() {
-      ctx.fillStyle = "rgba(9, 7, 18, 0.12)"; // dark fading overlay
+      ctx.fillStyle = "rgba(9, 7, 18, 0.15)";
       ctx.fillRect(0, 0, width, height);
 
       particles.forEach((p) => {
@@ -100,18 +117,21 @@ export default function Background() {
       mouse.y = e.y;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
       init();
-    });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
 
     init();
     animate();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

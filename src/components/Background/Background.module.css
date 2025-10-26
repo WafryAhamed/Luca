@@ -29,3 +29,54 @@
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 5s infinite alternate;
+}
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+.star.small {
+  width: 2px;
+  height: 2px;
+} 
+.star.medium {
+  width: 4px;
+  height: 4px;
+}
+.star.large {
+  width: 6px;
+  height: 6px;
+}
+
+
+
+
+
+.star.extraLarge {
+  width: 8px;
+  height: 8px;
+}
+.star.extraLarge {
+  width: 8px;
+  height: 8px;
+}
+.star.extraLarge {
+  width: 8px;
+  height: 8px;
+}
+
+.star.extraLarge {
+  width: 8px;
+  height: 8px;
+}

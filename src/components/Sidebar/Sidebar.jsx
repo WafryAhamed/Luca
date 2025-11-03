@@ -165,7 +165,7 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
         {/* Footer */}
         <div className={styles.UserFooter}>
           <div className={styles.UserAvatar}>W</div>
-          <span>wfy</span>
+          <span>wfy ahmed  </span>
         </div>
       </div>
     </>

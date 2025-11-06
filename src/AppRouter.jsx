@@ -7,7 +7,7 @@ import App from "./App";
 export default function AppRouter() {
   return (
     <Routes>
-      {/* Always show onboarding first */}
+      {/* Always show onboarding first  */}
       <Route path="/" element={<OnboardingPage />} />
       {/* Auth page */}
       <Route path="/auth" element={<AuthPage />} />

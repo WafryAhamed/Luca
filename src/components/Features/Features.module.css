@@ -143,7 +143,7 @@
   }
 }
 
-/* For compact modern phones (iPhone, Samsung, Vivo, Redmi, Google Pixel) */
+/* For compact modern phones (iPhone, Samsung, Vivo, Redmi, Google Pixel) code */
 @media (max-width: 390px) {
   .Features {
     padding: 0.5rem;

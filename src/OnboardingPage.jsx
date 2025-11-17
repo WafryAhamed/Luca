@@ -12,18 +12,18 @@ export default function OnboardingPage() {
     navigate("/auth");
   };
 
-  // Auto-play animated onboarding messages
+  // Chat intro autoplay
   useEffect(() => {
     const timeouts = [
       setTimeout(() => setStep(1), 600),
-      setTimeout(() => setStep(2), 1600),
+      setTimeout(() => setStep(2), 1500),
     ];
     return () => timeouts.forEach((t) => clearTimeout(t));
   }, []);
 
   return (
     <>
-      {/* 3D Background */}
+      {/* 3D Animated Background */}
       <div className={styles.Background3D}>
         <div className={styles.Cube}></div>
         <div className={styles.Cube}></div>
@@ -34,7 +34,7 @@ export default function OnboardingPage() {
       <div className={styles.Container}>
         <div className={styles.Card}>
 
-          {/* App Header */}
+          {/* Logo */}
           <div className={styles.Logo}>
             <img src="/robot-Luca.svg" alt="LUCA" />
             <h1>LUCA</h1>
@@ -43,10 +43,12 @@ export default function OnboardingPage() {
           {/* Chat intro */}
           <div className={styles.ChatPreview}>
             {step >= 1 && (
-              <div className={styles.BotBubble}>Hi! I'm LUCA 🤖</div>
+              <div className={styles.BotBubble}>Hey, I’m LUCA 🤖</div>
             )}
             {step >= 2 && (
-              <div className={styles.BotBubble}>I'm here to help you learn smarter.</div>
+              <div className={styles.BotBubble}>
+                Your personal AI learning companion.
+              </div>
             )}
 
             {step < 2 && (
@@ -58,11 +60,11 @@ export default function OnboardingPage() {
             )}
           </div>
 
-          {/* Square links */}
+          {/* Modern Square Links */}
           <div className={styles.LinksGrid}>
-            <button className={styles.SquareLink}>📘 Notes</button>
+            <button className={styles.SquareLink}>📘 Study</button>
             <button className={styles.SquareLink}>🧠 Practice</button>
-            <button className={styles.SquareLink}>📤 Upload</button>
+            <button className={styles.SquareLink}>📤 Import</button>
             <button className={styles.SquareLink}>⚙️ Tools</button>
           </div>
 

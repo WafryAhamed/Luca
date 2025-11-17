@@ -17,17 +17,18 @@ export default function OnboardingPage() {
     const timeouts = [
       setTimeout(() => setStep(1), 600),
       setTimeout(() => setStep(2), 1600),
-      setTimeout(() => setStep(3), 2600),
     ];
     return () => timeouts.forEach((t) => clearTimeout(t));
   }, []);
 
   return (
     <>
-      <div className={styles.Background}>
-        <div className={styles.Gradient1}></div>
-        <div className={styles.Gradient2}></div>
-        <div className={styles.Stars}></div>
+      {/* 3D Background */}
+      <div className={styles.Background3D}>
+        <div className={styles.Cube}></div>
+        <div className={styles.Cube}></div>
+        <div className={styles.Cube}></div>
+        <div className={styles.Cube}></div>
       </div>
 
       <div className={styles.Container}>
@@ -39,7 +40,7 @@ export default function OnboardingPage() {
             <h1>LUCA</h1>
           </div>
 
-          {/* Animated conversation-style intro */}
+          {/* Chat intro */}
           <div className={styles.ChatPreview}>
             {step >= 1 && (
               <div className={styles.BotBubble}>Hi! I'm LUCA 🤖</div>
@@ -47,13 +48,8 @@ export default function OnboardingPage() {
             {step >= 2 && (
               <div className={styles.BotBubble}>I'm here to help you learn smarter.</div>
             )}
-            {step >= 3 && (
-              <div className={styles.BotBubble}>
-                Want to see what I can do? 👇
-              </div>
-            )}
 
-            {step < 3 && (
+            {step < 2 && (
               <div className={styles.TypingBubble}>
                 <div className={styles.Dot}></div>
                 <div className={styles.Dot}></div>
@@ -62,32 +58,12 @@ export default function OnboardingPage() {
             )}
           </div>
 
-          {/* Modern sliding features */}
-          <div className={styles.FeatureSlider}>
-            <div className={styles.FeatureItem}>
-              <span>📚</span>
-              <p>Master Math, Science, Literature & more</p>
-            </div>
-
-            <div className={styles.FeatureItem}>
-              <span>📄</span>
-              <p>Upload PDFs, notes & assignments</p>
-            </div>
-
-            <div className={styles.FeatureItem}>
-              <span>💡</span>
-              <p>AI step-by-step problem solving</p>
-            </div>
-
-            <div className={styles.FeatureItem}>
-              <span>⚡</span>
-              <p>Instant explanations in your style</p>
-            </div>
-
-            <div className={styles.FeatureItem}>
-              <span>🔒</span>
-              <p>Private & secure academic workspace</p>
-            </div>
+          {/* Square links */}
+          <div className={styles.LinksGrid}>
+            <button className={styles.SquareLink}>📘 Notes</button>
+            <button className={styles.SquareLink}>🧠 Practice</button>
+            <button className={styles.SquareLink}>📤 Upload</button>
+            <button className={styles.SquareLink}>⚙️ Tools</button>
           </div>
 
           {/* CTA */}

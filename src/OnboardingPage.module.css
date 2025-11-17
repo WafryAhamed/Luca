@@ -1,56 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
 
-.Background {
+/* === 3D Animated Background === */
+.Background3D {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
   overflow: hidden;
   z-index: -1;
+  background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
 }
 
-/* Gradient blobs */
-.Gradient1, .Gradient2 {
+/* 3D floating cubes */
+.Cube {
   position: absolute;
-  width: 650px;
-  height: 650px;
-  border-radius: 50%;
-  filter: blur(180px);
-  opacity: 0.55;
-  animation: float 10s ease-in-out infinite;
-}
-.Gradient1 {
-  background: #B967FF33;
-  top: 10%;
-  left: -12%;
-}
-.Gradient2 {
-  background: #9A4DFF44;
-  bottom: 8%;
-  right: -12%;
-  animation-delay: 3s;
+  width: 90px;
+  height: 90px;
+  background: rgba(185, 103, 255, 0.25);
+  border: 2px solid rgba(185, 103, 255, 0.4);
+  box-shadow: 0 0 25px rgba(185, 103, 255, 0.4);
+  animation: spin 12s linear infinite, floatCube 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+  border-radius: 10px;
 }
 
-/* Stars */
-.Stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 3px 3px;
-  opacity: 0.07;
-  animation: moveStars 60s linear infinite;
+.Cube:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+.Cube:nth-child(2) { top: 65%; left: 70%; animation-delay: 2s; }
+.Cube:nth-child(3) { top: 50%; left: 20%; animation-delay: 1s; }
+.Cube:nth-child(4) { top: 25%; left: 75%; animation-delay: 3s; }
+
+@keyframes spin {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
 }
 
-@keyframes moveStars {
-  from { transform: translateY(0); }
-  to { transform: translateY(-1800px); }
-}
-
-@keyframes float {
+@keyframes floatCube {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-25px) scale(1.05); }
+  50% { transform: translateY(-30px) scale(1.05); }
 }
 
+/* === Container + Card === */
 .Container {
   display: flex;
   justify-content: center;
@@ -78,7 +65,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* LOGO */
+/* === Logo === */
 .Logo {
   display: flex;
   justify-content: center;
@@ -104,7 +91,7 @@
   text-shadow: 0 0 10px rgba(185, 103, 255, 0.42);
 }
 
-/* Chat preview */
+/* === Chat Preview === */
 .ChatPreview {
   background: rgba(255, 255, 255, 0.04);
   padding: 1.2rem;
@@ -139,7 +126,6 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  animation: fadeIn 0.2s ease;
 }
 
 .Dot {
@@ -158,42 +144,34 @@
   50% { opacity: 1; transform: translateY(-3px); }
 }
 
-/* Feature slider */
-.FeatureSlider {
-  margin-top: 1.8rem;
-  margin-bottom: 2.2rem;
-  height: 120px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-.FeatureSlider::-webkit-scrollbar {
-  width: 5px;
-}
-.FeatureSlider::-webkit-scrollbar-thumb {
-  background: #9a4dff66;
-  border-radius: 10px;
-}
-
-.FeatureItem {
-  display: flex;
-  align-items: center;
+/* === Square Links === */
+.LinksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  color: #e0d6ff;
-  margin-bottom: 1rem;
-  animation: slideUp 0.4s ease both;
+  margin-bottom: 2rem;
 }
 
-.FeatureItem span {
-  font-size: 1.5rem;
+.SquareLink {
+  background: rgba(185, 103, 255, 0.18);
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  border-radius: 12px;
+  padding: 1.1rem;
+  color: #e8d8ff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: 0.25s ease;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.SquareLink:hover {
+  transform: translateY(-3px);
+  background: rgba(185, 103, 255, 0.3);
+  box-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
 }
 
-/* CTA Button */
+/* === CTA Button === */
 .CtaButton {
   width: 100%;
   padding: 0.95rem;

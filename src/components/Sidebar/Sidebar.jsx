@@ -39,9 +39,9 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setIsOpen(false); // closed by default on mobile
+        setIsOpen(false); // closed by default on mobile 
       } else {
-        setIsOpen(true); // always open on desktop
+        setIsOpen(true); // always open on desktop code
       }
     };
     handleResize();

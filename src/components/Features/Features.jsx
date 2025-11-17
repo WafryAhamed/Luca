@@ -11,7 +11,7 @@ const subjects = [
   "Coding"
 ];
 
-// Default suggestions (when no subject is selected)
+// Default suggestions 
 const defaultSuggestions = [
    "Write a simple Python program to add two numbers",
   "පරිච්ඡේදයක් ලියන්න — මගේ පාසල",
@@ -20,7 +20,7 @@ const defaultSuggestions = [
   
 ];
 
-// Subject-wise dynamic suggestions (Sri Lankan school style)
+// Subject-wise dynamic suggestions 
 const subjectSuggestions = {
   Math: [
     "Solve a Grade 10 algebra question",

@@ -3,37 +3,34 @@
 .Background {
   position: fixed;
   inset: 0;
-  overflow: hidden;
   background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
+  overflow: hidden;
   z-index: -1;
 }
 
-/* Soft gradient blobs */
+/* Gradient blobs */
 .Gradient1, .Gradient2 {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 650px;
+  height: 650px;
   border-radius: 50%;
   filter: blur(180px);
-  opacity: 0.6;
+  opacity: 0.55;
   animation: float 10s ease-in-out infinite;
 }
-
 .Gradient1 {
   background: #B967FF33;
   top: 10%;
-  left: -10%;
-  animation-delay: 0s;
+  left: -12%;
 }
-
 .Gradient2 {
   background: #9A4DFF44;
-  bottom: 10%;
-  right: -10%;
+  bottom: 8%;
+  right: -12%;
   animation-delay: 3s;
 }
 
-/* Animated subtle star particles */
+/* Stars */
 .Stars {
   position: absolute;
   width: 100%;
@@ -45,13 +42,13 @@
 }
 
 @keyframes moveStars {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-2000px); }
+  from { transform: translateY(0); }
+  to { transform: translateY(-1800px); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
+  50% { transform: translateY(-25px) scale(1.05); }
 }
 
 .Container {
@@ -59,126 +56,174 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Manrope', sans-serif;
   padding: 1rem;
+  font-family: 'Manrope', sans-serif;
 }
 
 .Card {
-  width: 100%;
-  max-width: 500px;
   background: rgba(13, 11, 26, 0.75);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(185, 103, 255, 0.2);
-  border-radius: 20px;
-  padding: 2.5rem;
+  border: 1px solid rgba(185, 103, 255, 0.22);
+  border-radius: 24px;
+  padding: 2.8rem 2.4rem;
   text-align: center;
-  box-shadow: 0 0 40px rgba(185, 103, 255, 0.15);
-  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 0 45px rgba(185, 103, 255, 0.18);
+  animation: fadeIn 0.8s ease;
 }
 
-.Card:hover {
-  box-shadow: 0 0 50px rgba(185, 103, 255, 0.25);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* LOGO */
 .Logo {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 1.6rem;
 }
 
 .Logo img {
-  width: 60px;
+  width: 65px;
+  animation: pulse 3s infinite ease-in-out;
   filter: drop-shadow(0 0 6px #B967FF);
-  animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
+  50% { transform: scale(1.06); opacity: 0.9; }
 }
 
 .Logo h1 {
   font-size: 2rem;
-  color: #B967FF;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
+  color: #D5B2FF;
+  text-shadow: 0 0 10px rgba(185, 103, 255, 0.42);
 }
 
-.Title {
-  font-size: 1.8rem;
-  color: #fff;
-  margin: 1rem 0;
-  font-weight: 600;
-}
-
-.Subtitle {
-  color: #ccc;
-  font-size: 1.1rem;
+/* Chat preview */
+.ChatPreview {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.2rem;
+  border-radius: 18px;
   margin-bottom: 2rem;
-  line-height: 1.6;
+  border: 1px solid rgba(185, 103, 255, 0.15);
 }
 
-.Features {
+.BotBubble {
+  background: rgba(185, 103, 255, 0.15);
+  color: #e8d8ff;
+  padding: 0.85rem 1.1rem;
+  border-radius: 14px;
+  margin-bottom: 0.6rem;
   text-align: left;
-  margin: 2rem 0;
-  padding: 0 1rem;
+  animation: bubble 0.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes bubble {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Typing indicator */
+.TypingBubble {
+  width: 55px;
+  height: 26px;
+  background: rgba(185, 103, 255, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.Dot {
+  width: 6px;
+  height: 6px;
+  background: #d5b2ff;
+  border-radius: 50%;
+  animation: typing 1s infinite ease-in-out;
+}
+
+.Dot:nth-child(2) { animation-delay: 0.15s; }
+.Dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typing {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Feature slider */
+.FeatureSlider {
+  margin-top: 1.8rem;
+  margin-bottom: 2.2rem;
+  height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.FeatureSlider::-webkit-scrollbar {
+  width: 5px;
+}
+.FeatureSlider::-webkit-scrollbar-thumb {
+  background: #9a4dff66;
+  border-radius: 10px;
+}
+
+.FeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: #e0d6ff;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  margin-bottom: 1rem;
+  animation: slideUp 0.4s ease both;
 }
 
-.Features li {
-  list-style: none;
-  position: relative;
-  padding-left: 1.5rem;
+.FeatureItem span {
+  font-size: 1.5rem;
 }
 
-.Features li::before {
-  content: "•";
-  color: #B967FF;
-  font-size: 1.4rem;
-  position: absolute;
-  left: 0;
-  top: -4px;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* CTA Button */
 .CtaButton {
   width: 100%;
-  padding: 0.9rem;
+  padding: 0.95rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
-  color: white;
   border: none;
-  border-radius: 12px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 1.1rem;
+  border-radius: 14px;
+  color: white;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(185, 103, 255, 0.3);
-  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(185, 103, 255, 0.35);
+  transition: 0.3s;
 }
 
 .CtaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(185, 103, 255, 0.5);
+  box-shadow: 0 6px 28px rgba(185, 103, 255, 0.5);
 }
 
 .Footer {
-  margin-top: 1.5rem;
-  color: #aaa;
-  font-size: 0.95rem;
+  margin-top: 1.4rem;
+  color: #bbb;
 }
 
 .LinkButton {
-  background: none;
   border: none;
-  color: #B967FF;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 600;
+  background: none;
+  color: #c89cff;
   cursor: pointer;
-  margin-left: 4px;
+  font-weight: 600;
 }
 
 .LinkButton:hover {

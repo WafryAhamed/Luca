@@ -6,9 +6,11 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState(""); // New field
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // New field
   const [rememberMe, setRememberMe] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
@@ -37,8 +39,8 @@ export default function AuthPage() {
   }, [isLocked, lockoutTime]);
 
   const validatePassword = (pwd) => {
-    if (pwd.length < 6) {
-      return "Password must be at least 6 characters";
+    if (pwd.length < 8) {
+      return "Password must be at least 8 characters";
     }
     if (!/[A-Z]/.test(pwd)) {
       return "Password must contain at least one uppercase letter";
@@ -48,6 +50,9 @@ export default function AuthPage() {
     }
     if (!/\d/.test(pwd)) {
       return "Password must contain at least one number";
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+      return "Password must contain at least one special character";
     }
     return null;
   };
@@ -92,8 +97,14 @@ export default function AuthPage() {
         setError("Invalid email or password");
       }
     } else {
-      if (!name.trim() || !email.trim() || !password.trim()) {
+      if (!name.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
         setError("All fields are required");
+        setIsLoading(false);
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setError("Passwords do not match");
         setIsLoading(false);
         return;
       }
@@ -228,6 +239,8 @@ export default function AuthPage() {
                 className={styles.Input}
               />
             </div>
+            
+            {/* Password field */}
             <div className={styles.InputGroup}>
               <div className={styles.PasswordContainer}>
                 <input
@@ -248,6 +261,29 @@ export default function AuthPage() {
                 </button>
               </div>
             </div>
+
+            {/* Confirm Password field - only for registration */}
+            {!isLogin && (
+              <div className={styles.InputGroup}>
+                <div className={styles.PasswordContainer}>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm Password"
+                    required
+                    className={styles.Input}
+                  />
+                  <button
+                    type="button"
+                    className={styles.TogglePassword}
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? "👁" : "👁‍🗨"}
+                  </button>
+                </div>
+              </div>
+            )}
 
             {isLogin && (
               <div className={styles.RememberMe}>
@@ -294,7 +330,7 @@ export default function AuthPage() {
               onClick={handleGoogleLogin}
               disabled={isLoading}
             >
-              <div className={styles.GoogleContent}>
+              <div className={styles.SocialContent}>
                 <div className={styles.GoogleIcon}>G</div>
                 <span>Continue with Google</span>
               </div>
@@ -306,7 +342,7 @@ export default function AuthPage() {
               disabled={isLoading}
             >
               <div className={styles.SocialContent}>
-                <div className={styles.SocialIcon}>🐙</div>
+                <div className={styles.GitHubIcon}>GH</div>
                 <span>Continue with GitHub</span>
               </div>
             </button>
@@ -317,7 +353,7 @@ export default function AuthPage() {
               disabled={isLoading}
             >
               <div className={styles.SocialContent}>
-                <div className={styles.SocialIcon}>🍎</div>
+                <div className={styles.AppleIcon}>A</div>
                 <span>Continue with Apple</span>
               </div>
             </button>
@@ -328,7 +364,7 @@ export default function AuthPage() {
               disabled={isLoading}
             >
               <div className={styles.SocialContent}>
-                <div className={styles.SocialIcon}>🪟</div>
+                <div className={styles.MicrosoftIcon}>M</div>
                 <span>Continue with Microsoft</span>
               </div>
             </button>
@@ -343,6 +379,7 @@ export default function AuthPage() {
               onClick={() => {
                 setIsLogin(!isLogin);
                 setError("");
+                setConfirmPassword(""); // Clear confirm password on toggle
               }}
               className={styles.ToggleButton}
             >

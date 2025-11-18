@@ -243,29 +243,57 @@
   justify-content: center;
   font-size: 1rem;
   font-weight: bold;
+  border-radius: 4px;
 }
 
+/* Provider-specific icons */
 .GoogleIcon {
   width: 24px;
   height: 24px;
   background: #4285F4;
-  border-radius: 4px;
   color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
-/* GitHub */
-.SocialIcon.github {
-  color: #181717;
+.GitHubIcon {
+  width: 24px;
+  height: 24px;
+  background: #181717;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
-/* Apple */
-.SocialIcon.apple {
-  color: #000000;
+.AppleIcon {
+  width: 24px;
+  height: 24px;
+  background: #000000;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
-/* Microsoft */
-.SocialIcon.microsoft {
-  color: #0078D4;
+.MicrosoftIcon {
+  width: 24px;
+  height: 24px;
+  background: #0078D4;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 /* Footer */

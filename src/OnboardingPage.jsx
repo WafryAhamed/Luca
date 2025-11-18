@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./OnboardingPage.module.css";
 
@@ -12,36 +12,54 @@ export default function OnboardingPage() {
     navigate("/auth");
   };
 
+  // Auto-fade-in chat bubbles on Step 1
+  useEffect(() => {
+    if (step === 1) {
+      const timer = setTimeout(() => {
+        const bubbles = document.querySelectorAll(`.${styles.BotBubble}`);
+        bubbles.forEach((bubble, index) => {
+          setTimeout(() => {
+            bubble.style.opacity = "1";
+            bubble.style.transform = "translateY(0)";
+          }, index * 600);
+        });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
   return (
     <>
-      {/* Deep, Calm Galaxy Background — Static, No Animation */}
-      <div className={styles.Background}>
-        <div className={styles.BackgroundGradient}></div>
+      {/* === CLEAN GALAXY BACKGROUND — NO ANIMATIONS === */}
+      <div className={styles.Background3D}>
+        {/* Only keep subtle floating cubes — calm & minimal */}
+        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
+        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
+        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
+        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
       </div>
 
       <div className={styles.Container}>
         <div className={`${styles.Card} ${styles.FadeSlide}`}>
 
-          {/* Logo — Centered, Subtle Glow */}
+          {/* === LOGO === */}
           <div className={`${styles.Logo} ${styles.FadeSlide}`}>
-            <div className={styles.LogoContainer}>
-              <img src="/robot-Luca.svg" alt="LUCA" />
-            </div>
-            <h1 className={styles.LogoText}>LUCA</h1>
+            <img src="/robot-Luca.svg" alt="LUCA" />
+            <h1>LUCA</h1>
           </div>
 
-          {/* === STEP 1 — Quiet, Human Chat Introduction === */}
+          {/* === STEP 1 — INTRO CHAT === */}
           {step === 1 && (
-            <div className={styles.StepContainer}>
+            <div className={styles.FadeSlide}>
               <div className={styles.ChatPreview}>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
                   Hi! I’m LUCA 🤖
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Your personal AI learning assistant.
+                  I’m your personal AI learning assistant.
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Study smarter — in Sinhala, Tamil, or English.
+                  Let me help you study smarter — in Sinhala, Tamil, or English.
                 </div>
               </div>
 
@@ -54,11 +72,10 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 2 — Clean Feature Grid === */}
+          {/* === STEP 2 — FEATURES === */}
           {step === 2 && (
-            <div className={styles.StepContainer}>
+            <div className={styles.FadeSlide}>
               <h2 className={styles.Title}>Learn Anything. Anytime.</h2>
-              <p className={styles.Subtitle}>Powered by advanced AI</p>
 
               <div className={styles.FeatureGrid}>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
@@ -84,11 +101,10 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 3 — Minimalist Tool List === */}
+          {/* === STEP 3 — TOOLS === */}
           {step === 3 && (
-            <div className={styles.StepContainer}>
+            <div className={styles.FadeSlide}>
               <h2 className={styles.Title}>Your Study Tools</h2>
-              <p className={styles.Subtitle}>Designed for focus, not distraction</p>
 
               <div className={styles.FeatureList}>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
@@ -114,10 +130,11 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 4 — Premium Final CTA === */}
+          {/* === STEP 4 — CTA === */}
           {step === 4 && (
-            <div className={styles.StepContainer}>
+            <div className={styles.FadeSlide}>
               <h2 className={styles.Title}>Ready to Start Learning?</h2>
+
               <p className={styles.Subtext}>
                 Join thousands of Sri Lankan students using LUCA to study smarter.
               </p>
@@ -126,7 +143,7 @@ export default function OnboardingPage() {
                 className={`${styles.StartButton} ${styles.Pulse}`}
                 onClick={start}
               >
-                Get Started Free
+                Get Started
               </button>
 
               <p className={styles.Footer}>

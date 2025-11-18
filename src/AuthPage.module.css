@@ -41,6 +41,7 @@
 }
 
 .Card {
+  position: relative;
   width: 100%;
   max-width: 420px;
   background: rgba(13, 11, 26, 0.85);
@@ -54,7 +55,24 @@
   transition: all 0.3s ease;
 }
 
-/* REMOVED: .Card:hover animation */
+/* === NEW ROBOT IMAGE === */
+.RobotImage {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 110px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.9;
+  transform: translateY(5px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.PasswordContainer:has(input[type="text"]) ~ .RobotImage {
+  transform: translateY(-8px);
+  opacity: 1;
+}
+
 .Header {
   text-align: center;
   margin-bottom: 2rem;
@@ -178,7 +196,7 @@
   color: #aaa;
 }
 
-/* === Social Buttons === */
+/* Social Buttons */
 .SocialButtons {
   display: flex;
   flex-direction: column;
@@ -221,66 +239,23 @@
   gap: 0.8rem;
 }
 
-.SocialIcon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-/* Provider-specific icons */
-.GoogleIcon {
-  width: 24px;
-  height: 24px;
-  background: #4285F4;
-  color: white;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.GitHubIcon {
-  width: 24px;
-  height: 24px;
-  background: #181717;
-  color: white;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-.AppleIcon {
-  width: 24px;
-  height: 24px;
-  background: #000000;
-  color: white;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
+.GoogleIcon,
+.GitHubIcon,
+.AppleIcon,
 .MicrosoftIcon {
   width: 24px;
   height: 24px;
-  background: #0078D4;
-  color: white;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
 }
+
+.GoogleIcon { background: #4285F4; color: white; }
+.GitHubIcon { background: #181717; color: white; }
+.AppleIcon { background: #000; color: white; }
+.MicrosoftIcon { background: #0078D4; color: white; }
 
 /* Footer */
 .Footer {
@@ -389,37 +364,4 @@
 
 .ForgotPassword:hover {
   color: #e8d8ff;
-}
-
-/* REMOVED: float animation keyframes */
-
-
-/* === Your Entire Existing CSS Remains the Same === */
-/* I DID NOT MODIFY ANYTHING ABOVE */
-
-/* ================================================
-   ⭐ NEW: FLOATING ROBOT IMAGE (Bottom-right)
-================================================ */
-
-.RobotImage {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 120px;
-  height: auto;
-  pointer-events: none;
-  opacity: 0.9;
-  animation: robotFloat 4s ease-in-out infinite;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Floating motion */
-@keyframes robotFloat {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
-.Card {
-  position: relative; /* REQUIRED so image stays inside card */
 }

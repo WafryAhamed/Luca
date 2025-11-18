@@ -1,21 +1,25 @@
+// AuthPage.jsx
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AuthPage.module.css";
+import robot1 from "./assets/robot1.png";
+import robot2 from "./assets/robot2.png";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // New field
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // New field
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [lockoutTime, setLockoutTime] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -39,21 +43,12 @@ export default function AuthPage() {
   }, [isLocked, lockoutTime]);
 
   const validatePassword = (pwd) => {
-    if (pwd.length < 8) {
-      return "Password must be at least 8 characters";
-    }
-    if (!/[A-Z]/.test(pwd)) {
-      return "Password must contain at least one uppercase letter";
-    }
-    if (!/[a-z]/.test(pwd)) {
-      return "Password must contain at least one lowercase letter";
-    }
-    if (!/\d/.test(pwd)) {
-      return "Password must contain at least one number";
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+    if (pwd.length < 8) return "Password must be at least 8 characters";
+    if (!/[A-Z]/.test(pwd)) return "Password must contain at least one uppercase letter";
+    if (!/[a-z]/.test(pwd)) return "Password must contain at least one lowercase letter";
+    if (!/\d/.test(pwd)) return "Password must contain at least one number";
+    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(pwd))
       return "Password must contain at least one special character";
-    }
     return null;
   };
 
@@ -69,31 +64,37 @@ export default function AuthPage() {
     }
 
     if (isLogin) {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
       if (email === "admin@gmail.com" && password === "admin123") {
         const token = btoa(`${email}:${password}`);
         localStorage.setItem("authToken", token);
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify({ 
-          name: "Admin User", 
-          email 
-        }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: "Admin User",
+            email,
+          })
+        );
+
         if (rememberMe) {
           localStorage.setItem("rememberMe", "true");
         } else {
           localStorage.removeItem("rememberMe");
         }
+
         setLoginAttempts(0);
         navigate("/app", { replace: true });
       } else {
         const newAttempts = loginAttempts + 1;
         setLoginAttempts(newAttempts);
+
         if (newAttempts >= 3) {
           setIsLocked(true);
           setLockoutTime(30);
         }
+
         setError("Invalid email or password");
       }
     } else {
@@ -116,15 +117,15 @@ export default function AuthPage() {
         return;
       }
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
       const token = btoa(`${email}:${password}`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify({ name, email }));
       navigate("/app", { replace: true });
     }
+
     setIsLoading(false);
   };
 
@@ -133,7 +134,6 @@ export default function AuthPage() {
       setError("Please enter your email address");
       return;
     }
-    // Simulate password reset
     alert(`Password reset instructions sent to ${email}`);
     setError("");
   };
@@ -144,10 +144,13 @@ export default function AuthPage() {
       const token = btoa(`google_user@luca.ai:google123`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("user", JSON.stringify({ 
-        name: "Google User", 
-        email: "google_user@luca.ai" 
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: "Google User",
+          email: "google_user@luca.ai",
+        })
+      );
       setIsLoading(false);
       navigate("/app", { replace: true });
     }, 1200);
@@ -159,10 +162,13 @@ export default function AuthPage() {
       const token = btoa(`github_user@luca.ai:github123`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("user", JSON.stringify({ 
-        name: "GitHub User", 
-        email: "github_user@luca.ai" 
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: "GitHub User",
+          email: "github_user@luca.ai",
+        })
+      );
       setIsLoading(false);
       navigate("/app", { replace: true });
     }, 1200);
@@ -174,10 +180,13 @@ export default function AuthPage() {
       const token = btoa(`apple_user@luca.ai:apple123`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("user", JSON.stringify({ 
-        name: "Apple User", 
-        email: "apple_user@luca.ai" 
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: "Apple User",
+          email: "apple_user@luca.ai",
+        })
+      );
       setIsLoading(false);
       navigate("/app", { replace: true });
     }, 1200);
@@ -189,10 +198,13 @@ export default function AuthPage() {
       const token = btoa(`microsoft_user@luca.ai:microsoft123`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("user", JSON.stringify({ 
-        name: "Microsoft User", 
-        email: "microsoft_user@luca.ai" 
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: "Microsoft User",
+          email: "microsoft_user@luca.ai",
+        })
+      );
       setIsLoading(false);
       navigate("/app", { replace: true });
     }, 1200);
@@ -206,12 +218,18 @@ export default function AuthPage() {
 
       <div className={styles.Container}>
         <div className={styles.Card}>
+          
+          {/* === NEW ROBOT IMAGE === */}
+          <img
+            src={showPassword ? robot1 : robot2}
+            alt="Robot"
+            className={styles.RobotImage}
+          />
+
           <div className={styles.Header}>
             <h1 className={styles.Title}>{isLogin ? "Welcome Back" : "Create Account"}</h1>
             <p className={styles.Subtitle}>
-              {isLogin
-                ? "Sign in to continue to LUCA"
-                : "Join LUCA to unlock AI-powered learning"}
+              {isLogin ? "Sign in to continue to LUCA" : "Join LUCA to unlock AI-powered learning"}
             </p>
           </div>
 
@@ -228,6 +246,7 @@ export default function AuthPage() {
                 />
               </div>
             )}
+
             <div className={styles.InputGroup}>
               <input
                 ref={emailRef}
@@ -239,8 +258,8 @@ export default function AuthPage() {
                 className={styles.Input}
               />
             </div>
-            
-            {/* Password field */}
+
+            {/* PASSWORD FIELD */}
             <div className={styles.InputGroup}>
               <div className={styles.PasswordContainer}>
                 <input
@@ -252,6 +271,7 @@ export default function AuthPage() {
                   required
                   className={styles.Input}
                 />
+
                 <button
                   type="button"
                   className={styles.TogglePassword}
@@ -263,7 +283,7 @@ export default function AuthPage() {
               </div>
             </div>
 
-            {/* Confirm Password field - only for registration */}
+            {/* CONFIRM PASSWORD */}
             {!isLogin && (
               <div className={styles.InputGroup}>
                 <div className={styles.PasswordContainer}>
@@ -275,11 +295,11 @@ export default function AuthPage() {
                     required
                     className={styles.Input}
                   />
+
                   <button
                     type="button"
                     className={styles.TogglePassword}
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                   >
                     {showConfirmPassword ? "🙈" : "👁️"}
                   </button>
@@ -309,15 +329,10 @@ export default function AuthPage() {
               </div>
             )}
 
-            {/* ✅ Error message */}
             {error && <div className={styles.ErrorMessage}>{error}</div>}
 
-            <button 
-              type="submit" 
-              className={styles.SubmitButton}
-              disabled={isLoading}
-            >
-              {isLoading ? "Processing..." : (isLogin ? "Sign In" : "Sign Up")}
+            <button type="submit" className={styles.SubmitButton} disabled={isLoading}>
+              {isLoading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
             </button>
           </form>
 
@@ -325,46 +340,29 @@ export default function AuthPage() {
             <span>or</span>
           </div>
 
-          {/* Social Login Buttons */}
           <div className={styles.SocialButtons}>
-            <button 
-              className={styles.SocialButton}
-              onClick={handleGoogleLogin}
-              disabled={isLoading}
-            >
+            <button className={styles.SocialButton} onClick={handleGoogleLogin} disabled={isLoading}>
               <div className={styles.SocialContent}>
                 <div className={styles.GoogleIcon}>G</div>
                 <span>Continue with Google</span>
               </div>
             </button>
 
-            <button 
-              className={styles.SocialButton}
-              onClick={handleGitHubLogin}
-              disabled={isLoading}
-            >
+            <button className={styles.SocialButton} onClick={handleGitHubLogin} disabled={isLoading}>
               <div className={styles.SocialContent}>
                 <div className={styles.GitHubIcon}>GH</div>
                 <span>Continue with GitHub</span>
               </div>
             </button>
 
-            <button 
-              className={styles.SocialButton}
-              onClick={handleAppleLogin}
-              disabled={isLoading}
-            >
+            <button className={styles.SocialButton} onClick={handleAppleLogin} disabled={isLoading}>
               <div className={styles.SocialContent}>
                 <div className={styles.AppleIcon}>A</div>
                 <span>Continue with Apple</span>
               </div>
             </button>
 
-            <button 
-              className={styles.SocialButton}
-              onClick={handleMicrosoftLogin}
-              disabled={isLoading}
-            >
+            <button className={styles.SocialButton} onClick={handleMicrosoftLogin} disabled={isLoading}>
               <div className={styles.SocialContent}>
                 <div className={styles.MicrosoftIcon}>M</div>
                 <span>Continue with Microsoft</span>
@@ -373,35 +371,20 @@ export default function AuthPage() {
           </div>
 
           <div className={styles.Footer}>
-            <p>
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
-            </p>
+            <p>{isLogin ? "Don't have an account?" : "Already have an account?"}</p>
+
             <button
               type="button"
               onClick={() => {
                 setIsLogin(!isLogin);
                 setError("");
-                setConfirmPassword(""); // Clear confirm password on toggle
+                setConfirmPassword("");
               }}
               className={styles.ToggleButton}
             >
               {isLogin ? "Sign Up" : "Sign In"}
             </button>
           </div>
-        </div>
-        
-        {/* Robot Image Container C:\Users\LAPMART\Desktop\Real-Time AI Chatbot\Luca\src\assets\robot1.png*/}
-        <div className={styles.RobotContainer}>
-          <img 
-            src="src\assets\robot1.png" 
-            alt="Robot" 
-            className={`${styles.RobotImage} ${showPassword || showConfirmPassword ? styles.Visible : styles.Hidden}`}
-          />
-          <img 
-            src="src\assets\robot1.png" 
-            alt="Robot" 
-            className={`${styles.RobotImage} ${!(showPassword || showConfirmPassword) ? styles.Visible : styles.Hidden}`}
-          />
         </div>
       </div>
     </>

@@ -1,4 +1,3 @@
-// AuthPage.jsx
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AuthPage.module.css";
@@ -389,6 +388,20 @@ export default function AuthPage() {
               {isLogin ? "Sign Up" : "Sign In"}
             </button>
           </div>
+        </div>
+        
+        {/* Robot Image Container C:\Users\LAPMART\Desktop\Real-Time AI Chatbot\Luca\src\assets\robot1.png*/}
+        <div className={styles.RobotContainer}>
+          <img 
+            src="src\assets\robot1.png" 
+            alt="Robot" 
+            className={`${styles.RobotImage} ${showPassword || showConfirmPassword ? styles.Visible : styles.Hidden}`}
+          />
+          <img 
+            src="src\assets\robot1.png" 
+            alt="Robot" 
+            className={`${styles.RobotImage} ${!(showPassword || showConfirmPassword) ? styles.Visible : styles.Hidden}`}
+          />
         </div>
       </div>
     </>

@@ -392,3 +392,34 @@
 }
 
 /* REMOVED: float animation keyframes */
+
+
+/* === Your Entire Existing CSS Remains the Same === */
+/* I DID NOT MODIFY ANYTHING ABOVE */
+
+/* ================================================
+   ⭐ NEW: FLOATING ROBOT IMAGE (Bottom-right)
+================================================ */
+
+.RobotImage {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 120px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.9;
+  animation: robotFloat 4s ease-in-out infinite;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Floating motion */
+@keyframes robotFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.Card {
+  position: relative; /* REQUIRED so image stays inside card */
+}

@@ -1,3 +1,4 @@
+/* AuthPage.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
 
 .Background {
@@ -6,20 +7,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #0A0A0F 0%, #000000 100%);
+  background: #0D0B1A;
   z-index: -1;
   overflow: hidden;
 }
 
-.CyberGrid {
+.Grid {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(rgba(185, 103, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 103, 255, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: gridMove 20s linear infinite;
 }
@@ -29,21 +30,6 @@
   100% { transform: translate(40px, 40px); }
 }
 
-.EnergyPulse {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
-  animation: pulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.2; }
-  100% { opacity: 0.5; }
-}
-
 .Container {
   display: flex;
   justify-content: center;
@@ -51,44 +37,24 @@
   min-height: 100vh;
   font-family: 'Manrope', sans-serif;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(0, 0, 0, 0.98));
+  background: linear-gradient(135deg, rgba(13, 11, 26, 0.9), rgba(10, 8, 20, 0.95));
 }
 
 .Card {
   width: 100%;
   max-width: 420px;
-  background: rgba(10, 10, 15, 0.9);
+  background: rgba(13, 11, 26, 0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(185, 103, 255, 0.25);
   border-radius: 20px;
   padding: 2.5rem;
   box-shadow: 
-    0 0 40px rgba(0, 255, 255, 0.2),
-    0 0 60px rgba(0, 200, 255, 0.1);
+    0 0 40px rgba(185, 103, 255, 0.15),
+    0 0 60px rgba(100, 50, 180, 0.1);
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Add cyber glow border */
-.Card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #00ffff, #00aaff, #00ffff);
-  z-index: -1;
-  border-radius: 22px;
-  animation: borderGlow 3s linear infinite;
-}
-
-@keyframes borderGlow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
+/* REMOVED: .Card:hover animation */
 .Header {
   text-align: center;
   margin-bottom: 2rem;
@@ -97,24 +63,17 @@
 .Title {
   font-size: 2rem;
   font-weight: 700;
-  color: #00ffff;
+  color: #D5B2FF;
   margin: 0 0 0.5rem;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  text-shadow: 0 0 10px rgba(185, 103, 255, 0.6);
   letter-spacing: -0.5px;
-  animation: textGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-  0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.6); }
-  100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 0 30px rgba(0, 200, 255, 0.6); }
 }
 
 .Subtitle {
-  color: #00ffff;
+  color: #c9b7e8;
   font-size: 1.05rem;
   margin: 0;
   line-height: 1.5;
-  opacity: 0.8;
 }
 
 .Form {
@@ -132,21 +91,21 @@
 .Input {
   width: 100%;
   padding: 0.9rem 1.2rem;
-  background: rgba(0, 50, 50, 0.3);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: rgba(20, 18, 30, 0.6);
+  border: 1px solid rgba(185, 103, 255, 0.3);
   border-radius: 14px;
-  color: #00ffff;
+  color: #e8d8ff;
   font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   outline: none;
   transition: all 0.3s ease;
-  box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.1);
+  box-shadow: inset 0 0 8px rgba(185, 103, 255, 0.15);
 }
 
 .Input:focus {
-  border-color: #00ffff;
-  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.3), 0 0 12px rgba(0, 255, 255, 0.2);
-  background: rgba(0, 60, 60, 0.4);
+  border-color: #B967FF;
+  box-shadow: inset 0 0 10px rgba(185, 103, 255, 0.3), 0 0 12px rgba(185, 103, 255, 0.25);
+  background: rgba(25, 22, 38, 0.7);
 }
 
 .PasswordContainer {
@@ -160,26 +119,23 @@
   right: 1rem;
   background: none;
   border: none;
-  color: #00ffff;
+  color: #aaa;
   cursor: pointer;
   font-size: 1.1rem;
   padding: 0.2rem;
   margin: 0;
   transition: color 0.2s ease;
-  opacity: 0.7;
 }
 
 .TogglePassword:hover {
-  color: #00ffff;
-  opacity: 1;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  color: #D5B2FF;
 }
 
 .SubmitButton {
   margin-top: 0.6rem;
   padding: 0.9rem;
-  background: linear-gradient(135deg, #00ffff, #00aaff);
-  color: #0A0A0F;
+  background: linear-gradient(135deg, #B967FF, #9A4DFF);
+  color: white;
   border: none;
   border-radius: 14px;
   font-family: 'Manrope', sans-serif;
@@ -187,30 +143,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 24px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 6px 24px rgba(185, 103, 255, 0.38);
   letter-spacing: 0.3px;
-  position: relative;
-  overflow: hidden;
-}
-
-.SubmitButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: 0.5s;
 }
 
 .SubmitButton:hover:not(:disabled) {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 32px rgba(0, 255, 255, 0.5);
-}
-
-.SubmitButton:hover:not(:disabled)::before {
-  left: 100%;
+  box-shadow: 0 10px 32px rgba(185, 103, 255, 0.55);
 }
 
 .SubmitButton:disabled {
@@ -223,21 +162,20 @@
   display: flex;
   align-items: center;
   margin: 1.8rem 0;
-  color: #00ffff;
+  color: #555;
   font-size: 0.9rem;
-  opacity: 0.5;
 }
 
 .Divider::before,
 .Divider::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(185, 103, 255, 0.2);
 }
 
 .Divider span {
   padding: 0 0.8rem;
-  color: #00ffff;
+  color: #aaa;
 }
 
 /* === Social Buttons === */
@@ -251,9 +189,9 @@
 .SocialButton {
   width: 100%;
   padding: 0.9rem;
-  background: rgba(0, 50, 50, 0.2);
-  color: #00ffff;
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8d8ff;
+  border: 1px solid rgba(185, 103, 255, 0.25);
   border-radius: 14px;
   font-family: 'Manrope', sans-serif;
   font-size: 1rem;
@@ -263,30 +201,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.SocialButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-  transition: 0.5s;
 }
 
 .SocialButton:hover:not(:disabled) {
-  background: rgba(0, 255, 255, 0.1);
-  color: #00ffff;
-  border-color: rgba(0, 255, 255, 0.4);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-}
-
-.SocialButton:hover:not(:disabled)::before {
-  left: 100%;
+  background: rgba(185, 103, 255, 0.12);
+  color: #D5B2FF;
+  border-color: rgba(185, 103, 255, 0.4);
 }
 
 .SocialButton:disabled {
@@ -369,15 +289,14 @@
   align-items: center;
   gap: 0.6rem;
   margin-top: 1.8rem;
-  color: #00ffff;
+  color: #bbb;
   font-size: 0.95rem;
-  opacity: 0.8;
 }
 
 .ToggleButton {
   background: none;
   border: none;
-  color: #00ffff;
+  color: #c89cff;
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   cursor: pointer;
@@ -386,22 +305,21 @@
 }
 
 .ToggleButton:hover {
-  color: #00ffff;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  color: #e8d8ff;
 }
 
 .ErrorMessage {
-  color: #ff0033;
+  color: #ff6b6b;
   font-size: 0.85rem;
   margin-top: -0.4rem;
   margin-bottom: 0.6rem;
   text-align: center;
   font-weight: 500;
   min-height: 1.2rem;
-  background: rgba(255, 0, 51, 0.1);
+  background: rgba(255, 107, 107, 0.1);
   padding: 0.4rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 0, 51, 0.2);
+  border: 1px solid rgba(255, 107, 107, 0.2);
 }
 
 .RememberMe {
@@ -416,8 +334,7 @@
   align-items: center;
   cursor: pointer;
   font-size: 0.9rem;
-  color: #00ffff;
-  opacity: 0.8;
+  color: #c9b7e8;
 }
 
 .Checkbox {
@@ -429,8 +346,8 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: rgba(0, 50, 50, 0.3);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: rgba(20, 18, 30, 0.6);
+  border: 1px solid rgba(185, 103, 255, 0.3);
   border-radius: 4px;
   margin-right: 0.5rem;
   position: relative;
@@ -445,14 +362,14 @@
   top: 2px;
   width: 5px;
   height: 10px;
-  border: solid #00ffff;
+  border: solid #B967FF;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
 
 .Checkbox:checked + .Checkmark {
-  background: rgba(0, 255, 255, 0.2);
-  border-color: #00ffff;
+  background: rgba(185, 103, 255, 0.2);
+  border-color: #B967FF;
 }
 
 .Checkbox:checked + .Checkmark::after {
@@ -462,20 +379,16 @@
 .ForgotPassword {
   background: none;
   border: none;
-  color: #00ffff;
+  color: #c89cff;
   font-family: 'Manrope', sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
   transition: color 0.2s ease;
   text-decoration: underline;
-  opacity: 0.8;
 }
 
 .ForgotPassword:hover {
-  color: #00ffff;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  color: #e8d8ff;
 }
 
 /* REMOVED: float animation keyframes */
-/* REMOVED: .Card animation */
-/* REMOVED: .Card:hover animation */

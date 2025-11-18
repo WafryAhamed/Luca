@@ -1,3 +1,4 @@
+// AuthPage.jsx
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AuthPage.module.css";
@@ -201,8 +202,7 @@ export default function AuthPage() {
   return (
     <>
       <div className={styles.Background}>
-        <div className={styles.CyberGrid}></div>
-        <div className={styles.EnergyPulse}></div>
+        <div className={styles.Grid}></div>
       </div>
 
       <div className={styles.Container}>
@@ -257,8 +257,9 @@ export default function AuthPage() {
                   type="button"
                   className={styles.TogglePassword}
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? "👁" : "👁‍voy"}
+                  {showPassword ? "🙈" : "👁️"}
                 </button>
               </div>
             </div>
@@ -279,8 +280,9 @@ export default function AuthPage() {
                     type="button"
                     className={styles.TogglePassword}
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                   >
-                    {showConfirmPassword ? "👁" : "👁‍voy"}
+                    {showConfirmPassword ? "🙈" : "👁️"}
                   </button>
                 </div>
               </div>

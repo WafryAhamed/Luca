@@ -128,7 +128,6 @@ export default function AuthPage() {
   };
 
   const handleGoogleLogin = () => {
-    // Simulate Google login
     setIsLoading(true);
     setTimeout(() => {
       const token = btoa(`google_user@luca.ai:google123`);
@@ -137,6 +136,51 @@ export default function AuthPage() {
       localStorage.setItem("user", JSON.stringify({ 
         name: "Google User", 
         email: "google_user@luca.ai" 
+      }));
+      setIsLoading(false);
+      navigate("/app", { replace: true });
+    }, 1200);
+  };
+
+  const handleGitHubLogin = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const token = btoa(`github_user@luca.ai:github123`);
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify({ 
+        name: "GitHub User", 
+        email: "github_user@luca.ai" 
+      }));
+      setIsLoading(false);
+      navigate("/app", { replace: true });
+    }, 1200);
+  };
+
+  const handleAppleLogin = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const token = btoa(`apple_user@luca.ai:apple123`);
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify({ 
+        name: "Apple User", 
+        email: "apple_user@luca.ai" 
+      }));
+      setIsLoading(false);
+      navigate("/app", { replace: true });
+    }, 1200);
+  };
+
+  const handleMicrosoftLogin = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const token = btoa(`microsoft_user@luca.ai:microsoft123`);
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify({ 
+        name: "Microsoft User", 
+        email: "microsoft_user@luca.ai" 
       }));
       setIsLoading(false);
       navigate("/app", { replace: true });
@@ -243,16 +287,52 @@ export default function AuthPage() {
             <span>or</span>
           </div>
 
-          <button 
-            className={styles.GoogleButton}
-            onClick={handleGoogleLogin}
-            disabled={isLoading}
-          >
-            <div className={styles.GoogleContent}>
-              <div className={styles.GoogleIcon}>G</div>
-              <span>Continue with Google</span>
-            </div>
-          </button>
+          {/* Social Login Buttons */}
+          <div className={styles.SocialButtons}>
+            <button 
+              className={styles.SocialButton}
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+            >
+              <div className={styles.GoogleContent}>
+                <div className={styles.GoogleIcon}>G</div>
+                <span>Continue with Google</span>
+              </div>
+            </button>
+
+            <button 
+              className={styles.SocialButton}
+              onClick={handleGitHubLogin}
+              disabled={isLoading}
+            >
+              <div className={styles.SocialContent}>
+                <div className={styles.SocialIcon}>🐙</div>
+                <span>Continue with GitHub</span>
+              </div>
+            </button>
+
+            <button 
+              className={styles.SocialButton}
+              onClick={handleAppleLogin}
+              disabled={isLoading}
+            >
+              <div className={styles.SocialContent}>
+                <div className={styles.SocialIcon}>🍎</div>
+                <span>Continue with Apple</span>
+              </div>
+            </button>
+
+            <button 
+              className={styles.SocialButton}
+              onClick={handleMicrosoftLogin}
+              disabled={isLoading}
+            >
+              <div className={styles.SocialContent}>
+                <div className={styles.SocialIcon}>🪟</div>
+                <span>Continue with Microsoft</span>
+              </div>
+            </button>
+          </div>
 
           <div className={styles.Footer}>
             <p>

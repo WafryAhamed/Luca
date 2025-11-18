@@ -53,13 +53,13 @@ export default function OnboardingPage() {
             <div className={styles.FadeSlide}>
               <div className={styles.ChatPreview}>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Hi! I’m LUCA 🤖
+                  Hello! I’m LUCA 🤖
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  I’m your personal AI learning assistant.
+                  Your AI academic assistant for Math, Science, History, Coding, and more.
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Let me help you study smarter — in Sinhala, Tamil, or English.
+                  Ask me anything — in Sinhala, Tamil, or English. Let’s get started!
                 </div>
               </div>
 
@@ -75,20 +75,20 @@ export default function OnboardingPage() {
           {/* === STEP 2 — FEATURES === */}
           {step === 2 && (
             <div className={styles.FadeSlide}>
-              <h2 className={styles.Title}>Learn Anything. Anytime.</h2>
+              <h2 className={styles.Title}>Ask Anything. Learn Everything.</h2>
 
               <div className={styles.FeatureGrid}>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  📘 <span>Ask questions from any subject</span>
+                  📘 <span>Math • Science • History • Coding</span>
                 </div>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🧠 <span>Get step-by-step explanations</span>
+                  🧠 <span>Step-by-step explanations & examples</span>
                 </div>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🌐 <span>Sinhala • Tamil • English</span>
+                  🌐 <span>Sinhala • Tamil • English support</span>
                 </div>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🎯 <span>Revision help for exams</span>
+                  🎯 <span>Exam prep, essays, revision sheets</span>
                 </div>
               </div>
 
@@ -104,20 +104,20 @@ export default function OnboardingPage() {
           {/* === STEP 3 — TOOLS === */}
           {step === 3 && (
             <div className={styles.FadeSlide}>
-              <h2 className={styles.Title}>Your Study Tools</h2>
+              <h2 className={styles.Title}>Your Study Toolkit</h2>
 
               <div className={styles.FeatureList}>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  📝 Save study notes
+                  ⏱ Focus Timer & Stopwatch
                 </div>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  ⏱ Smart focus timer
+                  📝 Notes Saver & Session Organizer
                 </div>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  📂 Organized sessions
+                  🔍 Search & Save Past Chats
                 </div>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  ⚡ Fast AI answers
+                  💡 Instant AI Answers — Any Subject
                 </div>
               </div>
 
@@ -136,7 +136,7 @@ export default function OnboardingPage() {
               <h2 className={styles.Title}>Ready to Start Learning?</h2>
 
               <p className={styles.Subtext}>
-                Join thousands of Sri Lankan students using LUCA to study smarter.
+                Join thousands of Sri Lankan students using LUCA to ace exams, write essays, and master coding — one question at a time.
               </p>
 
               <button

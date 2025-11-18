@@ -1,29 +1,22 @@
 // src/OnboardingPage.jsx
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./OnboardingPage.module.css";
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1); // 1 → 2 → 3
 
-  const handleGetStarted = () => {
+  const handleNext = () => setStep(step + 1);
+
+  const handleStart = () => {
     localStorage.setItem("hasSeenOnboarding", "true");
     navigate("/auth");
   };
 
-  // Chat intro autoplay
-  useEffect(() => {
-    const timeouts = [
-      setTimeout(() => setStep(1), 600),
-      setTimeout(() => setStep(2), 1500),
-    ];
-    return () => timeouts.forEach((t) => clearTimeout(t));
-  }, []);
-
   return (
     <>
-      {/* 3D Animated Background */}
+      {/* 3D Background */}
       <div className={styles.Background3D}>
         <div className={styles.Cube}></div>
         <div className={styles.Cube}></div>
@@ -33,55 +26,79 @@ export default function OnboardingPage() {
 
       <div className={styles.Container}>
         <div className={styles.Card}>
-
+          
           {/* Logo */}
           <div className={styles.Logo}>
             <img src="/robot-Luca.svg" alt="LUCA" />
             <h1>LUCA</h1>
           </div>
 
-          {/* Chat intro */}
-          <div className={styles.ChatPreview}>
-            {step >= 1 && (
-              <div className={styles.BotBubble}>Hey, I’m LUCA 🤖</div>
-            )}
-            {step >= 2 && (
-              <div className={styles.BotBubble}>
-                Your personal AI learning companion.
+          {/* STEP 1 */}
+          {step === 1 && (
+            <>
+              <div className={styles.ChatPreview}>
+                <div className={styles.BotBubble}>Hey, I'm LUCA 🤖</div>
+                <div className={styles.BotBubble}>
+                  I’m here to help you learn faster and smarter.
+                </div>
               </div>
-            )}
 
-            {step < 2 && (
-              <div className={styles.TypingBubble}>
-                <div className={styles.Dot}></div>
-                <div className={styles.Dot}></div>
-                <div className={styles.Dot}></div>
+              <button className={styles.CtaButton} onClick={handleNext}>
+                Next
+              </button>
+            </>
+          )}
+
+          {/* STEP 2 */}
+          {step === 2 && (
+            <>
+              <div className={styles.ChatPreview}>
+                <div className={styles.BotBubble}>
+                  I can help you study anything, explain concepts,
+                  and guide you step-by-step.
+                </div>
               </div>
-            )}
-          </div>
 
-          {/* Modern Square Links */}
-          <div className={styles.LinksGrid}>
-            <button className={styles.SquareLink}>📘 Study</button>
-            <button className={styles.SquareLink}>🧠 Practice</button>
-            <button className={styles.SquareLink}>📤 Import</button>
-            <button className={styles.SquareLink}>⚙️ Tools</button>
-          </div>
+              <button className={styles.CtaButton} onClick={handleNext}>
+                Next
+              </button>
+            </>
+          )}
 
-          {/* CTA */}
-          <button onClick={handleGetStarted} className={styles.CtaButton}>
-            Start Learning
-          </button>
+          {/* STEP 3 — Telegram style */}
+          {step === 3 && (
+            <>
+              <div className={styles.FeatureList}>
+                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
+                  📘 Learn
+                </div>
+                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
+                  🧠 Practice
+                </div>
+                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
+                  📤 Upload
+                </div>
+                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
+                  ⚙️ Tools
+                </div>
+              </div>
 
-          <p className={styles.Footer}>
-            Already have an account?{" "}
-            <button
-              onClick={() => navigate("/auth")}
-              className={styles.LinkButton}
-            >
-              Sign In
-            </button>
-          </p>
+              <button className={styles.CtaButton} onClick={handleStart}>
+                Start
+              </button>
+
+              <p className={styles.Footer}>
+                Already have an account?{" "}
+                <button
+                  onClick={() => navigate("/auth")}
+                  className={styles.LinkButton}
+                >
+                  Log in
+                </button>
+              </p>
+            </>
+          )}
+
         </div>
       </div>
     </>

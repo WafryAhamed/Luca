@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
 
-/* === 3D Background === */
+/* === Background === */
 .Background3D {
   position: fixed;
   inset: 0;
@@ -30,7 +30,6 @@
   from { transform: rotateX(0deg) rotateY(0deg); }
   to { transform: rotateX(360deg) rotateY(360deg); }
 }
-
 @keyframes floatCube {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-30px) scale(1.05); }
@@ -52,9 +51,9 @@
   border: 1px solid rgba(185, 103, 255, 0.22);
   border-radius: 24px;
   padding: 2.8rem 2.4rem;
-  text-align: center;
   width: 100%;
   max-width: 520px;
+  text-align: center;
   box-shadow: 0 0 45px rgba(185, 103, 255, 0.18);
   animation: fadeIn 0.8s ease;
 }
@@ -85,8 +84,23 @@
 }
 
 .Logo h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   color: #D5B2FF;
+  font-weight: 700;
+}
+
+/* === Titles === */
+.Title {
+  color: #e8d8ff;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.Subtext {
+  color: #c9b7e8;
+  font-size: 1rem;
+  margin-bottom: 1.8rem;
 }
 
 /* === Chat bubbles === */
@@ -94,8 +108,8 @@
   background: rgba(255, 255, 255, 0.04);
   padding: 1.2rem;
   border-radius: 18px;
-  margin-bottom: 2rem;
   border: 1px solid rgba(185, 103, 255, 0.15);
+  margin-bottom: 2rem;
 }
 
 .BotBubble {
@@ -105,16 +119,36 @@
   border-radius: 14px;
   margin-bottom: 0.6rem;
   text-align: left;
-  animation: bubble 0.4s ease forwards;
+  animation: bubble 0.5s ease forwards;
   opacity: 0;
 }
-
 @keyframes bubble {
-  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* === Telegram style features === */
+/* === Grid Features (Step 2) === */
+.FeatureGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.FeatureCard {
+  background: rgba(185, 103, 255, 0.18);
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  padding: 1rem;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  color: #e8d8ff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* === Telegram Style (Step 3) === */
 .FeatureList {
   display: flex;
   flex-direction: column;
@@ -132,30 +166,25 @@
   font-weight: 600;
   opacity: 0;
   transform: translateX(20px);
-  backdrop-filter: blur(6px);
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
+  from { opacity: 0; transform: translateX(25px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
 .SlideIn { animation: slideIn 0.5s ease forwards; }
 
-.FeatureList .FeatureBubble:nth-child(1) { animation-delay: 0.1s; }
-.FeatureList .FeatureBubble:nth-child(2) { animation-delay: 0.25s; }
-.FeatureList .FeatureBubble:nth-child(3) { animation-delay: 0.4s; }
-.FeatureList .FeatureBubble:nth-child(4) { animation-delay: 0.55s; }
-
 /* === Buttons === */
-.CtaButton {
+.CtaButton,
+.StartButton {
   width: 100%;
-  padding: 0.9rem;
+  padding: 1rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
   border: none;
   border-radius: 14px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.8rem;
@@ -163,7 +192,8 @@
   transition: 0.3s;
 }
 
-.CtaButton:hover {
+.CtaButton:hover,
+.StartButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 28px rgba(185, 103, 255, 0.5);
 }
@@ -181,7 +211,101 @@
   cursor: pointer;
   font-weight: 600;
 }
-
 .LinkButton:hover {
   text-decoration: underline;
+}
+
+
+
+/* ============================
+   🔥 GLOBAL ANIMATIONS
+============================ */
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes typewriter {
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatCube {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ============================
+   ✨ Reusable Classes
+============================ */
+
+.FadeSlide {
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.BounceIn {
+  animation: bounceIn 0.5s ease;
+}
+
+.Pulse {
+  animation: pulseBtn 1.7s infinite ease-in-out;
+}
+
+.Typewriter {
+  opacity: 0;
+  animation: typewriter 0.6s ease forwards;
+}
+.Typewriter:nth-child(1) { animation-delay: 0.2s; }
+.Typewriter:nth-child(2) { animation-delay: 0.45s; }
+.Typewriter:nth-child(3) { animation-delay: 0.7s; }
+
+.SlideIn {
+  animation: slideInLeft 0.4s ease forwards;
+}
+.SlideIn:nth-child(1) { animation-delay: 0.1s; }
+.SlideIn:nth-child(2) { animation-delay: 0.25s; }
+.SlideIn:nth-child(3) { animation-delay: 0.4s; }
+.SlideIn:nth-child(4) { animation-delay: 0.55s; }
+
+/* ============================
+   🔷 Floating Cubes
+============================ */
+.FloatCube {
+  animation: floatCube 4s ease-in-out infinite;
+}
+.FloatCube:nth-child(1) { animation-delay: 0s; }
+.FloatCube:nth-child(2) { animation-delay: 1s; }
+.FloatCube:nth-child(3) { animation-delay: 2s; }
+.FloatCube:nth-child(4) { animation-delay: 3s; }
+
+/* ============================
+   📱 Make Buttons Smooth
+============================ */
+.CtaButton,
+.StartButton {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.CtaButton:hover,
+.StartButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(80, 180, 255, 0.4);
 }

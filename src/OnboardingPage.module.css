@@ -1,38 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
-/* === Background === */
-.Background3D {
+/* === Background — Deep, Static, Luxurious === */
+.Background {
   position: fixed;
   inset: 0;
-  overflow: hidden;
   z-index: -1;
   background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
+  overflow: hidden;
 }
 
-.Cube {
+.BackgroundGradient {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  background: rgba(185, 103, 255, 0.25);
-  border: 2px solid rgba(185, 103, 255, 0.4);
-  box-shadow: 0 0 25px rgba(185, 103, 255, 0.4);
-  animation: spin 12s linear infinite, floatCube 8s ease-in-out infinite;
-  transform-style: preserve-3d;
-  border-radius: 10px;
-}
-
-.Cube:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-.Cube:nth-child(2) { top: 65%; left: 70%; animation-delay: 2s; }
-.Cube:nth-child(3) { top: 50%; left: 20%; animation-delay: 1s; }
-.Cube:nth-child(4) { top: 25%; left: 75%; animation-delay: 3s; }
-
-@keyframes spin {
-  from { transform: rotateX(0deg) rotateY(0deg); }
-  to { transform: rotateX(360deg) rotateY(360deg); }
-}
-@keyframes floatCube {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 70% 80%, rgba(185, 103, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 30% 20%, rgba(185, 103, 255, 0.05) 0%, transparent 60%);
 }
 
 /* === Layout === */
@@ -41,167 +26,194 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 1rem;
+  padding: 2rem;
   font-family: 'Manrope', sans-serif;
+  position: relative;
+  z-index: 1;
 }
 
 .Card {
-  background: rgba(13, 11, 26, 0.75);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(185, 103, 255, 0.22);
-  border-radius: 24px;
-  padding: 2.8rem 2.4rem;
+  background: rgba(13, 11, 26, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  border-radius: 32px;
+  padding: 3.5rem 3rem;
   width: 100%;
-  max-width: 520px;
+  max-width: 580px;
   text-align: center;
-  box-shadow: 0 0 45px rgba(185, 103, 255, 0.18);
-  animation: fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 
+    0 0 60px rgba(185, 103, 255, 0.15),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 /* === Logo === */
 .Logo {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 1.6rem;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.LogoContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Logo img {
-  width: 65px;
-  animation: pulse 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 6px #B967FF);
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 12px #B967FF);
+  transition: transform 0.3s ease;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.06); opacity: 0.9; }
+.Logo img:hover {
+  transform: scale(1.05);
 }
 
-.Logo h1 {
-  font-size: 2.1rem;
+.LogoText {
+  font-size: 2.4rem;
   color: #D5B2FF;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 15px rgba(185, 103, 255, 0.4);
 }
 
 /* === Titles === */
 .Title {
   color: #e8d8ff;
-  font-size: 1.6rem;
-  margin-bottom: 1.2rem;
-  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.Subtitle {
+  color: #c9b7e8;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 .Subtext {
   color: #c9b7e8;
-  font-size: 1rem;
-  margin-bottom: 1.8rem;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+  line-height: 1.6;
 }
 
-/* === Chat bubbles === */
+/* === Chat Preview === */
 .ChatPreview {
   background: rgba(255, 255, 255, 0.04);
-  padding: 1.2rem;
-  border-radius: 18px;
+  padding: 2rem;
+  border-radius: 24px;
   border: 1px solid rgba(185, 103, 255, 0.15);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .BotBubble {
   background: rgba(185, 103, 255, 0.15);
   color: #e8d8ff;
-  padding: 0.85rem 1.1rem;
-  border-radius: 14px;
-  margin-bottom: 0.6rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 18px;
+  margin-bottom: 0.8rem;
   text-align: left;
-  animation: bubble 0.5s ease forwards;
+  font-size: 1.1rem;
+  line-height: 1.5;
   opacity: 0;
-}
-@keyframes bubble {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  transform: translateY(10px);
+  animation: bubble 0.5s ease forwards;
+  border: 1px solid rgba(185, 103, 255, 0.2);
 }
 
-/* === Grid Features (Step 2) === */
+/* === Feature Grid === */
 .FeatureGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
 }
 
 .FeatureCard {
-  background: rgba(185, 103, 255, 0.18);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  padding: 1rem;
-  border-radius: 14px;
+  background: rgba(185, 103, 255, 0.1);
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  padding: 1.4rem;
+  border-radius: 18px;
   font-size: 1.05rem;
   color: #e8d8ff;
   display: flex;
   flex-direction: column;
   gap: 6px;
   animation: fadeIn 0.6s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* === Telegram Style (Step 3) === */
+.FeatureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(185, 103, 255, 0.2);
+}
+
+/* === Feature List (Step 3) === */
 .FeatureList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
 }
 
 .FeatureBubble {
-  background: rgba(185, 103, 255, 0.18);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  padding: 1rem 1.2rem;
-  border-radius: 14px;
+  background: rgba(185, 103, 255, 0.1);
+  border: 1px solid rgba(185, 103, 255, 0.2);
+  padding: 1.3rem 1.6rem;
+  border-radius: 18px;
   color: #e8d8ff;
   font-size: 1.2rem;
   font-weight: 600;
   opacity: 0;
   transform: translateX(20px);
+  animation: slideIn 0.5s ease forwards;
 }
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(25px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.SlideIn { animation: slideIn 0.5s ease forwards; }
 
 /* === Buttons === */
 .CtaButton,
 .StartButton {
   width: 100%;
-  padding: 1rem;
+  padding: 1.2rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   color: white;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.8rem;
-  box-shadow: 0 4px 20px rgba(185, 103, 255, 0.35);
-  transition: 0.3s;
+  box-shadow: 0 6px 24px rgba(185, 103, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .CtaButton:hover,
 .StartButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(185, 103, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(185, 103, 255, 0.5);
 }
 
-/* Footer */
+/* === Footer === */
 .Footer {
-  margin-top: 1.4rem;
+  margin-top: 1.8rem;
   color: #bbb;
+  font-size: 0.95rem;
 }
 
 .LinkButton {
@@ -210,102 +222,92 @@
   color: #c89cff;
   cursor: pointer;
   font-weight: 600;
-}
-.LinkButton:hover {
   text-decoration: underline;
 }
 
+.LinkButton:hover {
+  color: #e8d8ff;
+}
 
-
-/* ============================
-   🔥 GLOBAL ANIMATIONS
-============================ */
+/* === Animations === */
 @keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(20px); }
+  0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes bounceIn {
-  0% { transform: scale(0.6); opacity: 0; }
-  60% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes pulseBtn {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
-  100% { transform: scale(1); }
+@keyframes bubble {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes typewriter {
-  0% { opacity: 0; transform: translateY(5px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(-20px); }
-  100% { opacity: 1; transform: translateX(0); }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
-@keyframes floatCube {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
-/* ============================
-   ✨ Reusable Classes
-============================ */
-
+/* === Reusable Classes === */
 .FadeSlide {
-  animation: fadeSlideUp 0.6s ease forwards;
+  animation: fadeSlideUp 0.8s ease forwards;
 }
 
 .BounceIn {
-  animation: bounceIn 0.5s ease;
+  animation: fadeIn 0.6s ease;
 }
 
 .Pulse {
-  animation: pulseBtn 1.7s infinite ease-in-out;
+  animation: pulse 1.8s infinite ease-in-out;
 }
 
 .Typewriter {
   opacity: 0;
-  animation: typewriter 0.6s ease forwards;
+  animation: bubble 0.5s ease forwards;
 }
+
+.SlideIn {
+  animation: slideIn 0.5s ease forwards;
+}
+
 .Typewriter:nth-child(1) { animation-delay: 0.2s; }
 .Typewriter:nth-child(2) { animation-delay: 0.45s; }
 .Typewriter:nth-child(3) { animation-delay: 0.7s; }
 
-.SlideIn {
-  animation: slideInLeft 0.4s ease forwards;
-}
 .SlideIn:nth-child(1) { animation-delay: 0.1s; }
 .SlideIn:nth-child(2) { animation-delay: 0.25s; }
 .SlideIn:nth-child(3) { animation-delay: 0.4s; }
 .SlideIn:nth-child(4) { animation-delay: 0.55s; }
 
-/* ============================
-   🔷 Floating Cubes
-============================ */
-.FloatCube {
-  animation: floatCube 4s ease-in-out infinite;
-}
-.FloatCube:nth-child(1) { animation-delay: 0s; }
-.FloatCube:nth-child(2) { animation-delay: 1s; }
-.FloatCube:nth-child(3) { animation-delay: 2s; }
-.FloatCube:nth-child(4) { animation-delay: 3s; }
+/* === Responsive === */
+@media (max-width: 768px) {
+  .Card {
+    padding: 2.5rem 1.8rem;
+    margin: 1rem;
+  }
 
-/* ============================
-   📱 Make Buttons Smooth
-============================ */
-.CtaButton,
-.StartButton {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+  .Title {
+    font-size: 1.8rem;
+  }
 
-.CtaButton:hover,
-.StartButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(80, 180, 255, 0.4);
+  .LogoText {
+    font-size: 2rem;
+  }
+
+  .FeatureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .CtaButton,
+  .StartButton {
+    padding: 1.1rem;
+    font-size: 1.1rem;
+  }
 }

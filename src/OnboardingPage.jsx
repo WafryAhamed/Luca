@@ -14,35 +14,34 @@ export default function OnboardingPage() {
 
   return (
     <>
-      {/* 3D Background */}
-      <div className={styles.Background3D}>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
+      {/* Deep, Calm Galaxy Background — Static, No Animation */}
+      <div className={styles.Background}>
+        <div className={styles.BackgroundGradient}></div>
       </div>
 
       <div className={styles.Container}>
         <div className={`${styles.Card} ${styles.FadeSlide}`}>
 
-          {/* Logo */}
+          {/* Logo — Centered, Subtle Glow */}
           <div className={`${styles.Logo} ${styles.FadeSlide}`}>
-            <img src="/robot-Luca.svg" alt="LUCA" />
-            <h1>LUCA</h1>
+            <div className={styles.LogoContainer}>
+              <img src="/robot-Luca.svg" alt="LUCA" />
+            </div>
+            <h1 className={styles.LogoText}>LUCA</h1>
           </div>
 
-          {/* === STEP 1 — Intro Chat === */}
+          {/* === STEP 1 — Quiet, Human Chat Introduction === */}
           {step === 1 && (
-            <div className={styles.FadeSlide}>
+            <div className={styles.StepContainer}>
               <div className={styles.ChatPreview}>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
                   Hi! I’m LUCA 🤖
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  I’m your personal AI learning assistant.
+                  Your personal AI learning assistant.
                 </div>
                 <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Let me help you study smarter — in Sinhala, Tamil, or English.
+                  Study smarter — in Sinhala, Tamil, or English.
                 </div>
               </div>
 
@@ -55,10 +54,11 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 2 — What LUCA Does === */}
+          {/* === STEP 2 — Clean Feature Grid === */}
           {step === 2 && (
-            <div className={styles.FadeSlide}>
+            <div className={styles.StepContainer}>
               <h2 className={styles.Title}>Learn Anything. Anytime.</h2>
+              <p className={styles.Subtitle}>Powered by advanced AI</p>
 
               <div className={styles.FeatureGrid}>
                 <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
@@ -84,10 +84,11 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 3 — Study Tools === */}
+          {/* === STEP 3 — Minimalist Tool List === */}
           {step === 3 && (
-            <div className={styles.FadeSlide}>
+            <div className={styles.StepContainer}>
               <h2 className={styles.Title}>Your Study Tools</h2>
+              <p className={styles.Subtitle}>Designed for focus, not distraction</p>
 
               <div className={styles.FeatureList}>
                 <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
@@ -113,11 +114,10 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 4 — Final Screen === */}
+          {/* === STEP 4 — Premium Final CTA === */}
           {step === 4 && (
-            <div className={styles.FadeSlide}>
+            <div className={styles.StepContainer}>
               <h2 className={styles.Title}>Ready to Start Learning?</h2>
-
               <p className={styles.Subtext}>
                 Join thousands of Sri Lankan students using LUCA to study smarter.
               </p>
@@ -126,7 +126,7 @@ export default function OnboardingPage() {
                 className={`${styles.StartButton} ${styles.Pulse}`}
                 onClick={start}
               >
-                Get Started
+                Get Started Free
               </button>
 
               <p className={styles.Footer}>

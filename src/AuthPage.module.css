@@ -190,10 +190,18 @@
   color: #e8d8ff;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .SocialButton:hover {
   background: rgba(185, 103, 255, 0.12);
+}
+
+.SocialIcon {
+  font-size: 1.2rem;
 }
 
 /* FOOTER */

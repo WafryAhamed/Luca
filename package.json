@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/genai": "^1.23.0",
     "@google/generative-ai": "^0.24.1",
+    "@react-icons/all-files": "^4.1.0",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.4.0",
     "dompurify": "^3.3.0",

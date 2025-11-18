@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./AuthPage.module.css";
 import robot1 from "./assets/robot1.png"; // visible robot
 import robot2 from "./assets/robot2.png"; // when password shown
+import { FaGoogle, FaGithub, FaApple, FaMicrosoft, FaEye, FaEyeSlash } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -109,7 +111,7 @@ export default function AuthPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className={styles.TogglePassword}
               >
-                {showPassword ? "🙈" : "👁️"}
+                {showPassword ? <FaEyeSlash /> : <IoEyeSharp />}
               </button>
             </div>
 
@@ -134,16 +136,16 @@ export default function AuthPage() {
 
           <div className={styles.SocialButtons}>
             <button className={styles.SocialButton}>
-              Continue with Google
+              <FaGoogle className={styles.SocialIcon} /> Continue with Google
             </button>
             <button className={styles.SocialButton}>
-              Continue with GitHub
+              <FaGithub className={styles.SocialIcon} /> Continue with GitHub
             </button>
             <button className={styles.SocialButton}>
-              Continue with Apple
+              <FaApple className={styles.SocialIcon} /> Continue with Apple
             </button>
             <button className={styles.SocialButton}>
-              Continue with Microsoft
+              <FaMicrosoft className={styles.SocialIcon} /> Continue with Microsoft
             </button>
           </div>
 

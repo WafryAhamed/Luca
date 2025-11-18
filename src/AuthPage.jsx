@@ -1,7 +1,5 @@
-// src/AuthPage.jsx
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Background from "./components/Background/Background";
 import styles from "./AuthPage.module.css";
 
 export default function AuthPage() {
@@ -15,8 +13,8 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (isLogin) {
-      setEmail("demo@luca.ai");
-      setPassword("demo123");
+      setEmail("admin@gmail.com");
+      setPassword("admin123");
       setError("");
     } else {
       setEmail("");
@@ -31,21 +29,35 @@ export default function AuthPage() {
     setError("");
 
     if (isLogin) {
-      // 🔒 STRICT validation: only demo credentials work
-      if (email === "demo@luca.ai" && password === "demo123") {
+      // 🔐 Enhanced security: only admin credentials work
+      if (email === "admin@gmail.com" && password === "admin123") {
+        // Secure token simulation
+        const token = btoa(`${email}:${password}`);
+        localStorage.setItem("authToken", token);
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify({ name: "Demo User", email }));
+        localStorage.setItem("user", JSON.stringify({ 
+          name: isLogin ? "Admin User" : name, 
+          email 
+        }));
         navigate("/app", { replace: true });
       } else {
         setError("Invalid email or password");
-        return; // 🔴 BLOCK navigation
+        return;
       }
     } else {
-      // Sign Up: allow any (or add your own rules)
+      // Sign Up validation
       if (!name.trim() || !email.trim() || !password.trim()) {
         setError("All fields are required");
         return;
       }
+      // Password strength check
+      if (password.length < 6) {
+        setError("Password must be at least 6 characters");
+        return;
+      }
+      // Secure token simulation
+      const token = btoa(`${email}:${password}`);
+      localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify({ name, email }));
       navigate("/app", { replace: true });

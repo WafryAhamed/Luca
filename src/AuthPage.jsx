@@ -201,7 +201,7 @@ export default function AuthPage() {
   return (
     <>
       <div className={styles.Background}>
-        <div className={styles.Stars}></div>
+        <div className={styles.Pattern}></div>
       </div>
 
       <div className={styles.Container}>
@@ -279,7 +279,7 @@ export default function AuthPage() {
                     className={styles.TogglePassword}
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? "👁" : "👁‍🗨"}
+                    {showConfirmPassword ? "👁" : "👁‍voy"}
                   </button>
                 </div>
               </div>

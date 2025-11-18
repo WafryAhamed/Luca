@@ -201,7 +201,8 @@ export default function AuthPage() {
   return (
     <>
       <div className={styles.Background}>
-        <div className={styles.Pattern}></div>
+        <div className={styles.CyberGrid}></div>
+        <div className={styles.EnergyPulse}></div>
       </div>
 
       <div className={styles.Container}>
@@ -257,7 +258,7 @@ export default function AuthPage() {
                   className={styles.TogglePassword}
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? "👁" : "👁‍🗨"}
+                  {showPassword ? "👁" : "👁‍voy"}
                 </button>
               </div>
             </div>

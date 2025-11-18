@@ -8,65 +8,144 @@ export default function AuthPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+  const [lockoutTime, setLockoutTime] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const backgroundRef = useRef();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   useEffect(() => {
-    if (isLogin) {
-      setEmail("admin@gmail.com");
-      setPassword("admin123");
-      setError("");
-    } else {
-      setEmail("");
-      setPassword("");
-      setName("");
-      setError("");
+    if (isLogin && emailRef.current) {
+      emailRef.current.focus();
     }
   }, [isLogin]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (isLocked && lockoutTime > 0) {
+      const timer = setTimeout(() => {
+        setLockoutTime(lockoutTime - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (isLocked && lockoutTime === 0) {
+      setIsLocked(false);
+      setLoginAttempts(0);
+    }
+  }, [isLocked, lockoutTime]);
+
+  const validatePassword = (pwd) => {
+    if (pwd.length < 6) {
+      return "Password must be at least 6 characters";
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      return "Password must contain at least one uppercase letter";
+    }
+    if (!/[a-z]/.test(pwd)) {
+      return "Password must contain at least one lowercase letter";
+    }
+    if (!/\d/.test(pwd)) {
+      return "Password must contain at least one number";
+    }
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
+
+    if (isLocked) {
+      setError(`Account is locked. Try again in ${lockoutTime} seconds.`);
+      setIsLoading(false);
+      return;
+    }
 
     if (isLogin) {
-      // 🔐 Enhanced security: only admin credentials work
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
       if (email === "admin@gmail.com" && password === "admin123") {
-        // Secure token simulation
         const token = btoa(`${email}:${password}`);
         localStorage.setItem("authToken", token);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("user", JSON.stringify({ 
-          name: isLogin ? "Admin User" : name, 
+          name: "Admin User", 
           email 
         }));
+        if (rememberMe) {
+          localStorage.setItem("rememberMe", "true");
+        } else {
+          localStorage.removeItem("rememberMe");
+        }
+        setLoginAttempts(0);
         navigate("/app", { replace: true });
       } else {
+        const newAttempts = loginAttempts + 1;
+        setLoginAttempts(newAttempts);
+        if (newAttempts >= 3) {
+          setIsLocked(true);
+          setLockoutTime(30);
+        }
         setError("Invalid email or password");
-        return;
       }
     } else {
-      // Sign Up validation
       if (!name.trim() || !email.trim() || !password.trim()) {
         setError("All fields are required");
+        setIsLoading(false);
         return;
       }
-      // Password strength check
-      if (password.length < 6) {
-        setError("Password must be at least 6 characters");
+
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        setError(passwordError);
+        setIsLoading(false);
         return;
       }
-      // Secure token simulation
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
       const token = btoa(`${email}:${password}`);
       localStorage.setItem("authToken", token);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify({ name, email }));
       navigate("/app", { replace: true });
     }
+    setIsLoading(false);
+  };
+
+  const handleForgotPassword = () => {
+    if (!email.trim()) {
+      setError("Please enter your email address");
+      return;
+    }
+    // Simulate password reset
+    alert(`Password reset instructions sent to ${email}`);
+    setError("");
+  };
+
+  const handleGoogleLogin = () => {
+    // Simulate Google login
+    setIsLoading(true);
+    setTimeout(() => {
+      const token = btoa(`google_user@luca.ai:google123`);
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify({ 
+        name: "Google User", 
+        email: "google_user@luca.ai" 
+      }));
+      setIsLoading(false);
+      navigate("/app", { replace: true });
+    }, 1200);
   };
 
   return (
     <>
-      <div ref={backgroundRef} className={styles.Background}>
+      <div className={styles.Background}>
         <div className={styles.Stars}></div>
       </div>
 
@@ -96,6 +175,7 @@ export default function AuthPage() {
             )}
             <div className={styles.InputGroup}>
               <input
+                ref={emailRef}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -105,21 +185,57 @@ export default function AuthPage() {
               />
             </div>
             <div className={styles.InputGroup}>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-                className={styles.Input}
-              />
+              <div className={styles.PasswordContainer}>
+                <input
+                  ref={passwordRef}
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                  className={styles.Input}
+                />
+                <button
+                  type="button"
+                  className={styles.TogglePassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "👁" : "👁‍🗨"}
+                </button>
+              </div>
             </div>
+
+            {isLogin && (
+              <div className={styles.RememberMe}>
+                <label className={styles.CheckboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className={styles.Checkbox}
+                  />
+                  <span className={styles.Checkmark}></span>
+                  Remember me
+                </label>
+                <button
+                  type="button"
+                  className={styles.ForgotPassword}
+                  onClick={handleForgotPassword}
+                >
+                  Forgot password?
+                </button>
+              </div>
+            )}
 
             {/* ✅ Error message */}
             {error && <div className={styles.ErrorMessage}>{error}</div>}
 
-            <button type="submit" className={styles.SubmitButton}>
-              {isLogin ? "Sign In" : "Sign Up"}
+            <button 
+              type="submit" 
+              className={styles.SubmitButton}
+              disabled={isLoading}
+            >
+              {isLoading ? "Processing..." : (isLogin ? "Sign In" : "Sign Up")}
             </button>
           </form>
 
@@ -127,8 +243,15 @@ export default function AuthPage() {
             <span>or</span>
           </div>
 
-          <button className={styles.GoogleButton}>
-            <span>Continue with Google</span>
+          <button 
+            className={styles.GoogleButton}
+            onClick={handleGoogleLogin}
+            disabled={isLoading}
+          >
+            <div className={styles.GoogleContent}>
+              <div className={styles.GoogleIcon}>G</div>
+              <span>Continue with Google</span>
+            </div>
           </button>
 
           <div className={styles.Footer}>
@@ -137,7 +260,10 @@ export default function AuthPage() {
             </p>
             <button
               type="button"
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError("");
+              }}
               className={styles.ToggleButton}
             >
               {isLogin ? "Sign Up" : "Sign In"}

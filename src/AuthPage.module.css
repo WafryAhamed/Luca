@@ -122,6 +122,29 @@
   background: rgba(25, 22, 38, 0.7);
 }
 
+.PasswordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.TogglePassword {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.TogglePassword:hover {
+  color: #D5B2FF;
+}
+
 .SubmitButton {
   margin-top: 0.6rem;
   padding: 0.9rem;
@@ -138,9 +161,15 @@
   letter-spacing: 0.3px;
 }
 
-.SubmitButton:hover {
+.SubmitButton:hover:not(:disabled) {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 32px rgba(185, 103, 255, 0.55);
+}
+
+.SubmitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .Divider {
@@ -176,10 +205,35 @@
   transition: all 0.3s ease;
 }
 
-.GoogleButton:hover {
+.GoogleButton:hover:not(:disabled) {
   background: rgba(185, 103, 255, 0.12);
   color: #D5B2FF;
   border-color: rgba(185, 103, 255, 0.4);
+}
+
+.GoogleButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.GoogleContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.GoogleIcon {
+  width: 24px;
+  height: 24px;
+  background: #4285F4;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
 }
 
 .Footer {
@@ -219,6 +273,75 @@
   padding: 0.4rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.RememberMe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.4rem;
+}
+
+.CheckboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #c9b7e8;
+}
+
+.Checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.Checkmark {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: rgba(20, 18, 30, 0.6);
+  border: 1px solid rgba(185, 103, 255, 0.3);
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.Checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #B967FF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.Checkbox:checked + .Checkmark {
+  background: rgba(185, 103, 255, 0.2);
+  border-color: #B967FF;
+}
+
+.Checkbox:checked + .Checkmark::after {
+  display: block;
+}
+
+.ForgotPassword {
+  background: none;
+  border: none;
+  color: #c89cff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.ForgotPassword:hover {
+  color: #e8d8ff;
 }
 
 /* Enhanced background animation */

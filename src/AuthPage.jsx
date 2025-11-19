@@ -14,6 +14,7 @@ export default function AuthPage() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const emailRef = useRef(null);
   const navigate = useNavigate();
@@ -22,12 +23,23 @@ export default function AuthPage() {
     if (emailRef.current) emailRef.current.focus();
   }, []);
 
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    
+    return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
     if (isLogin) {
+      // Simulate API call delay
       await new Promise((r) => setTimeout(r, 700));
       if (email === "admin@gmail.com" && password === "admin123") {
         localStorage.setItem("isLoggedIn", "true");
@@ -36,17 +48,45 @@ export default function AuthPage() {
         setError("Invalid email or password");
       }
     } else {
+      // Validation for sign up
       if (!name.trim()) {
         setError("Full name is required");
         setIsLoading(false);
         return;
       }
+      if (!email.trim()) {
+        setError("Email is required");
+        setIsLoading(false);
+        return;
+      }
+      if (!validatePassword(password)) {
+        setError("Password must be at least 8 characters with uppercase, lowercase, number, and special character");
+        setIsLoading(false);
+        return;
+      }
+      if (!consent) {
+        setError("You must agree to the Terms of Service and Privacy Policy");
+        setIsLoading(false);
+        return;
+      }
+
+      // Simulate API call delay
       await new Promise((r) => setTimeout(r, 800));
       localStorage.setItem("isLoggedIn", "true");
       navigate("/app", { replace: true });
     }
 
     setIsLoading(false);
+  };
+
+  const handleSocialLogin = (provider) => {
+    setIsLoading(true);
+    // Simulate social login process
+    setTimeout(() => {
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/app", { replace: true });
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -115,6 +155,25 @@ export default function AuthPage() {
               </button>
             </div>
 
+            {!isLogin && (
+              <>
+                <div className={styles.PasswordHint}>
+                  <small>Password must be at least 8 characters with uppercase, lowercase, number, and special character</small>
+                </div>
+                <div className={styles.TermsContainer}>
+                  <label className={styles.TermsLabel}>
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className={styles.TermsCheckbox}
+                    />
+                    I agree to the <a href="#" className={styles.TermsLink}>Terms of Service</a> and <a href="#" className={styles.TermsLink}>Privacy Policy</a>
+                  </label>
+                </div>
+              </>
+            )}
+
             {error && <div className={styles.ErrorMessage}>{error}</div>}
 
             <button
@@ -135,16 +194,32 @@ export default function AuthPage() {
           </div>
 
           <div className={styles.SocialButtons}>
-            <button className={styles.SocialButton}>
+            <button 
+              className={styles.SocialButton}
+              onClick={() => handleSocialLogin('google')}
+              disabled={isLoading}
+            >
               <FaGoogle className={styles.SocialIcon} /> Continue with Google
             </button>
-            <button className={styles.SocialButton}>
+            <button 
+              className={styles.SocialButton}
+              onClick={() => handleSocialLogin('github')}
+              disabled={isLoading}
+            >
               <FaGithub className={styles.SocialIcon} /> Continue with GitHub
             </button>
-            <button className={styles.SocialButton}>
+            <button 
+              className={styles.SocialButton}
+              onClick={() => handleSocialLogin('apple')}
+              disabled={isLoading}
+            >
               <FaApple className={styles.SocialIcon} /> Continue with Apple
             </button>
-            <button className={styles.SocialButton}>
+            <button 
+              className={styles.SocialButton}
+              onClick={() => handleSocialLogin('microsoft')}
+              disabled={isLoading}
+            >
               <FaMicrosoft className={styles.SocialIcon} /> Continue with Microsoft
             </button>
           </div>
@@ -156,6 +231,7 @@ export default function AuthPage() {
                 <button
                   className={styles.ToggleButton}
                   onClick={() => setIsLogin(false)}
+                  disabled={isLoading}
                 >
                   Sign Up
                 </button>
@@ -166,6 +242,7 @@ export default function AuthPage() {
                 <button
                   className={styles.ToggleButton}
                   onClick={() => setIsLogin(true)}
+                  disabled={isLoading}
                 >
                   Sign In
                 </button>

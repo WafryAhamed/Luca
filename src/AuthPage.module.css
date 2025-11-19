@@ -158,6 +158,7 @@
 
 .SubmitButton:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* DIVIDER */
@@ -196,8 +197,13 @@
   gap: 0.5rem;
 }
 
-.SocialButton:hover {
+.SocialButton:hover:not(:disabled) {
   background: rgba(185, 103, 255, 0.12);
+}
+
+.SocialButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .SocialIcon {
@@ -220,6 +226,11 @@
   text-decoration: underline;
 }
 
+.ToggleButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ERROR MESSAGE */
 .ErrorMessage {
   color: #ff6b6b;
@@ -229,4 +240,44 @@
   border-radius: 10px;
   font-size: 0.85rem;
   text-align: center;
+}
+
+/* TERMS AND CONDITIONS */
+.TermsContainer {
+  margin: 0.5rem 0;
+}
+
+.TermsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #c9b7e8;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.TermsCheckbox {
+  margin-top: 0.2rem;
+  accent-color: #B967FF;
+}
+
+.TermsLink {
+  color: #c89cff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.TermsLink:hover {
+  color: #D5B2FF;
+}
+
+/* PASSWORD HINT */
+.PasswordHint {
+  color: #aaa;
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+}
+
+.PasswordHint small {
+  color: #aaa;
 }

@@ -12,19 +12,16 @@ export default function OnboardingPage() {
     navigate("/auth");
   };
 
-  // Auto-fade-in chat bubbles on Step 1
+  // Auto-fade-in for Step 2 bullet points
   useEffect(() => {
-    if (step === 1) {
-      const timer = setTimeout(() => {
-        const bubbles = document.querySelectorAll(`.${styles.BotBubble}`);
-        bubbles.forEach((bubble, index) => {
-          setTimeout(() => {
-            bubble.style.opacity = "1";
-            bubble.style.transform = "translateY(0)";
-          }, index * 600);
-        });
-      }, 300);
-      return () => clearTimeout(timer);
+    if (step === 2) {
+      const items = document.querySelectorAll(`.${styles.FeatureItem}`);
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateX(0)";
+        }, index * 300);
+      });
     }
   }, [step]);
 
@@ -32,7 +29,6 @@ export default function OnboardingPage() {
     <>
       {/* === CLEAN GALAXY BACKGROUND — NO ANIMATIONS === */}
       <div className={styles.Background3D}>
-        {/* Only keep subtle floating cubes — calm & minimal */}
         <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
         <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
         <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
@@ -48,47 +44,51 @@ export default function OnboardingPage() {
             <h1>LUCA</h1>
           </div>
 
-          {/* === STEP 1 — INTRO CHAT === */}
+          {/* === STEP 1 — “Study Smarter, Not Harder” === */}
           {step === 1 && (
             <div className={styles.FadeSlide}>
-              <div className={styles.ChatPreview}>
-                <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Hello! I’m LUCA 🤖
-                </div>
-                <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Your AI academic assistant for Math, Science, History, Coding, and more.
-                </div>
-                <div className={`${styles.BotBubble} ${styles.Typewriter}`}>
-                  Ask me anything — in Sinhala, Tamil, or English. Let’s get started!
-                </div>
+              {/* 50x50 Image */}
+              <div className={styles.IconPlaceholder}>
+                <img src="/images/icon-brain.png" alt="Brain" width="50" height="50" />
               </div>
+
+              <h2 className={styles.Title}>Stop cramming. Start remembering.</h2>
+              <p className={styles.Subtext}>
+                Tired of reading the same thing over and over… and still forgetting?  
+                LUCA explains things simply — so you understand once, and remember for good.
+              </p>
 
               <button
                 className={`${styles.CtaButton} ${styles.Pulse}`}
                 onClick={next}
               >
-                Continue
+                Next
               </button>
             </div>
           )}
 
-          {/* === STEP 2 — FEATURES === */}
+          {/* === STEP 2 — “Your Study Toolkit, in One Place” === */}
           {step === 2 && (
             <div className={styles.FadeSlide}>
-              <h2 className={styles.Title}>Ask Anything. Learn Everything.</h2>
+              {/* 50x50 Image */}
+              <div className={styles.IconPlaceholder}>
+                <img src="/images/icon-toolkit.png" alt="Toolkit" width="50" height="50" />
+              </div>
 
-              <div className={styles.FeatureGrid}>
-                <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  📘 <span>Math • Science • History • Coding</span>
+              <h2 className={styles.Title}>All your study tools — in one place.</h2>
+
+              <div className={styles.FeatureList}>
+                <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
+                  📚 Ask anything — Math, Science, English, History
                 </div>
-                <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🧠 <span>Step-by-step explanations & examples</span>
+                <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
+                  💬 Save your chats — like a personal study notebook
                 </div>
-                <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🌐 <span>Sinhala • Tamil • English support</span>
+                <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
+                  ⏰ Use the timer — focus for 25 mins, then take a break
                 </div>
-                <div className={`${styles.FeatureCard} ${styles.BounceIn}`}>
-                  🎯 <span>Exam prep, essays, revision sheets</span>
+                <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
+                  🌏 Works in Sinhala, Tamil & English — no language barrier
                 </div>
               </div>
 
@@ -101,42 +101,18 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 3 — TOOLS === */}
+          {/* === STEP 3 — “Ready to Begin?” === */}
           {step === 3 && (
             <div className={styles.FadeSlide}>
-              <h2 className={styles.Title}>Your Study Toolkit</h2>
-
-              <div className={styles.FeatureList}>
-                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  ⏱ Focus Timer & Stopwatch
-                </div>
-                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  📝 Notes Saver & Session Organizer
-                </div>
-                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  🔍 Search & Save Past Chats
-                </div>
-                <div className={`${styles.FeatureBubble} ${styles.SlideIn}`}>
-                  💡 Instant AI Answers — Any Subject
-                </div>
+              {/* 50x50 Image */}
+              <div className={styles.IconPlaceholder}>
+                <img src="/images/icon-rocket.png" alt="Start" width="50" height="50" />
               </div>
 
-              <button
-                className={`${styles.CtaButton} ${styles.Pulse}`}
-                onClick={next}
-              >
-                Continue
-              </button>
-            </div>
-          )}
-
-          {/* === STEP 4 — CTA === */}
-          {step === 4 && (
-            <div className={styles.FadeSlide}>
-              <h2 className={styles.Title}>Ready to Start Learning?</h2>
+              <h2 className={styles.Title}>Your study journey starts here.</h2>
 
               <p className={styles.Subtext}>
-                Join thousands of Sri Lankan students using LUCA to ace exams, write essays, and master coding — one question at a time.
+                You’re not alone. Thousands of students like you are already using LUCA to feel confident, calm, and in control — even before exams.
               </p>
 
               <button

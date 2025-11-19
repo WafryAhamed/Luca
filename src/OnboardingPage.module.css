@@ -54,11 +54,11 @@
   backdrop-filter: blur(22px);
   border: 1px solid rgba(185, 103, 255, 0.28);
   border-radius: 28px;
-  padding: 3.6rem 3rem; /* Increased padding for more breathing room */
+  padding: 3.6rem 3rem;
   width: 100%;
-  max-width: 580px; /* Slightly wider for content */
+  max-width: 580px;
   text-align: center;
-  box-shadow: 
+  box-shadow:
     0 0 50px rgba(185, 103, 255, 0.22),
     inset 0 0 15px rgba(100, 50, 180, 0.1);
   animation: fadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -76,7 +76,7 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-bottom: 2.4rem; /* Increased space below logo */
+  margin-bottom: 2.4rem;
 }
 
 .Logo img {
@@ -98,11 +98,11 @@
   text-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
 }
 
-/* === Titles === */
+/* === Titles & Text === */
 .Title {
   color: #e8d8ff;
-  font-size: 1.9rem; /* Slightly larger */
-  margin-bottom: 1.6rem; /* More space below title */
+  font-size: 1.9rem;
+  margin-bottom: 1.6rem;
   font-weight: 700;
   letter-spacing: -0.4px;
   line-height: 1.3;
@@ -110,93 +110,103 @@
 
 .Subtext {
   color: #c9b7e8;
-  font-size: 1.1rem; /* Slightly larger */
-  margin-bottom: 2.2rem; /* More space below subtext */
-  line-height: 1.6;
-}
-
-/* === Chat Preview === */
-.ChatPreview {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 2rem 1.8rem; /* Increased vertical padding */
-  border-radius: 20px;
-  border: 1px solid rgba(185, 103, 255, 0.18);
-  margin-bottom: 2.4rem; /* More space below chat */
-}
-
-.BotBubble {
-  background: rgba(185, 103, 255, 0.16);
-  color: #e8d8ff;
-  padding: 1.1rem 1.4rem; /* Slightly more padding */
-  border-radius: 16px;
-  margin-bottom: 0.9rem; /* Slightly more space between bubbles */
-  text-align: left;
-  font-size: 1.05rem;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  border: 1px solid rgba(185, 103, 255, 0.22);
-}
-
-/* === Feature Grid === */
-.FeatureGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px; /* Increased gap */
-  margin-bottom: 2.4rem; /* More space below grid */
-}
-
-.FeatureCard {
-  background: rgba(185, 103, 255, 0.14);
-  border: 1px solid rgba(185, 103, 255, 0.24);
-  padding: 1.3rem; /* Slightly more padding */
-  border-radius: 16px;
   font-size: 1.1rem;
-  color: #e8d8ff;
+  margin-bottom: 2.2rem;
+  line-height: 1.7; /* ✅ Improved for warmth and readability */
+  text-align: center; /* ✅ Centered — feels like a quiet conversation */
+}
+
+/* === 50x50 Icon Container === */
+.IconPlaceholder {
   display: flex;
-  flex-direction: column;
-  gap: 8px; /* Slightly more gap */
-  animation: fadeIn 0.6s ease;
-  transition: transform 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem auto 1.8rem;
+  width: 50px;
+  height: 50px;
 }
 
-.FeatureCard:hover {
-  transform: translateY(-3px);
+.IconPlaceholder img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 4px rgba(185, 103, 255, 0.3));
 }
 
-/* === Feature List (Step 3) === */
+/* === Step 2: Feature Items === */
 .FeatureList {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Increased gap */
-  margin-bottom: 2.4rem; /* More space below list */
+  gap: 14px;
+  margin-bottom: 1.8rem;
 }
 
-.FeatureBubble {
-  background: rgba(185, 103, 255, 0.14);
-  border: 1px solid rgba(185, 103, 255, 0.24);
-  padding: 1.3rem 1.5rem; /* Slightly more padding */
-  border-radius: 16px;
+.FeatureItem {
+  text-align: left;
   color: #e8d8ff;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.15rem;
   opacity: 0;
   transform: translateX(25px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* === Testimonial === */
+.Testimonial {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.4rem;
+  border-radius: 16px;
+  margin: 1.8rem 0;
+  border: 1px solid rgba(185, 103, 255, 0.18);
+}
+
+.Testimonial p:first-child {
+  color: #e8d8ff;
+  font-style: italic;
+  font-size: 1.12rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+.TestimonialAuthor {
+  color: #c89cff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* === Subject Icons (Step 3) === */
+.SubjectIcons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 1.8rem 0;
+}
+
+.SubjectIcons span {
+  background: rgba(185, 103, 255, 0.14);
+  padding: 0.65rem 1rem;
+  border-radius: 14px;
+  color: #e8d8ff;
+  font-size: 0.95rem;
+  border: 1px solid rgba(185, 103, 255, 0.24);
+  opacity: 0.9;
 }
 
 /* === Buttons === */
 .CtaButton,
 .StartButton {
   width: 100%;
-  padding: 1.2rem; /* Slightly more padding */
+  padding: 1.2rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
   border: none;
   border-radius: 16px;
   color: white;
-  font-size: 1.25rem; /* Slightly larger */
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem; /* More space above button */
+  margin-top: 1rem;
   box-shadow: 0 6px 24px rgba(185, 103, 255, 0.38);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   letter-spacing: 0.3px;
@@ -210,7 +220,7 @@
 
 /* === Footer === */
 .Footer {
-  margin-top: 2rem; /* More space above footer */
+  margin-top: 2rem;
   color: #bbb;
   font-size: 1rem;
 }
@@ -229,26 +239,9 @@
   color: #e8d8ff;
 }
 
-/* === Reusable Animations === */
+/* === Animations === */
 @keyframes fadeSlideUp {
   0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.7); opacity: 0; }
-  60% { transform: scale(1.03); opacity: 1; }
-  100% { transform: scale(1); }
-}
-
-@keyframes pulseBtn {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
-}
-
-@keyframes typewriter {
-  0% { opacity: 0; transform: translateY(8px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -261,24 +254,6 @@
   animation: fadeSlideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
-.BounceIn {
-  animation: bounceIn 0.55s ease;
-}
-
-.Pulse {
-  animation: pulseBtn 2s infinite ease-in-out;
-}
-
-.Typewriter {
-  opacity: 0;
-  animation: typewriter 0.6s ease forwards;
-}
-.Typewriter:nth-child(1) { animation-delay: 0.2s; }
-.Typewriter:nth-child(2) { animation-delay: 0.45s; }
-.Typewriter:nth-child(3) { animation-delay: 0.7s; }
-.Typewriter:nth-child(4) { animation-delay: 0.95s; } /* Added for 4th bubble */
-.Typewriter:nth-child(5) { animation-delay: 1.2s; } /* Added for 5th bubble */
-
 .SlideIn {
   animation: slideInLeft 0.45s ease forwards;
 }
@@ -286,6 +261,16 @@
 .SlideIn:nth-child(2) { animation-delay: 0.25s; }
 .SlideIn:nth-child(3) { animation-delay: 0.4s; }
 .SlideIn:nth-child(4) { animation-delay: 0.55s; }
+
+.Pulse {
+  animation: pulseBtn 2s infinite ease-in-out;
+}
+
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
 
 /* === Responsive === */
 @media (max-width: 768px) {
@@ -306,8 +291,13 @@
     font-size: 1.7rem;
   }
 
-  .FeatureGrid {
-    grid-template-columns: 1fr;
+  .Subtext {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .FeatureItem {
+    font-size: 1.05rem;
   }
 
   .CtaButton,
@@ -316,22 +306,12 @@
     font-size: 1.2rem;
   }
 
-  .ChatPreview {
-    padding: 1.6rem 1.4rem;
+  .SubjectIcons span {
+    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
   }
 
-  .BotBubble {
-    padding: 0.9rem 1.2rem;
-    font-size: 1rem;
-  }
-
-  .FeatureCard {
-    padding: 1.1rem;
-    font-size: 1rem;
-  }
-
-  .FeatureBubble {
-    padding: 1.1rem 1.3rem;
-    font-size: 1.15rem;
+  .IconPlaceholder {
+    margin: 1rem auto 1.4rem;
   }
 }

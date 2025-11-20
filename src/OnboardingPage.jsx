@@ -39,18 +39,15 @@ export default function OnboardingPage() {
         <div className={`${styles.Card} ${styles.FadeSlide}`}>
 
           {/* === LOGO === */}
-          <div className={`${styles.Logo} ${styles.FadeSlide}`}>
-            <img src="/robot-Luca.svg" alt="LUCA" />
-            <h1>LUCA</h1>
-          </div>
-
+          
+        
           {/* === STEP 1 — “Study Smarter, Not Harder” === */}
           {step === 1 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <div className={styles.IconPlaceholder}>
-                <img src="/images/icon-brain.png" alt="Brain" width="50" height="50" />
-              </div>
+              
+              <img src="/images/page1.png" alt="Brain" width="200" height="150" />
+             
 
               <h2 className={styles.Title}>Stop cramming. Start remembering.</h2>
               <p className={styles.Subtext}>
@@ -71,9 +68,7 @@ export default function OnboardingPage() {
           {step === 2 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <div className={styles.IconPlaceholder}>
-                <img src="/images/icon-toolkit.png" alt="Toolkit" width="50" height="50" />
-              </div>
+           <img src="/images/page2.png" alt="Brain" width="200" height="150" />
 
               <h2 className={styles.Title}>All your study tools — in one place.</h2>
 
@@ -105,9 +100,7 @@ export default function OnboardingPage() {
           {step === 3 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <div className={styles.IconPlaceholder}>
-                <img src="/images/icon-rocket.png" alt="Start" width="50" height="50" />
-              </div>
+             <img src="/images/page3.png" alt="Brain" width="200" height="150" />
 
               <h2 className={styles.Title}>Your study journey starts here.</h2>
 

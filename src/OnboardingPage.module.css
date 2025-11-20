@@ -48,19 +48,30 @@
   font-family: 'Manrope', sans-serif;
 }
 
-/* === Premium Glass Card === */
+/*  
+=====================================================
+   FINAL GLASS CARD (BLACK + PURPLE + WHITE THEME)
+   SOFT GLASS — NO GLOW — PREMIUM LOOK
+=====================================================
+*/
 .Card {
-  background: rgba(13, 11, 26, 0.82);
-  backdrop-filter: blur(22px);
-  border: 1px solid rgba(185, 103, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05); /* softer glass */
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+
+  border: 1px solid rgba(255, 255, 255, 0.14); /* light white glass edge */
   border-radius: 28px;
+
   padding: 3.6rem 3rem;
   width: 100%;
   max-width: 580px;
   text-align: center;
+
+  /* SOFT SHADOW — NO PURPLE GLOW */
   box-shadow:
-    0 0 50px rgba(185, 103, 255, 0.22),
-    inset 0 0 15px rgba(100, 50, 180, 0.1);
+    0 0 16px rgba(0, 0, 0, 0.45),
+    inset 0 0 6px rgba(255, 255, 255, 0.03);
+
   animation: fadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
   position: relative;
 }
@@ -112,8 +123,8 @@
   color: #c9b7e8;
   font-size: 1.1rem;
   margin-bottom: 2.2rem;
-  line-height: 1.7; /* ✅ Improved for warmth and readability */
-  text-align: center; /* ✅ Centered — feels like a quiet conversation */
+  line-height: 1.7;
+  text-align: center;
 }
 
 /* === 50x50 Icon Container === */

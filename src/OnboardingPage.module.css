@@ -9,24 +9,24 @@
   background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
 }
 
-/* === Floating Cubes — Only These, Calm Animation === */
+/* === Floating Cubes — Smoother Animation === */
 .Cube {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  background: rgba(185, 103, 255, 0.15);
-  border: 1px solid rgba(185, 103, 255, 0.3);
-  box-shadow: 0 0 20px rgba(185, 103, 255, 0.25);
-  animation: spin 20s linear infinite, floatCube 10s ease-in-out infinite;
+  width: 78px;
+  height: 78px;
+  background: rgba(185, 103, 255, 0.13);
+  border: 1px solid rgba(185, 103, 255, 0.28);
+  box-shadow: 0 0 18px rgba(185, 103, 255, 0.22);
+  animation: spin 22s linear infinite, floatCube 9s ease-in-out infinite;
   transform-style: preserve-3d;
-  border-radius: 8px;
-  opacity: 0.7;
+  border-radius: 10px;
+  opacity: 0.75;
 }
 
 .Cube:nth-child(1) { top: 12%; left: 18%; animation-delay: 0s; }
-.Cube:nth-child(2) { top: 68%; left: 72%; animation-delay: 3s; }
-.Cube:nth-child(3) { top: 48%; left: 22%; animation-delay: 1.5s; }
-.Cube:nth-child(4) { top: 28%; left: 78%; animation-delay: 4.5s; }
+.Cube:nth-child(2) { top: 68%; left: 72%; animation-delay: 2.5s; }
+.Cube:nth-child(3) { top: 48%; left: 22%; animation-delay: 1.2s; }
+.Cube:nth-child(4) { top: 28%; left: 78%; animation-delay: 4s; }
 
 @keyframes spin {
   from { transform: rotateX(0deg) rotateY(0deg); }
@@ -35,7 +35,7 @@
 
 @keyframes floatCube {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.03); }
+  50% { transform: translateY(-22px) scale(1.05); }
 }
 
 /* === Layout === */
@@ -48,36 +48,29 @@
   font-family: 'Manrope', sans-serif;
 }
 
-/*  
-=====================================================
-   FINAL GLASS CARD (BLACK + PURPLE + WHITE THEME)
-   SOFT GLASS — NO GLOW — PREMIUM LOOK
-=====================================================
-*/
+/* === Glass Card — Cleaner, More Premium === */
 .Card {
-  background: rgba(255, 255, 255, 0.05); /* softer glass */
-  backdrop-filter: blur(18px) saturate(170%);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(22px) saturate(185%);
+  -webkit-backdrop-filter: blur(22px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
 
-  border: 1px solid rgba(255, 255, 255, 0.14); /* light white glass edge */
-  border-radius: 28px;
-
-  padding: 3.6rem 3rem;
+  padding: 3.4rem 2.8rem;
   width: 100%;
-  max-width: 580px;
+  max-width: 560px;
   text-align: center;
 
-  /* SOFT SHADOW — NO PURPLE GLOW */
   box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.45),
-    inset 0 0 6px rgba(255, 255, 255, 0.03);
+    0 12px 28px rgba(0, 0, 0, 0.38),
+    inset 0 0 8px rgba(255, 255, 255, 0.02);
 
-  animation: fadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation: fadeIn 0.75s cubic-bezier(0.3, 0.8, 0.3, 1);
   position: relative;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  from { opacity: 0; transform: translateY(26px) scale(0.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -86,153 +79,108 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   margin-bottom: 2.4rem;
 }
 
 .Logo img {
   width: 72px;
   animation: pulse 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(185, 103, 255, 0.5));
+  filter: drop-shadow(0 0 8px rgba(185, 103, 255, 0.45));
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.045); }
 }
 
 .Logo h1 {
-  font-size: 2.3rem;
-  color: #D5B2FF;
+  font-size: 2.35rem;
+  color: #D9BAFF;
   font-weight: 800;
-  letter-spacing: -0.8px;
-  text-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
+  letter-spacing: -0.9px;
+  text-shadow: 0 0 10px rgba(185, 103, 255, 0.35);
 }
 
 /* === Titles & Text === */
 .Title {
-  color: #e8d8ff;
-  font-size: 1.4rem;
-  margin-bottom: 1.6rem;
+  color: #F1E6FF;
+  font-size: 1.45rem;
+  margin-bottom: 1.4rem;
   font-weight: 900;
-  letter-spacing: -0.4px;
-  line-height: 1.3;
+  letter-spacing: -0.5px;
+  line-height: 1.35;
 }
 
 .Subtext {
-  color: #c9b7e8;
-  font-size: 1.1rem;
-  margin-bottom: 2.2rem;
-  line-height: 1.7;
+  color: #ccbdf0;
+  font-size: 1.08rem;
+  margin-bottom: 2.1rem;
+  line-height: 1.75;
   text-align: center;
 }
 
-/* === 50x50 Icon Container === */
-.IconPlaceholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.2rem auto 1.8rem;
-  width: 50px;
-  height: 50px;
-}
-
+/* === Icon === */
 .IconPlaceholder img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 4px rgba(185, 103, 255, 0.3));
+  width: 52px;
+  height: 52px;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 5px rgba(185, 103, 255, 0.35));
 }
 
-/* === Step 2: Feature Items === */
-.FeatureList {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 1.8rem;
-}
-
+/* === Feature Items — More Elegant Animation === */
 .FeatureItem {
   text-align: left;
   color: #e8d8ff;
-  font-size: 1.15rem;
+  font-size: 1.14rem;
   opacity: 0;
-  transform: translateX(25px);
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: translateX(22px);
+  transition: transform 0.45s ease, opacity 0.45s ease;
 }
 
-/* === Testimonial === */
-.Testimonial {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 1.4rem;
-  border-radius: 16px;
-  margin: 1.8rem 0;
-  border: 1px solid rgba(185, 103, 255, 0.18);
-}
-
-.Testimonial p:first-child {
-  color: #e8d8ff;
-  font-style: italic;
-  font-size: 1.12rem;
-  margin-bottom: 0.6rem;
-  line-height: 1.5;
-}
-
-.TestimonialAuthor {
-  color: #c89cff;
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: right;
-}
-
-/* === Subject Icons (Step 3) === */
-.SubjectIcons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 1.8rem 0;
-}
-
+/* === Subject Icons === */
 .SubjectIcons span {
-  background: rgba(185, 103, 255, 0.14);
-  padding: 0.65rem 1rem;
+  background: rgba(185, 103, 255, 0.16);
+  padding: 0.62rem 0.95rem;
   border-radius: 14px;
   color: #e8d8ff;
+  border: 1px solid rgba(185, 103, 255, 0.23);
   font-size: 0.95rem;
-  border: 1px solid rgba(185, 103, 255, 0.24);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
-/* === Buttons === */
+/* === Buttons — Clean, Unique, Premium === */
 .CtaButton,
 .StartButton {
   width: 100%;
-  padding: 1.2rem;
+  padding: 1.18rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
   border: none;
-  border-radius: 16px;
+  border-radius: 18px;
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.24rem;
   font-weight: 700;
   cursor: pointer;
   margin-top: 1rem;
-  box-shadow: 0 6px 24px rgba(185, 103, 255, 0.38);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  letter-spacing: 0.3px;
+
+  /* Cleaner button — no glow */
+  box-shadow: none;
+
+  /* Premium hover — subtle compress + brightening */
+  transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
 }
 
 .CtaButton:hover,
 .StartButton:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 32px rgba(185, 103, 255, 0.55);
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  opacity: 0.96;
 }
 
 /* === Footer === */
 .Footer {
   margin-top: 2rem;
-  color: #bbb;
+  color: #c8c0e8;
   font-size: 1rem;
 }
 
@@ -243,86 +191,51 @@
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
-  transition: color 0.2s ease;
 }
 
 .LinkButton:hover {
-  color: #e8d8ff;
+  color: #e9dbff;
 }
 
 /* === Animations === */
-@keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(28px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
 .FadeSlide {
-  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation: fadeSlideUp 0.75s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .SlideIn {
   animation: slideInLeft 0.45s ease forwards;
 }
-.SlideIn:nth-child(1) { animation-delay: 0.1s; }
-.SlideIn:nth-child(2) { animation-delay: 0.25s; }
-.SlideIn:nth-child(3) { animation-delay: 0.4s; }
-.SlideIn:nth-child(4) { animation-delay: 0.55s; }
 
-.Pulse {
-  animation: pulseBtn 2s infinite ease-in-out;
-}
-
-@keyframes pulseBtn {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(26px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 /* === Responsive === */
 @media (max-width: 768px) {
   .Card {
-    padding: 2.6rem 1.8rem;
+    padding: 2.4rem 1.6rem;
     margin: 1rem;
   }
 
-  .Logo img {
-    width: 64px;
-  }
+  .Logo img { width: 60px; }
 
-  .Logo h1 {
-    font-size: 2rem;
-  }
+  .Logo h1 { font-size: 1.95rem; }
 
-  .Title {
-    font-size: 1.7rem;
-  }
+  .Title { font-size: 1.35rem; }
 
-  .Subtext {
-    font-size: 1rem;
-    padding: 0 0.5rem;
-  }
+  .Subtext { font-size: 0.95rem; }
 
-  .FeatureItem {
-    font-size: 1.05rem;
-  }
+  .FeatureItem { font-size: 1.02rem; }
 
   .CtaButton,
   .StartButton {
-    padding: 1.1rem;
-    font-size: 1.2rem;
-  }
-
-  .SubjectIcons span {
-    font-size: 0.9rem;
-    padding: 0.55rem 0.9rem;
-  }
-
-  .IconPlaceholder {
-    margin: 1rem auto 1.4rem;
+    padding: 1.05rem;
+    font-size: 1.1rem;
   }
 }

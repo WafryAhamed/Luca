@@ -21,7 +21,7 @@
   border-radius: 10px;
   transition: all 0.2s ease;
   color: #fff;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
 
 .UserMenuItem:hover {
   background: rgba(185, 103, 255, 0.12);
-  color: #B967FF;
+  color: #b967ff;
   transform: translateX(3px);
 }
 
@@ -69,13 +69,19 @@
   padding: 1rem;
   box-shadow: 0 0 25px rgba(185, 103, 255, 0.3);
   color: #fff;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   animation: fadeIn 0.25s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ToolHeader {
@@ -88,7 +94,7 @@
 .BackButton {
   background: none;
   border: none;
-  color: #B967FF;
+  color: #b967ff;
   font-size: 1.3rem;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -100,7 +106,7 @@
 
 .ToolHeader h3 {
   margin: 0;
-  color: #B967FF;
+  color: #b967ff;
   font-size: 1.2rem;
 }
 
@@ -138,7 +144,11 @@
 .ToolButton {
   flex: 1;
   padding: 0.6rem 0.8rem;
-  background: linear-gradient(135deg, rgba(185, 103, 255, 0.2), rgba(100, 50, 180, 0.15));
+  background: linear-gradient(
+    135deg,
+    rgba(185, 103, 255, 0.2),
+    rgba(100, 50, 180, 0.15)
+  );
   border: 1px solid rgba(185, 103, 255, 0.3);
   color: #e0d6ff;
   border-radius: 10px;
@@ -167,7 +177,7 @@
   border-radius: 10px;
   color: #fff;
   margin-bottom: 0.8rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   resize: vertical;
 }
 
@@ -203,7 +213,8 @@
 
 /* ✅ Responsive Design */
 @media (max-width: 768px) {
-  .UserMenu, .ToolPanel {
+  .UserMenu,
+  .ToolPanel {
     right: 50%;
     transform: translateX(50%);
     width: 90%;
@@ -219,224 +230,256 @@
   }
 }
 
+/* ======================================================
+   CHATGPT-STYLE SETTINGS PANEL
+====================================================== */
 
-.UserMenu {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  background: rgba(13, 11, 26, 0.92);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 0 25px rgba(185, 103, 255, 0.35);
-  z-index: 1000;
-  width: 270px;
-  max-height: 80vh;
-  overflow-y: auto;
-  transition: all 0.3s ease;
+.SettingsLayout {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
 }
 
-.UserMenuItem {
-  padding: 0.8rem 1rem;
+.SettingsSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 130px;
+}
+
+.SettingsTab {
+  border: none;
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  background: transparent;
   cursor: pointer;
-  border-radius: 10px;
+  color: #d9d0ff;
+  font-size: 0.85rem;
   transition: all 0.2s ease;
-  color: #fff;
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-.UserMenuItem:hover {
-  background: rgba(185, 103, 255, 0.12);
-  color: #B967FF;
-  transform: translateX(3px);
+.SettingsTab:hover {
+  background: rgba(185, 103, 255, 0.16);
+  transform: translateX(2px);
 }
 
-.ToolSection {
-  color: #b4a4ff;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin: 0.5rem 1rem;
-}
-
-.Divider {
-  height: 1px;
-  background: rgba(185, 103, 255, 0.1);
-  margin: 0.6rem 0;
-}
-
-.LogoutItem {
-  color: #ff6b6b;
-}
-
-.LogoutItem:hover {
-  background: rgba(255, 107, 107, 0.12);
-  color: #ff8787;
-}
-
-/* Tool Panel */
-.ToolPanel {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  width: 320px;
-  background: rgba(13, 11, 26, 0.92);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 0 25px rgba(185, 103, 255, 0.3);
-  color: #fff;
-  font-family: 'Manrope', sans-serif;
-  animation: fadeIn 0.25s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.ToolHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.BackButton {
-  background: none;
-  border: none;
-  color: #B967FF;
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.BackButton:hover {
-  color: #e0d6ff;
-}
-
-.ToolHeader h3 {
-  margin: 0;
-  color: #B967FF;
-  font-size: 1.2rem;
-}
-
-/* Glass card for all tools */
-.GlassCard {
-  background: rgba(25, 20, 45, 0.6);
-  border-radius: 14px;
-  border: 1px solid rgba(185, 103, 255, 0.2);
-  padding: 1rem;
-  box-shadow: inset 0 0 10px rgba(185, 103, 255, 0.15);
-  transition: transform 0.2s ease;
-}
-
-.GlassCard:hover {
-  transform: scale(1.01);
-}
-
-/* Shared styling */
-.TimerDisplay {
-  font-size: 2.4rem;
-  font-weight: 700;
-  text-align: center;
-  color: #e8dcff;
-  text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
-  margin-bottom: 1rem;
-}
-
-.ToolButtons {
-  display: flex;
-  gap: 0.7rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.ToolButton {
-  flex: 1;
-  padding: 0.6rem 0.8rem;
-  background: linear-gradient(135deg, rgba(185, 103, 255, 0.2), rgba(100, 50, 180, 0.15));
-  border: 1px solid rgba(185, 103, 255, 0.3);
-  color: #e0d6ff;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.25s ease;
-}
-
-.ToolButton:hover {
+.SettingsTabActive {
   background: rgba(185, 103, 255, 0.3);
-  transform: translateY(-2px);
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.ToolHint {
-  text-align: center;
-  color: #aaa;
-  font-size: 0.85rem;
-  margin-top: 1rem;
-}
-
-.ToolTextarea {
-  width: 100%;
-  padding: 0.8rem;
+.SettingsContent {
+  flex: 1;
   background: rgba(25, 20, 45, 0.6);
-  border: 1px solid rgba(185, 103, 255, 0.2);
-  border-radius: 10px;
-  color: #fff;
-  margin-bottom: 0.8rem;
-  font-family: 'Manrope', sans-serif;
-  resize: vertical;
-}
-
-.NotesList {
-  max-height: 150px;
+  border-radius: 12px;
+  border: 1px solid rgba(185, 103, 255, 0.24);
+  padding: 0.75rem 0.8rem 0.9rem;
+  max-height: 60vh;
   overflow-y: auto;
-  margin-top: 1rem;
   scrollbar-width: thin;
-  scrollbar-color: rgba(185, 103, 255, 0.3) transparent;
+  scrollbar-color: rgba(185, 103, 255, 0.35) transparent;
 }
 
-.NoteItem {
+.SettingsContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.SettingsContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.SettingsContent::-webkit-scrollbar-thumb {
+  background: rgba(185, 103, 255, 0.4);
+  border-radius: 999px;
+}
+
+.SettingsSectionTitle {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.95rem;
+  color: #f4ecff;
+  font-weight: 600;
+}
+
+.SettingsSectionHint {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.78rem;
+  color: #a99cd9;
+}
+
+.SettingRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 0;
+  gap: 0.6rem;
+  padding: 0.45rem 0.1rem;
   border-bottom: 1px solid rgba(185, 103, 255, 0.1);
-  color: #e0d6ff;
 }
 
-.DeleteButton {
-  background: none;
-  border: none;
-  color: #ff6b6b;
+.SettingLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.SettingLabel span:first-child {
+  font-size: 0.85rem;
+  color: #f2e9ff;
+}
+
+.SettingSub {
+  font-size: 0.75rem;
+  color: #9d90d0;
+}
+
+.SettingSelect {
+  background: rgba(25, 20, 45, 0.9);
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.4);
+  color: #f4ecff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.55rem;
+}
+
+/* Toggle Switch */
+.ToggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.ToggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ToggleSlider {
+  position: absolute;
   cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.12);
+  transition: 0.2s;
+  border-radius: 999px;
 }
 
-.DeleteButton:hover {
-  transform: scale(1.2);
+.ToggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
 }
 
-/* ✅ Responsive Design */
+.ToggleSwitch input:checked + .ToggleSlider {
+  background-color: rgba(185, 103, 255, 0.9);
+}
+
+.ToggleSwitch input:checked + .ToggleSlider:before {
+  transform: translateX(16px);
+}
+
+/* Danger zone */
+.DangerZone {
+  margin-top: 1.1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255, 120, 120, 0.3);
+}
+
+.DangerTitle {
+  font-size: 0.8rem;
+  color: #ff9a9a;
+  margin-bottom: 0.4rem;
+}
+
+.DangerButton {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  background: rgba(255, 90, 90, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 120, 120, 0.6);
+  color: #ffaeae;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.DangerButton:hover {
+  background: rgba(255, 90, 90, 0.2);
+}
+
+/* Secondary button */
+.SecondaryButton {
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  background: rgba(185, 103, 255, 0.12);
+  border-radius: 10px;
+  border: 1px solid rgba(185, 103, 255, 0.6);
+  color: #e6dbff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.SecondaryButton:hover {
+  background: rgba(185, 103, 255, 0.24);
+}
+
+/* Shortcuts list */
+.ShortcutList {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ShortcutItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #d8cffc;
+  padding: 0.3rem 0.45rem;
+  border-radius: 8px;
+  background: rgba(25, 20, 45, 0.7);
+}
+
+/* About block */
+.AboutBlock {
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.4rem;
+  border-radius: 10px;
+  background: rgba(25, 20, 45, 0.75);
+  border: 1px solid rgba(185, 103, 255, 0.3);
+  font-size: 0.8rem;
+  color: #f4ecff;
+}
+
+.AboutSub {
+  font-size: 0.76rem;
+  color: #b4a7df;
+  margin-top: 0.1rem;
+}
+
+/* Responsive for settings */
 @media (max-width: 768px) {
-  .UserMenu, .ToolPanel {
-    right: 50%;
-    transform: translateX(50%);
-    width: 90%;
-    max-width: 360px;
+  .SettingsLayout {
+    flex-direction: column;
   }
 
-  .TimerDisplay {
-    font-size: 2rem;
+  .SettingsSidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
 
-  .ToolButton {
-    font-size: 0.85rem;
+  .SettingsTab {
+    white-space: nowrap;
   }
 }

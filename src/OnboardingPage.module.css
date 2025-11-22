@@ -48,12 +48,18 @@
   font-family: 'Manrope', sans-serif;
 }
 
-/* === Final Glass Card (Premium, No Glow) === */
+/*  
+=====================================================
+   FINAL GLASS CARD (BLACK + PURPLE + WHITE THEME)
+   SOFT GLASS — NO GLOW — PREMIUM LOOK
+=====================================================
+*/
 .Card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05); /* softer glass */
   backdrop-filter: blur(18px) saturate(170%);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border: 1px solid rgba(255, 255, 255, 0.14); /* light white glass edge */
   border-radius: 28px;
 
   padding: 3.6rem 3rem;
@@ -61,6 +67,7 @@
   max-width: 580px;
   text-align: center;
 
+  /* SOFT SHADOW — NO PURPLE GLOW */
   box-shadow:
     0 0 16px rgba(0, 0, 0, 0.45),
     inset 0 0 6px rgba(255, 255, 255, 0.03);
@@ -138,7 +145,7 @@
   filter: drop-shadow(0 0 4px rgba(185, 103, 255, 0.3));
 }
 
-/* === Step 2 Feature Items === */
+/* === Step 2: Feature Items === */
 .FeatureList {
   display: flex;
   flex-direction: column;
@@ -155,7 +162,39 @@
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* === Subject Icons === */
+/* === Testimonial === */
+.Testimonial {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.4rem;
+  border-radius: 16px;
+  margin: 1.8rem 0;
+  border: 1px solid rgba(185, 103, 255, 0.18);
+}
+
+.Testimonial p:first-child {
+  color: #e8d8ff;
+  font-style: italic;
+  font-size: 1.12rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+.TestimonialAuthor {
+  color: #c89cff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* === Subject Icons (Step 3) === */
+.SubjectIcons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 1.8rem 0;
+}
+
 .SubjectIcons span {
   background: rgba(185, 103, 255, 0.14);
   padding: 0.65rem 1rem;
@@ -166,9 +205,7 @@
   opacity: 0.9;
 }
 
-/* ======================================================
-   ⭐ UPDATED BUTTON — NO GLOW, MORE PROFESSIONAL  
-====================================================== */
+/* === Buttons === */
 .CtaButton,
 .StartButton {
   width: 100%;
@@ -181,17 +218,15 @@
   font-weight: 700;
   cursor: pointer;
   margin-top: 1rem;
-
-  /* 🔥 Removed glow — clean professional button */
-  box-shadow: none;
-
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 6px 24px rgba(185, 103, 255, 0.38);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  letter-spacing: 0.3px;
 }
 
 .CtaButton:hover,
 .StartButton:hover {
   transform: translateY(-3px) scale(1.02);
-  opacity: 0.92; /* minimal hover effect, no glow */
+  box-shadow: 0 10px 32px rgba(185, 103, 255, 0.55);
 }
 
 /* === Footer === */
@@ -238,6 +273,16 @@
 .SlideIn:nth-child(3) { animation-delay: 0.4s; }
 .SlideIn:nth-child(4) { animation-delay: 0.55s; }
 
+.Pulse {
+  animation: pulseBtn 2s infinite ease-in-out;
+}
+
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .Card {
@@ -254,7 +299,7 @@
   }
 
   .Title {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   .Subtext {
@@ -270,5 +315,14 @@
   .StartButton {
     padding: 1.1rem;
     font-size: 1.2rem;
+  }
+
+  .SubjectIcons span {
+    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .IconPlaceholder {
+    margin: 1rem auto 1.4rem;
   }
 }

@@ -1,3 +1,7 @@
+/* ======================================================
+   USER MENU
+====================================================== */
+
 .UserMenu {
   position: absolute;
   top: 60px;
@@ -57,7 +61,10 @@
   color: #ff8787;
 }
 
-/* Tool Panel */
+/* ======================================================
+   TOOL PANEL
+====================================================== */
+
 .ToolPanel {
   position: absolute;
   top: 60px;
@@ -110,7 +117,6 @@
   font-size: 1.2rem;
 }
 
-/* Glass card for all tools */
 .GlassCard {
   background: rgba(25, 20, 45, 0.6);
   border-radius: 14px;
@@ -124,7 +130,6 @@
   transform: scale(1.01);
 }
 
-/* Shared styling */
 .TimerDisplay {
   font-size: 2.4rem;
   font-weight: 700;
@@ -211,7 +216,6 @@
   transform: scale(1.2);
 }
 
-/* ✅ Responsive Design */
 @media (max-width: 768px) {
   .UserMenu,
   .ToolPanel {
@@ -231,126 +235,211 @@
 }
 
 /* ======================================================
-   CHATGPT-STYLE SETTINGS PANEL
+   SETTINGS MODAL (LIKE CHATGPT)
 ====================================================== */
 
-.SettingsLayout {
+.SettingsOverlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+      circle at top,
+      rgba(185, 103, 255, 0.18),
+      transparent 55%
+    ),
+    rgba(5, 4, 15, 0.75);
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 310px;
+  z-index: 1100;
+  animation: overlayFade 0.2s ease-out;
+}
+
+@keyframes overlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.SettingsModal {
+  width: 520px;
+  max-width: 92vw;
+  max-height: 80vh;
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.25),
+      transparent 55%
+    ),
+    rgba(18, 14, 35, 0.96);
+  border-radius: 20px;
+  border: 1px solid rgba(185, 103, 255, 0.45);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.75);
+  padding: 1.1rem 1.2rem;
+  color: #f7f1ff;
+  font-family: "Manrope", sans-serif;
+  animation: modalPop 0.22s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.SettingsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.9rem;
+}
+
+.SettingsHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #f4e9ff;
+}
+
+.SettingsHeader p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: #c4b5ff;
+}
+
+.SettingsCloseBtn {
+  background: transparent;
+  border: none;
+  color: #f4d4ff;
+  font-size: 1.05rem;
+  cursor: pointer;
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.SettingsCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(6deg);
+}
+
+.SettingsBody {
+  display: flex;
+  gap: 0.9rem;
+  flex: 1;
+  min-height: 260px;
 }
 
 .SettingsSidebar {
+  width: 130px;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  min-width: 130px;
+  gap: 0.35rem;
+  padding-right: 0.2rem;
 }
 
 .SettingsTab {
-  border: none;
-  text-align: left;
   padding: 0.55rem 0.7rem;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  color: #d9d0ff;
   font-size: 0.85rem;
-  transition: all 0.2s ease;
+  text-align: left;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  color: #d9d1ff;
+  background: rgba(47, 36, 96, 0.7);
+  cursor: pointer;
+  transition: all 0.18s ease;
 }
 
 .SettingsTab:hover {
-  background: rgba(185, 103, 255, 0.16);
+  background: rgba(185, 103, 255, 0.35);
   transform: translateX(2px);
 }
 
 .SettingsTabActive {
-  background: rgba(185, 103, 255, 0.3);
-  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    rgba(185, 103, 255, 0.9),
+    rgba(117, 70, 255, 0.9)
+  );
+  color: #fff;
   font-weight: 600;
 }
 
 .SettingsContent {
   flex: 1;
-  background: rgba(25, 20, 45, 0.6);
-  border-radius: 12px;
-  border: 1px solid rgba(185, 103, 255, 0.24);
-  padding: 0.75rem 0.8rem 0.9rem;
-  max-height: 60vh;
+  background: rgba(14, 10, 32, 0.9);
+  border-radius: 14px;
+  border: 1px solid rgba(185, 103, 255, 0.35);
+  padding: 0.9rem;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(185, 103, 255, 0.35) transparent;
 }
 
-.SettingsContent::-webkit-scrollbar {
-  width: 6px;
-}
-
-.SettingsContent::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.SettingsContent::-webkit-scrollbar-thumb {
-  background: rgba(185, 103, 255, 0.4);
-  border-radius: 999px;
-}
-
-.SettingsSectionTitle {
-  margin: 0 0 0.4rem 0;
-  font-size: 0.95rem;
-  color: #f4ecff;
-  font-weight: 600;
-}
-
-.SettingsSectionHint {
-  margin: 0 0 0.8rem 0;
-  font-size: 0.78rem;
-  color: #a99cd9;
+.SettingsContent h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.98rem;
+  color: #f0e4ff;
 }
 
 .SettingRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 0.1rem;
-  border-bottom: 1px solid rgba(185, 103, 255, 0.1);
+  gap: 0.75rem;
+  padding: 0.55rem 0.2rem;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.16);
 }
 
-.SettingLabel {
+.SettingRow:last-child {
+  border-bottom: none;
+}
+
+.SettingText {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
 }
 
-.SettingLabel span:first-child {
-  font-size: 0.85rem;
-  color: #f2e9ff;
+.SettingText span {
+  font-size: 0.9rem;
+  color: #f7f0ff;
 }
 
-.SettingSub {
-  font-size: 0.75rem;
-  color: #9d90d0;
+.SettingText small {
+  font-size: 0.78rem;
+  color: #b9abff;
 }
 
 .SettingSelect {
-  background: rgba(25, 20, 45, 0.9);
+  background: rgba(25, 20, 55, 0.95);
   border-radius: 8px;
-  border: 1px solid rgba(185, 103, 255, 0.4);
-  color: #f4ecff;
-  font-size: 0.8rem;
+  border: 1px solid rgba(185, 103, 255, 0.45);
   padding: 0.3rem 0.55rem;
+  color: #f5efff;
+  font-size: 0.85rem;
+  font-family: "Manrope", sans-serif;
 }
 
-/* Toggle Switch */
-.ToggleSwitch {
+.ToggleWrapper {
   position: relative;
   display: inline-block;
-  width: 38px;
-  height: 20px;
+  width: 42px;
+  height: 22px;
 }
 
-.ToggleSwitch input {
+.ToggleWrapper input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -360,126 +449,304 @@
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.12);
-  transition: 0.2s;
+  background-color: rgba(120, 99, 184, 0.7);
   border-radius: 999px;
+  transition: background-color 0.18s ease;
 }
 
-.ToggleSlider:before {
-  position: absolute;
+.ToggleSlider::before {
   content: "";
-  height: 14px;
-  width: 14px;
+  position: absolute;
+  height: 16px;
+  width: 16px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
-  transition: 0.2s;
+  background-color: #fdfbff;
   border-radius: 50%;
+  transition: transform 0.18s ease;
 }
 
-.ToggleSwitch input:checked + .ToggleSlider {
-  background-color: rgba(185, 103, 255, 0.9);
+.ToggleWrapper input:checked + .ToggleSlider {
+  background: linear-gradient(
+    135deg,
+    rgba(185, 103, 255, 0.95),
+    rgba(117, 70, 255, 0.95)
+  );
 }
 
-.ToggleSwitch input:checked + .ToggleSlider:before {
-  transform: translateX(16px);
-}
-
-/* Danger zone */
-.DangerZone {
-  margin-top: 1.1rem;
-  padding-top: 0.6rem;
-  border-top: 1px solid rgba(255, 120, 120, 0.3);
-}
-
-.DangerTitle {
-  font-size: 0.8rem;
-  color: #ff9a9a;
-  margin-bottom: 0.4rem;
+.ToggleWrapper input:checked + .ToggleSlider::before {
+  transform: translateX(18px);
 }
 
 .DangerButton {
+  margin-top: 0.9rem;
   width: 100%;
-  padding: 0.5rem 0.7rem;
-  background: rgba(255, 90, 90, 0.1);
+  padding: 0.55rem 0.8rem;
   border-radius: 10px;
-  border: 1px solid rgba(255, 120, 120, 0.6);
-  color: #ffaeae;
+  border: 1px solid rgba(255, 120, 120, 0.7);
+  background: rgba(120, 20, 30, 0.45);
+  color: #ffd4d4;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .DangerButton:hover {
-  background: rgba(255, 90, 90, 0.2);
+  background: rgba(180, 40, 50, 0.7);
+  box-shadow: 0 0 0 1px rgba(255, 140, 140, 0.6);
 }
 
-/* Secondary button */
-.SecondaryButton {
-  margin-top: 0.8rem;
-  width: 100%;
-  padding: 0.5rem 0.7rem;
-  background: rgba(185, 103, 255, 0.12);
-  border-radius: 10px;
-  border: 1px solid rgba(185, 103, 255, 0.6);
-  color: #e6dbff;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+@media (max-width: 900px) {
+  .SettingsOverlay {
+    padding-right: 0;
+    justify-content: center;
+  }
 
-.SecondaryButton:hover {
-  background: rgba(185, 103, 255, 0.24);
-}
+  .SettingsModal {
+    width: 95vw;
+    max-height: 85vh;
+  }
 
-/* Shortcuts list */
-.ShortcutList {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.ShortcutItem {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: #d8cffc;
-  padding: 0.3rem 0.45rem;
-  border-radius: 8px;
-  background: rgba(25, 20, 45, 0.7);
-}
-
-/* About block */
-.AboutBlock {
-  margin-top: 0.3rem;
-  padding: 0.5rem 0.4rem;
-  border-radius: 10px;
-  background: rgba(25, 20, 45, 0.75);
-  border: 1px solid rgba(185, 103, 255, 0.3);
-  font-size: 0.8rem;
-  color: #f4ecff;
-}
-
-.AboutSub {
-  font-size: 0.76rem;
-  color: #b4a7df;
-  margin-top: 0.1rem;
-}
-
-/* Responsive for settings */
-@media (max-width: 768px) {
-  .SettingsLayout {
+  .SettingsBody {
     flex-direction: column;
   }
 
   .SettingsSidebar {
     flex-direction: row;
+    width: auto;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
   }
 
   .SettingsTab {
+    white-space: nowrap;
+  }
+}
+
+/* ============================================================
+    🆕 HELP CENTER MODAL (CENTERED, PREMIUM UI)
+=============================================================== */
+
+.HelpOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 4, 11, 0.65);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1300;
+  animation: helpOverlayFade 0.2s ease-out;
+}
+
+@keyframes helpOverlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.HelpModal {
+  width: 760px;
+  max-width: 92%;
+  max-height: 85vh;
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.25),
+      transparent 45%
+    ),
+    rgba(18, 14, 35, 0.96);
+  border-radius: 20px;
+  border: 1px solid rgba(185, 103, 255, 0.45);
+  box-shadow: 0 0 35px rgba(185, 103, 255, 0.3),
+    inset 0 0 12px rgba(255, 255, 255, 0.04);
+  padding: 1.5rem;
+  animation: helpModalPop 0.25s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes helpModalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.HelpHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.25);
+  padding-bottom: 1rem;
+}
+
+.HelpHeader h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #f0e2ff;
+}
+
+.HelpHeader p {
+  margin: 4px 0 0;
+  color: #bba8ff;
+  font-size: 0.85rem;
+}
+
+.HelpCloseBtn {
+  background: none;
+  border: none;
+  color: #e2c8ff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.HelpCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.HelpBody {
+  display: flex;
+  margin-top: 1.2rem;
+  gap: 1rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.HelpSidebar {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.HelpTab {
+  padding: 0.75rem;
+  background: rgba(185, 103, 255, 0.12);
+  color: #dcd1ff;
+  border-radius: 12px;
+  text-align: left;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.HelpTab:hover {
+  background: rgba(185, 103, 255, 0.22);
+  transform: translateX(4px);
+}
+
+.HelpTabActive {
+  background: rgba(185, 103, 255, 0.45);
+  border-color: rgba(185, 103, 255, 0.6);
+  color: #fff;
+  font-weight: 600;
+}
+
+.HelpContent {
+  flex: 1;
+  background: rgba(20, 16, 36, 0.6);
+  border: 1px solid rgba(185, 103, 255, 0.22);
+  border-radius: 14px;
+  padding: 1.1rem;
+  overflow-y: auto;
+  box-shadow: inset 0 0 10px rgba(185, 103, 255, 0.12);
+}
+
+.HelpContent h4 {
+  margin-top: 0;
+  color: #f7ebff;
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.HelpParagraph {
+  color: #cfc3ff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.HelpList {
+  padding-left: 1.2rem;
+  color: #e8dcff;
+  margin-bottom: 1.5rem;
+}
+
+.HelpList li {
+  margin: 0.4rem 0;
+}
+
+.HelpTextarea {
+  width: 100%;
+  height: 110px;
+  background: rgba(25, 20, 55, 0.6);
+  border: 1px solid rgba(185, 103, 255, 0.4);
+  border-radius: 12px;
+  padding: 0.7rem;
+  color: #fff;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.HelpSubmitBtn {
+  padding: 0.7rem 1rem;
+  background: rgba(117, 70, 255, 0.45);
+  border: 1px solid rgba(185, 103, 255, 0.6);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.22s;
+}
+
+.HelpSubmitBtn:hover {
+  background: rgba(117, 70, 255, 0.65);
+}
+
+.DownloadButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.StoreButton {
+  flex: 1;
+  padding: 0.8rem;
+  background: rgba(185, 103, 255, 0.25);
+  border: 1px solid rgba(185, 103, 255, 0.45);
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.StoreButton:hover {
+  background: rgba(185, 103, 255, 0.45);
+}
+
+@media (max-width: 780px) {
+  .HelpBody {
+    flex-direction: column;
+  }
+
+  .HelpSidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .HelpTab {
+    flex: 1;
+    text-align: center;
     white-space: nowrap;
   }
 }

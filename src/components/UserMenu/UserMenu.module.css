@@ -6,59 +6,130 @@
   position: absolute;
   top: 60px;
   right: 10px;
-  background: rgba(13, 11, 26, 0.92);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 0 25px rgba(185, 103, 255, 0.35);
-  z-index: 1000;
-  width: 270px;
+  width: 280px;
   max-height: 80vh;
+  padding: 0.9rem 0.95rem;
+  border-radius: 18px;
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.28),
+      transparent 55%
+    ),
+    rgba(13, 11, 26, 0.96);
+  border: 1px solid rgba(185, 103, 255, 0.5);
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.82),
+    0 0 25px rgba(185, 103, 255, 0.45),
+    inset 0 0 10px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  color: #f7f1ff;
+  font-family: "Manrope", sans-serif;
   overflow-y: auto;
-  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: userMenuPop 0.22s ease-out;
+}
+
+@keyframes userMenuPop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .UserMenuItem {
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-  color: #fff;
-  font-family: "Manrope", sans-serif;
-  font-size: 0.95rem;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0.7rem;
+  margin: 0.05rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+  color: #f7f1ff;
 }
 
 .UserMenuItem:hover {
-  background: rgba(185, 103, 255, 0.12);
-  color: #b967ff;
-  transform: translateX(3px);
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.35),
+      rgba(54, 37, 112, 0.5)
+    );
+  box-shadow: 0 0 0 1px rgba(185, 103, 255, 0.75);
+  transform: translateY(-1px);
+}
+
+.UserMenuHeaderItem {
+  margin-bottom: 0.25rem;
+}
+
+.UserMenuIcon {
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+}
+
+.UserMenuTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.UserMenuTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.UserMenuSubtitle {
+  font-size: 0.8rem;
+  color: #c3b6ff;
+}
+
+.ToolSectionLabelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0.4rem 0.1rem 0.2rem;
 }
 
 .ToolSection {
-  color: #b4a4ff;
-  font-size: 0.8rem;
+  color: #e0d6ff;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin: 0.5rem 1rem;
+  letter-spacing: 0.14em;
+}
+
+.ToolSectionHint {
+  font-size: 0.75rem;
+  color: #9f92ff;
 }
 
 .Divider {
   height: 1px;
-  background: rgba(185, 103, 255, 0.1);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(185, 103, 255, 0.35),
+    transparent
+  );
   margin: 0.6rem 0;
 }
 
 .LogoutItem {
-  color: #ff6b6b;
+  margin-top: 0.25rem;
+  color: #ffb2b2;
 }
 
 .LogoutItem:hover {
-  background: rgba(255, 107, 107, 0.12);
-  color: #ff8787;
+  background: rgba(255, 120, 120, 0.18);
+  box-shadow: 0 0 0 1px rgba(255, 120, 120, 0.65);
+  transform: translateY(-1px);
 }
 
 /* ======================================================
@@ -70,11 +141,19 @@
   top: 60px;
   right: 10px;
   width: 320px;
-  background: rgba(13, 11, 26, 0.92);
-  border: 1px solid rgba(185, 103, 255, 0.25);
-  border-radius: 16px;
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.25),
+      transparent 55%
+    ),
+    rgba(13, 11, 26, 0.96);
+  border-radius: 18px;
+  border: 1px solid rgba(185, 103, 255, 0.45);
   padding: 1rem;
-  box-shadow: 0 0 25px rgba(185, 103, 255, 0.3);
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.82),
+    0 0 25px rgba(185, 103, 255, 0.45),
+    inset 0 0 10px rgba(255, 255, 255, 0.04);
   color: #fff;
   font-family: "Manrope", sans-serif;
   animation: fadeIn 0.25s ease-in-out;
@@ -113,16 +192,17 @@
 
 .ToolHeader h3 {
   margin: 0;
-  color: #b967ff;
+  color: #f3e6ff;
   font-size: 1.2rem;
 }
 
+/* Glass card for all tools */
 .GlassCard {
-  background: rgba(25, 20, 45, 0.6);
+  background: rgba(25, 20, 45, 0.7);
   border-radius: 14px;
-  border: 1px solid rgba(185, 103, 255, 0.2);
+  border: 1px solid rgba(185, 103, 255, 0.35);
   padding: 1rem;
-  box-shadow: inset 0 0 10px rgba(185, 103, 255, 0.15);
+  box-shadow: inset 0 0 10px rgba(185, 103, 255, 0.18);
   transition: transform 0.2s ease;
 }
 
@@ -130,6 +210,7 @@
   transform: scale(1.01);
 }
 
+/* Shared styling */
 .TimerDisplay {
   font-size: 2.4rem;
   font-weight: 700;
@@ -151,20 +232,22 @@
   padding: 0.6rem 0.8rem;
   background: linear-gradient(
     135deg,
-    rgba(185, 103, 255, 0.2),
-    rgba(100, 50, 180, 0.15)
+    rgba(185, 103, 255, 0.28),
+    rgba(100, 50, 180, 0.2)
   );
-  border: 1px solid rgba(185, 103, 255, 0.3);
-  color: #e0d6ff;
+  border: 1px solid rgba(185, 103, 255, 0.5);
+  color: #f4ecff;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 500;
+  font-size: 0.9rem;
   transition: all 0.25s ease;
 }
 
 .ToolButton:hover {
-  background: rgba(185, 103, 255, 0.3);
+  background: rgba(185, 103, 255, 0.4);
   transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(185, 103, 255, 0.75);
 }
 
 .ToolHint {
@@ -177,8 +260,8 @@
 .ToolTextarea {
   width: 100%;
   padding: 0.8rem;
-  background: rgba(25, 20, 45, 0.6);
-  border: 1px solid rgba(185, 103, 255, 0.2);
+  background: rgba(25, 20, 55, 0.75);
+  border: 1px solid rgba(185, 103, 255, 0.4);
   border-radius: 10px;
   color: #fff;
   margin-bottom: 0.8rem;
@@ -199,7 +282,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(185, 103, 255, 0.1);
+  border-bottom: 1px solid rgba(185, 103, 255, 0.18);
   color: #e0d6ff;
 }
 
@@ -216,6 +299,7 @@
   transform: scale(1.2);
 }
 
+/* ✅ Responsive Design */
 @media (max-width: 768px) {
   .UserMenu,
   .ToolPanel {
@@ -342,6 +426,7 @@
   min-height: 260px;
 }
 
+/* Sidebar inside modal */
 .SettingsSidebar {
   width: 130px;
   display: flex;
@@ -378,6 +463,7 @@
   font-weight: 600;
 }
 
+/* Content area */
 .SettingsContent {
   flex: 1;
   background: rgba(14, 10, 32, 0.9);
@@ -393,6 +479,7 @@
   color: #f0e4ff;
 }
 
+/* Individual rows */
 .SettingRow {
   display: flex;
   justify-content: space-between;
@@ -422,6 +509,7 @@
   color: #b9abff;
 }
 
+/* Selects */
 .SettingSelect {
   background: rgba(25, 20, 55, 0.95);
   border-radius: 8px;
@@ -432,6 +520,7 @@
   font-family: "Manrope", sans-serif;
 }
 
+/* Toggle switch */
 .ToggleWrapper {
   position: relative;
   display: inline-block;
@@ -478,6 +567,7 @@
   transform: translateX(18px);
 }
 
+/* Danger button in privacy tab */
 .DangerButton {
   margin-top: 0.9rem;
   width: 100%;
@@ -496,6 +586,7 @@
   box-shadow: 0 0 0 1px rgba(255, 140, 140, 0.6);
 }
 
+/* Responsive: Modal on small screens */
 @media (max-width: 900px) {
   .SettingsOverlay {
     padding-right: 0;
@@ -521,6 +612,7 @@
     white-space: nowrap;
   }
 }
+
 
 /* ============================================================
     🆕 HELP CENTER MODAL (CENTERED, PREMIUM UI)

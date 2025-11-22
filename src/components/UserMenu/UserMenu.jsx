@@ -1,15 +1,15 @@
 import { useState } from "react";
 import styles from "./UserMenu.module.css";
 
-import FocusTimer from "./FocusTimer";
-import Pomodoro from "./Pomodoro";
-import Stopwatch from "./Stopwatch";
-import Tasks from "./Tasks";
-import Notebook from "./Notebook";
-import MoodAssistant from "./MoodAssistant";
-import FutureYou from "./FutureYou";
-import Toolbar from "./Toolbar";
-import SettingsPanel from "./Settings";
+import FocusTimer from "./FocusTimer.jsx";
+import Pomodoro from "./Pomodoro.jsx";
+import Stopwatch from "./Stopwatch.jsx";
+import Tasks from "./Tasks.jsx";
+import Notebook from "./Notebook.jsx";
+import MoodAssistant from "./MoodAssistant.jsx";
+import FutureYou from "./FutureYou.jsx";
+import Toolbar from "./Toolbar.jsx";
+import SettingsPanel from "./Settings.jsx";
 
 export default function UserMenu({ onClose }) {
   const [activeTool, setActiveTool] = useState(null);

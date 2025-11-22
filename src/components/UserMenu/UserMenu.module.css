@@ -218,3 +218,168 @@
     font-size: 0.85rem;
   }
 }
+
+
+.SettingTitle {
+  margin-top: 1rem;
+  color: #B967FF;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.15);
+  padding-bottom: 4px;
+}
+
+.SettingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.6rem 0;
+  font-size: 0.9rem;
+}
+
+.SettingSelect {
+  background: rgba(25, 20, 45, 0.6);
+  color: white;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(185, 103, 255, 0.3);
+  border-radius: 8px;
+}
+
+.SettingToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.6rem 0;
+  font-size: 0.9rem;
+}
+
+
+/* ================================
+   SETTINGS PANEL – SIDEBAR + SUB SECTIONS
+   (SAFE TO ADD BELOW EXISTING CODE)
+================================ */
+
+/* Main container for Settings */
+.SettingsContainer {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+/* Sidebar */
+.SettingsSidebar {
+  width: 34%;
+  border-right: 1px solid rgba(185, 103, 255, 0.15);
+  padding-right: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Sidebar items */
+.SettingsTab {
+  padding: 0.55rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.02);
+  color: #dcd2ff;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.SettingsTab:hover {
+  background: rgba(185, 103, 255, 0.12);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.ActiveTab {
+  background: rgba(185, 103, 255, 0.28);
+  border: 1px solid rgba(185, 103, 255, 0.45);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Right Side Content */
+.SettingsContent {
+  width: 66%;
+  padding-left: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.SettingsContent h4 {
+  margin: 0;
+  margin-bottom: 0.4rem;
+  color: #e8dcff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Setting rows */
+.SettingsContent .SettingRow label {
+  font-size: 0.95rem;
+  color: #e8dcff;
+}
+
+/* Toggle switches */
+.SettingToggle span {
+  font-size: 0.95rem;
+  color: #e8dcff;
+}
+
+.SettingToggle input[type="checkbox"] {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Danger buttons (Delete data, Export data, Logout) */
+.DangerButton {
+  width: 100%;
+  padding: 0.55rem;
+  background: rgba(255, 80, 80, 0.12);
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  color: #ffbaba;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin-top: 0.3rem;
+}
+
+.DangerButton:hover {
+  background: rgba(255, 80, 80, 0.2);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ================================
+   SETTINGS – RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .SettingsContainer {
+    flex-direction: column;
+  }
+
+  .SettingsSidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    gap: 0.4rem;
+    padding-right: 0;
+  }
+
+  .SettingsTab {
+    flex: 1 1 46%;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .SettingsContent {
+    width: 100%;
+    padding-left: 0;
+  }
+}

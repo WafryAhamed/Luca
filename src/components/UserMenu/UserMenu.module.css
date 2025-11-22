@@ -803,3 +803,67 @@
   border: 1px solid rgba(185, 103, 255, 0.5);
   color: #f4ecff;
 }
+
+
+
+
+.DraggableWindow {
+  position: fixed;
+  background: rgba(13, 11, 26, 0.96);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(185, 103, 255, 0.4);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  padding: 0;
+}
+
+.WindowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  cursor: grab;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.WindowTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.WindowControls {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.WindowButton {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+}
+
+.WindowButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.WindowBody {
+  padding: 0.75rem 0.85rem 0.9rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Optional layer wrapper */
+.WindowLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* windows themselves still receive events */
+}
+
+.WindowLayer > * {
+  pointer-events: auto;
+}

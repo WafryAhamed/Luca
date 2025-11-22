@@ -9,24 +9,24 @@
   background: radial-gradient(circle at 20% 30%, #150F2A, #0D0B1A 70%);
 }
 
-/* === Floating Cubes — Smoother Animation === */
+/* === Floating Cubes — Only These, Calm Animation === */
 .Cube {
   position: absolute;
-  width: 78px;
-  height: 78px;
-  background: rgba(185, 103, 255, 0.13);
-  border: 1px solid rgba(185, 103, 255, 0.28);
-  box-shadow: 0 0 18px rgba(185, 103, 255, 0.22);
-  animation: spin 22s linear infinite, floatCube 9s ease-in-out infinite;
+  width: 80px;
+  height: 80px;
+  background: rgba(185, 103, 255, 0.15);
+  border: 1px solid rgba(185, 103, 255, 0.3);
+  box-shadow: 0 0 20px rgba(185, 103, 255, 0.25);
+  animation: spin 20s linear infinite, floatCube 10s ease-in-out infinite;
   transform-style: preserve-3d;
-  border-radius: 10px;
-  opacity: 0.75;
+  border-radius: 8px;
+  opacity: 0.7;
 }
 
 .Cube:nth-child(1) { top: 12%; left: 18%; animation-delay: 0s; }
-.Cube:nth-child(2) { top: 68%; left: 72%; animation-delay: 2.5s; }
-.Cube:nth-child(3) { top: 48%; left: 22%; animation-delay: 1.2s; }
-.Cube:nth-child(4) { top: 28%; left: 78%; animation-delay: 4s; }
+.Cube:nth-child(2) { top: 68%; left: 72%; animation-delay: 3s; }
+.Cube:nth-child(3) { top: 48%; left: 22%; animation-delay: 1.5s; }
+.Cube:nth-child(4) { top: 28%; left: 78%; animation-delay: 4.5s; }
 
 @keyframes spin {
   from { transform: rotateX(0deg) rotateY(0deg); }
@@ -35,7 +35,7 @@
 
 @keyframes floatCube {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-22px) scale(1.05); }
+  50% { transform: translateY(-20px) scale(1.03); }
 }
 
 /* === Layout === */
@@ -48,29 +48,29 @@
   font-family: 'Manrope', sans-serif;
 }
 
-/* === Glass Card — Cleaner, More Premium === */
+/* === Final Glass Card (Premium, No Glow) === */
 .Card {
-  background: rgba(255, 255, 255, 0.055);
-  backdrop-filter: blur(22px) saturate(185%);
-  -webkit-backdrop-filter: blur(22px) saturate(185%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
 
-  padding: 3.4rem 2.8rem;
+  padding: 3.6rem 3rem;
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   text-align: center;
 
   box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.38),
-    inset 0 0 8px rgba(255, 255, 255, 0.02);
+    0 0 16px rgba(0, 0, 0, 0.45),
+    inset 0 0 6px rgba(255, 255, 255, 0.03);
 
-  animation: fadeIn 0.75s cubic-bezier(0.3, 0.8, 0.3, 1);
+  animation: fadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
   position: relative;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(26px) scale(0.97); }
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -79,108 +79,125 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   margin-bottom: 2.4rem;
 }
 
 .Logo img {
   width: 72px;
   animation: pulse 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 8px rgba(185, 103, 255, 0.45));
+  filter: drop-shadow(0 0 10px rgba(185, 103, 255, 0.5));
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.045); }
+  50% { transform: scale(1.05); }
 }
 
 .Logo h1 {
-  font-size: 2.35rem;
-  color: #D9BAFF;
+  font-size: 2.3rem;
+  color: #D5B2FF;
   font-weight: 800;
-  letter-spacing: -0.9px;
-  text-shadow: 0 0 10px rgba(185, 103, 255, 0.35);
+  letter-spacing: -0.8px;
+  text-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
 }
 
 /* === Titles & Text === */
 .Title {
-  color: #F1E6FF;
-  font-size: 1.45rem;
-  margin-bottom: 1.4rem;
+  color: #e8d8ff;
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
   font-weight: 900;
-  letter-spacing: -0.5px;
-  line-height: 1.35;
+  letter-spacing: -0.4px;
+  line-height: 1.3;
 }
 
 .Subtext {
-  color: #ccbdf0;
-  font-size: 1.08rem;
-  margin-bottom: 2.1rem;
-  line-height: 1.75;
+  color: #c9b7e8;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+  line-height: 1.7;
   text-align: center;
 }
 
-/* === Icon === */
-.IconPlaceholder img {
-  width: 52px;
-  height: 52px;
-  opacity: 0.92;
-  filter: drop-shadow(0 0 5px rgba(185, 103, 255, 0.35));
+/* === 50x50 Icon Container === */
+.IconPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem auto 1.8rem;
+  width: 50px;
+  height: 50px;
 }
 
-/* === Feature Items — More Elegant Animation === */
+.IconPlaceholder img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 4px rgba(185, 103, 255, 0.3));
+}
+
+/* === Step 2 Feature Items === */
+.FeatureList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 1.8rem;
+}
+
 .FeatureItem {
   text-align: left;
   color: #e8d8ff;
-  font-size: 1.14rem;
+  font-size: 1.15rem;
   opacity: 0;
-  transform: translateX(22px);
-  transition: transform 0.45s ease, opacity 0.45s ease;
+  transform: translateX(25px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 /* === Subject Icons === */
 .SubjectIcons span {
-  background: rgba(185, 103, 255, 0.16);
-  padding: 0.62rem 0.95rem;
+  background: rgba(185, 103, 255, 0.14);
+  padding: 0.65rem 1rem;
   border-radius: 14px;
   color: #e8d8ff;
-  border: 1px solid rgba(185, 103, 255, 0.23);
   font-size: 0.95rem;
-  opacity: 0.95;
+  border: 1px solid rgba(185, 103, 255, 0.24);
+  opacity: 0.9;
 }
 
-/* === Buttons — Clean, Unique, Premium === */
+/* ======================================================
+   ⭐ UPDATED BUTTON — NO GLOW, MORE PROFESSIONAL  
+====================================================== */
 .CtaButton,
 .StartButton {
   width: 100%;
-  padding: 1.18rem;
+  padding: 1.2rem;
   background: linear-gradient(135deg, #B967FF, #9A4DFF);
   border: none;
-  border-radius: 18px;
+  border-radius: 16px;
   color: white;
-  font-size: 1.24rem;
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
   margin-top: 1rem;
 
-  /* Cleaner button — no glow */
+  /* 🔥 Removed glow — clean professional button */
   box-shadow: none;
 
-  /* Premium hover — subtle compress + brightening */
-  transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .CtaButton:hover,
 .StartButton:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.06);
-  opacity: 0.96;
+  transform: translateY(-3px) scale(1.02);
+  opacity: 0.92; /* minimal hover effect, no glow */
 }
 
 /* === Footer === */
 .Footer {
   margin-top: 2rem;
-  color: #c8c0e8;
+  color: #bbb;
   font-size: 1rem;
 }
 
@@ -191,51 +208,67 @@
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
+  transition: color 0.2s ease;
 }
 
 .LinkButton:hover {
-  color: #e9dbff;
+  color: #e8d8ff;
 }
 
 /* === Animations === */
-.FadeSlide {
-  animation: fadeSlideUp 0.75s ease forwards;
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(22px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(28px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.FadeSlide {
+  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 .SlideIn {
   animation: slideInLeft 0.45s ease forwards;
 }
-
-@keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(26px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
+.SlideIn:nth-child(1) { animation-delay: 0.1s; }
+.SlideIn:nth-child(2) { animation-delay: 0.25s; }
+.SlideIn:nth-child(3) { animation-delay: 0.4s; }
+.SlideIn:nth-child(4) { animation-delay: 0.55s; }
 
 /* === Responsive === */
 @media (max-width: 768px) {
   .Card {
-    padding: 2.4rem 1.6rem;
+    padding: 2.6rem 1.8rem;
     margin: 1rem;
   }
 
-  .Logo img { width: 60px; }
+  .Logo img {
+    width: 64px;
+  }
 
-  .Logo h1 { font-size: 1.95rem; }
+  .Logo h1 {
+    font-size: 2rem;
+  }
 
-  .Title { font-size: 1.35rem; }
+  .Title {
+    font-size: 1.4rem;
+  }
 
-  .Subtext { font-size: 0.95rem; }
+  .Subtext {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
 
-  .FeatureItem { font-size: 1.02rem; }
+  .FeatureItem {
+    font-size: 1.05rem;
+  }
 
   .CtaButton,
   .StartButton {
-    padding: 1.05rem;
-    font-size: 1.1rem;
+    padding: 1.1rem;
+    font-size: 1.2rem;
   }
 }

@@ -71,6 +71,7 @@
   color: #fff;
   font-family: 'Manrope', sans-serif;
   animation: fadeIn 0.25s ease-in-out;
+  z-index: 1100;
 }
 
 @keyframes fadeIn {
@@ -256,17 +257,14 @@
 
 /* ================================
    SETTINGS PANEL – SIDEBAR + SUB SECTIONS
-   (SAFE TO ADD BELOW EXISTING CODE)
 ================================ */
 
-/* Main container for Settings */
 .SettingsContainer {
   display: flex;
   gap: 0.8rem;
   width: 100%;
 }
 
-/* Sidebar */
 .SettingsSidebar {
   width: 34%;
   border-right: 1px solid rgba(185, 103, 255, 0.15);
@@ -276,7 +274,6 @@
   gap: 0.3rem;
 }
 
-/* Sidebar items */
 .SettingsTab {
   padding: 0.55rem 0.6rem;
   border-radius: 8px;
@@ -300,7 +297,6 @@
   font-weight: 600;
 }
 
-/* Right Side Content */
 .SettingsContent {
   width: 66%;
   padding-left: 0.6rem;
@@ -317,13 +313,11 @@
   font-weight: 600;
 }
 
-/* Setting rows */
 .SettingsContent .SettingRow label {
   font-size: 0.95rem;
   color: #e8dcff;
 }
 
-/* Toggle switches */
 .SettingToggle span {
   font-size: 0.95rem;
   color: #e8dcff;
@@ -334,7 +328,6 @@
   cursor: pointer;
 }
 
-/* Danger buttons (Delete data, Export data, Logout) */
 .DangerButton {
   width: 100%;
   padding: 0.55rem;
@@ -354,9 +347,7 @@
   transform: translateY(-1px);
 }
 
-/* ================================
-   SETTINGS – RESPONSIVE
-================================ */
+/* SETTINGS – RESPONSIVE */
 
 @media (max-width: 768px) {
   .SettingsContainer {
@@ -382,4 +373,433 @@
     width: 100%;
     padding-left: 0;
   }
+}
+
+/* ================================
+   MINI FLOATING TOOLBAR
+================================ */
+
+.MiniToolbar {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  background: rgba(18, 15, 35, 0.98);
+  border-radius: 999px;
+  border: 1px solid rgba(185, 103, 255, 0.35);
+  box-shadow: 0 0 22px rgba(185, 103, 255, 0.4);
+  padding: 0.4rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 1200;
+  backdrop-filter: blur(12px);
+}
+
+.MiniToolbarButton {
+  border: none;
+  background: rgba(185, 103, 255, 0.15);
+  color: #f4ecff;
+  border-radius: 999px;
+  padding: 0.28rem 0.6rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.MiniToolbarButton:hover {
+  background: rgba(185, 103, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.MiniToolbarLabel {
+  font-size: 0.7rem;
+  color: #b4a4ff;
+  margin-right: 0.3rem;
+}
+
+/* ================================
+   POMODORO TOOL
+================================ */
+
+.PomodoroLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.PomodoroPhase {
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #d2c7ff;
+  margin-bottom: 0.3rem;
+}
+
+.PomodoroConfig {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.PomodoroField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.8rem;
+  color: #d5cfff;
+}
+
+.PomodoroField label {
+  opacity: 0.8;
+}
+
+.PomodoroField input {
+  background: rgba(25, 20, 45, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.3);
+  padding: 0.35rem 0.5rem;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.PomodoroMeta {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #9d92ff;
+  margin-top: 0.3rem;
+}
+
+/* ================================
+   TASKS TOOL
+================================ */
+
+.TaskList {
+  margin-top: 0.6rem;
+  max-height: 170px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(185, 103, 255, 0.4) transparent;
+}
+
+.TaskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+.TaskLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.TaskCheckbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(185, 103, 255, 0.5);
+  background: rgba(25, 20, 45, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+.TaskTitleCompleted {
+  text-decoration: line-through;
+  color: #7b73a8;
+}
+
+.TaskTitleActive {
+  color: #f2ecff;
+}
+
+.TaskMeta {
+  font-size: 0.7rem;
+  color: #8f84d8;
+}
+
+.TaskInputRow {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.TaskInput {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  background: rgba(25, 20, 45, 0.7);
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+/* ================================
+   NOTEBOOK TOOL
+================================ */
+
+.NotebookHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.NotebookRow {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.NotebookSmallInput {
+  flex: 1;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  background: rgba(25, 20, 45, 0.7);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.NotebookFilters {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.NotebookSearch {
+  flex: 1;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  background: rgba(25, 20, 45, 0.7);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.NotebookSelect {
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  background: rgba(25, 20, 45, 0.7);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.NoteItemMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.NoteTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.NoteText {
+  flex: 1;
+}
+
+.NoteMetaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #9c8ee0;
+  margin-top: 0.1rem;
+}
+
+.TagPill {
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(185, 103, 255, 0.4);
+  font-size: 0.7rem;
+  margin-right: 0.2rem;
+}
+
+.PinButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ffdd7a;
+  margin-right: 0.3rem;
+}
+
+.PinButtonInactive {
+  color: #7c708c;
+}
+
+.ColorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-right: 0.3rem;
+}
+
+.PrivateBadge {
+  font-size: 0.7rem;
+  color: #ffbaba;
+  background: rgba(255, 80, 80, 0.18);
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+  margin-left: 0.3rem;
+}
+
+/* ================================
+   MOOD ASSISTANT
+================================ */
+
+.MoodGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.MoodBadge {
+  padding: 0.35rem 0.45rem;
+  border-radius: 10px;
+  background: rgba(25, 20, 45, 0.8);
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.MoodBadge span {
+  display: block;
+}
+
+.MoodBadgeActive {
+  background: rgba(185, 103, 255, 0.3);
+  border-color: rgba(185, 103, 255, 0.8);
+  box-shadow: 0 0 12px rgba(185, 103, 255, 0.4);
+}
+
+.MoodMessage {
+  font-size: 0.88rem;
+  color: #e8dcff;
+  line-height: 1.4;
+}
+
+.MoodSub {
+  font-size: 0.76rem;
+  color: #a79bff;
+  margin-top: 0.3rem;
+}
+
+/* ================================
+   FUTURE YOU
+================================ */
+
+.FutureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.FuturePrev {
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: rgba(25, 20, 45, 0.85);
+  border: 1px solid rgba(185, 103, 255, 0.25);
+  font-size: 0.85rem;
+  color: #e8dcff;
+}
+
+.FuturePrevLabel {
+  font-size: 0.75rem;
+  color: #b4a4ff;
+  margin-bottom: 0.2rem;
+}
+
+.FutureInput {
+  min-height: 70px;
+  max-height: 120px;
+}
+
+/* ================================
+   FOCUS MODE OVERLAY
+================================ */
+
+.FocusOverlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(185, 103, 255, 0.18), rgba(4, 2, 12, 0.96));
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.FocusOverlayActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.FocusOverlayInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #f4ecff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.FocusOverlayTitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.FocusOverlayText {
+  font-size: 0.9rem;
+  max-width: 260px;
+  color: #d1c7ff;
+  margin-bottom: 0.7rem;
+}
+
+.FocusOverlayButton {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(185, 103, 255, 0.8);
+  background: rgba(185, 103, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.FocusOverlayButton:hover {
+  background: rgba(185, 103, 255, 0.35);
+}
+
+/* Small badge in header to reflect mood color */
+.MoodBadgeChip {
+  margin-left: auto;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: rgba(185, 103, 255, 0.2);
+  border: 1px solid rgba(185, 103, 255, 0.5);
+  color: #f4ecff;
 }

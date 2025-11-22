@@ -1,374 +1,183 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./UserMenu.module.css";
 
-import FocusTimer from "./FocusTimer.jsx";
-import Pomodoro from "./Pomodoro.jsx";
-import Stopwatch from "./Stopwatch.jsx";
-import Tasks from "./Tasks.jsx";
-import Notebook from "./Notebook.jsx";
-import MoodAssistant from "./MoodAssistant.jsx";
-import FutureYou from "./FutureYou.jsx";
-import Toolbar from "./Toolbar.jsx";
-import SettingsPanel from "./Settings.jsx";
-import DraggableWindow from "./DraggableWindow.jsx";
-
 export default function UserMenu({ onClose }) {
-  const [activeSettingsTab, setActiveSettingsTab] = useState("general");
+  const [activeTool, setActiveTool] = useState(null);
+  const [focusMinutes, setFocusMinutes] = useState(25);
+  const [focusSeconds, setFocusSeconds] = useState(0);
+  const [isFocusActive, setIsFocusActive] = useState(false);
+  const [stopwatchTime, setStopwatchTime] = useState(0);
+  const [isStopwatchRunning, setIsStopwatchRunning] = useState(false);
+  const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState("");
 
-  const [settings, setSettings] = useState({
-    language: "English",
-    region: "Sri Lanka",
-    theme: "Dark",
-    fontSize: "Medium",
-    uiDensity: "Comfortable",
-    notifications: true,
-    timerAlertSound: true,
-    pushNotifications: false,
-    voiceInput: false,
-    textToSpeech: false,
-    reduceMotion: false,
-    highContrast: false,
-    dataSharing: false,
-    exportData: false,
-    autoSaveNotes: true,
-    defaultTool: "none",
-  });
+  // Focus Timer
+  useEffect(() => {
+    let interval = null;
+    if (isFocusActive) {
+      interval = setInterval(() => {
+        if (focusSeconds > 0) {
+          setFocusSeconds(focusSeconds - 1);
+        } else if (focusMinutes > 0) {
+          setFocusMinutes(focusMinutes - 1);
+          setFocusSeconds(59);
+        } else {
+          setIsFocusActive(false);
+          alert("🎉 Focus session ended! Take a break.");
+        }
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isFocusActive, focusMinutes, focusSeconds]);
 
-  const [currentMood, setCurrentMood] = useState("calm");
-  const [isFocusMode, setIsFocusMode] = useState(false);
-  const [quickNoteDraft, setQuickNoteDraft] = useState("");
+  // Stopwatch
+  useEffect(() => {
+    let interval = null;
+    if (isStopwatchRunning) {
+      interval = setInterval(() => {
+        setStopwatchTime(stopwatchTime + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isStopwatchRunning, stopwatchTime]);
 
-  const [windowState, setWindowState] = useState({
-    settings: { open: false, minimized: false },
-    focus: { open: false, minimized: false },
-    stopwatch: { open: false, minimized: false },
-    pomodoro: { open: false, minimized: false },
-    tasks: { open: false, minimized: false },
-    notebook: { open: false, minimized: false },
-    mood: { open: false, minimized: false },
-    futureYou: { open: false, minimized: false },
-  });
-
-  const [topWindowId, setTopWindowId] = useState(null);
-
-  const moodLabelMap = {
-    motivated: "Motivated",
-    calm: "Calm",
-    tired: "Tired",
-    stressed: "Stressed",
-    bored: "Bored",
+  const addNote = () => {
+    if (newNote.trim()) {
+      setNotes([...notes, { id: Date.now(), text: newNote }]);
+      setNewNote("");
+    }
   };
 
-  const openWindow = (key) => {
-    setWindowState((prev) => ({
-      ...prev,
-      [key]: { open: true, minimized: false },
-    }));
-    setTopWindowId(key);
+  const deleteNote = (id) => {
+    setNotes(notes.filter(note => note.id !== id));
   };
 
-  const closeWindow = (key) => {
-    setWindowState((prev) => ({
-      ...prev,
-      [key]: { ...prev[key], open: false },
-    }));
+  const formatTime = (totalSeconds) => {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
   };
 
-  const toggleMinimizeWindow = (key) => {
-    setWindowState((prev) => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        minimized: !prev[key].minimized,
-      },
-    }));
-  };
-
-  const handleFocusWindow = (key) => {
-    setTopWindowId(key);
-  };
-
-  const handleEnableFocusMode = () => {
-    setIsFocusMode(true);
-  };
-
-  const renderMainMenu = () => {
+  // 🔹 Focus Timer
+  if (activeTool === "focus") {
     return (
-      <div className={styles.UserMenu}>
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("settings")}
-        >
-          Settings
-          {currentMood && (
-            <span className={styles.MoodBadgeChip}>
-              {moodLabelMap[currentMood] || "Calm"}
-            </span>
-          )}
+      <div className={styles.ToolPanel}>
+        <div className={styles.ToolHeader}>
+          <button onClick={() => setActiveTool(null)} className={styles.BackButton}>←</button>
+          <h3>Focus Timer</h3>
         </div>
-
-        <div className={styles.UserMenuItem} onClick={onClose}>
-          Help
-        </div>
-
-        <div className={styles.Divider}></div>
-
-        <div className={styles.ToolSection}>Tools</div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("focus")}
-        >
-          ⏱️ Focus Timer
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("stopwatch")}
-        >
-          🕒 Stopwatch
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("pomodoro")}
-        >
-          ⏳ Pomodoro Mode
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("tasks")}
-        >
-          ✅ Task Checklist
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("notebook")}
-        >
-          📝 Notebook & Notes
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("mood")}
-        >
-          💚 Mood Assistant
-        </div>
-
-        <div
-          className={styles.UserMenuItem}
-          onClick={() => openWindow("futureYou")}
-        >
-          🌟 Future-You Messages
-        </div>
-
-        <div className={styles.Divider}></div>
-
-        <div
-          className={`${styles.UserMenuItem} ${styles.LogoutItem}`}
-          onClick={() => {
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("user");
-            alert("Logged out!");
-            onClose();
-          }}
-        >
-          Logout
+        <div className={styles.GlassCard}>
+          <div className={styles.TimerDisplay}>
+            {String(focusMinutes).padStart(2, "0")}:{String(focusSeconds).padStart(2, "0")}
+          </div>
+          <div className={styles.ToolButtons}>
+            <button
+              onClick={() => setIsFocusActive(!isFocusActive)}
+              className={styles.ToolButton}
+            >
+              {isFocusActive ? "Pause" : "Start"}
+            </button>
+            <button
+              onClick={() => {
+                setIsFocusActive(false);
+                setFocusMinutes(25);
+                setFocusSeconds(0);
+              }}
+              className={styles.ToolButton}
+            >
+              Reset
+            </button>
+          </div>
+          <p className={styles.ToolHint}>Stay focused for 25 minutes, then take a short break 🌿</p>
         </div>
       </div>
     );
-  };
+  }
 
-  return (
-    <>
-      {/* Focus Mode Overlay */}
-      <div
-        className={`${styles.FocusOverlay} ${
-          isFocusMode ? styles.FocusOverlayActive : ""
-        }`}
-      >
-        {isFocusMode && (
-          <div className={styles.FocusOverlayInner}>
-            <div className={styles.FocusOverlayTitle}>Focus Mode On</div>
-            <div className={styles.FocusOverlayText}>
-              Distractions dimmed. Put your phone away, breathe, and give this
-              session your full attention. You’ve got this. 💜
-            </div>
+  // 🔹 Stopwatch code is here
+  if (activeTool === "stopwatch") {
+    return (
+      <div className={styles.ToolPanel}>
+        <div className={styles.ToolHeader}>
+          <button onClick={() => setActiveTool(null)} className={styles.BackButton}>←</button>
+          <h3>Stopwatch</h3>
+        </div>
+        <div className={styles.GlassCard}>
+          <div className={styles.TimerDisplay}>{formatTime(stopwatchTime)}</div>
+          <div className={styles.ToolButtons}>
             <button
-              className={styles.FocusOverlayButton}
-              onClick={() => setIsFocusMode(false)}
+              onClick={() => setIsStopwatchRunning(!isStopwatchRunning)}
+              className={styles.ToolButton}
             >
-              Exit Focus Mode
+              {isStopwatchRunning ? "Stop" : "Start"}
+            </button>
+            <button
+              onClick={() => {
+                setIsStopwatchRunning(false);
+                setStopwatchTime(0);
+              }}
+              className={styles.ToolButton}
+            >
+              Reset
             </button>
           </div>
-        )}
+        </div>
       </div>
+    );
+  }
 
-      {/* Pinned bottom toolbar (widgets style) */}
-      <Toolbar
-        onOpenFocus={() => openWindow("focus")}
-        onOpenStopwatch={() => openWindow("stopwatch")}
-        onOpenNotebook={() => openWindow("notebook")}
-        onQuickNote={() => {
-          setQuickNoteDraft("");
-          openWindow("notebook");
+  // 🔹 Notes Saver code
+  if (activeTool === "notes") {
+    return (
+      <div className={styles.ToolPanel}>
+        <div className={styles.ToolHeader}>
+          <button onClick={() => setActiveTool(null)} className={styles.BackButton}>←</button>
+          <h3>Notes Saver</h3>
+        </div>
+        <div className={styles.GlassCard}>
+          <textarea
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            placeholder="Write your note here..."
+            className={styles.ToolTextarea}
+          />
+          <button onClick={addNote} className={styles.ToolButton}>Add Note</button>
+          <div className={styles.NotesList}>
+            {notes.map((note) => (
+              <div key={note.id} className={styles.NoteItem}>
+                <span>{note.text}</span>
+                <button onClick={() => deleteNote(note.id)} className={styles.DeleteButton}>🗑️</button>
+              </div>
+            ))}
+          </div>
+          {notes.length === 0 && <p className={styles.ToolHint}>No notes yet — start writing!</p>}
+        </div>
+      </div>
+    );
+  }
+
+  // 🔹 Main Menu code
+  return (
+    <div className={styles.UserMenu}>
+      <div className={styles.UserMenuItem} onClick={onClose}>Settings</div>
+      <div className={styles.UserMenuItem} onClick={onClose}>Help</div>
+      <div className={styles.Divider}></div>
+      <div className={styles.ToolSection}>Tools</div>
+      <div className={styles.UserMenuItem} onClick={() => setActiveTool("focus")}>⏱️ Focus Timer</div>
+      <div className={styles.UserMenuItem} onClick={() => setActiveTool("stopwatch")}>🕒 Stopwatch</div>
+      <div className={styles.UserMenuItem} onClick={() => setActiveTool("notes")}>📝 Notes Saver</div>
+      <div className={styles.Divider}></div>
+      <div
+        className={`${styles.UserMenuItem} ${styles.LogoutItem}`}
+        onClick={() => {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("user");
+          alert("Logged out!");
+          onClose();
         }}
-      />
-
-      {/* Left / base main menu */}
-      {renderMainMenu()}
-
-      {/* Floating windows layer */}
-      <div className={styles.WindowLayer}>
-        {/* Settings */}
-        {windowState.settings.open && (
-          <DraggableWindow
-            title="Settings"
-            initialX={30}
-            initialY={60}
-            isMinimized={windowState.settings.minimized}
-            isOnTop={topWindowId === "settings"}
-            onClose={() => closeWindow("settings")}
-            onToggleMinimize={() => toggleMinimizeWindow("settings")}
-            onFocus={() => handleFocusWindow("settings")}
-          >
-            <SettingsPanel
-              settings={settings}
-              setSettings={setSettings}
-              activeSettingsTab={activeSettingsTab}
-              setActiveSettingsTab={setActiveSettingsTab}
-              onBack={() => closeWindow("settings")}
-            />
-          </DraggableWindow>
-        )}
-
-        {/* Focus Timer */}
-        {windowState.focus.open && (
-          <DraggableWindow
-            title="Focus Timer"
-            initialX={40}
-            initialY={140}
-            isMinimized={windowState.focus.minimized}
-            isOnTop={topWindowId === "focus"}
-            onClose={() => closeWindow("focus")}
-            onToggleMinimize={() => toggleMinimizeWindow("focus")}
-            onFocus={() => handleFocusWindow("focus")}
-          >
-            <FocusTimer onBack={() => closeWindow("focus")} />
-          </DraggableWindow>
-        )}
-
-        {/* Stopwatch */}
-        {windowState.stopwatch.open && (
-          <DraggableWindow
-            title="Stopwatch"
-            initialX={60}
-            initialY={200}
-            isMinimized={windowState.stopwatch.minimized}
-            isOnTop={topWindowId === "stopwatch"}
-            onClose={() => closeWindow("stopwatch")}
-            onToggleMinimize={() => toggleMinimizeWindow("stopwatch")}
-            onFocus={() => handleFocusWindow("stopwatch")}
-          >
-            <Stopwatch onBack={() => closeWindow("stopwatch")} />
-          </DraggableWindow>
-        )}
-
-        {/* Pomodoro */}
-        {windowState.pomodoro.open && (
-          <DraggableWindow
-            title="Pomodoro Mode"
-            initialX={80}
-            initialY={110}
-            isMinimized={windowState.pomodoro.minimized}
-            isOnTop={topWindowId === "pomodoro"}
-            onClose={() => closeWindow("pomodoro")}
-            onToggleMinimize={() => toggleMinimizeWindow("pomodoro")}
-            onFocus={() => handleFocusWindow("pomodoro")}
-          >
-            <Pomodoro
-              onBack={() => closeWindow("pomodoro")}
-              onEnableFocusMode={handleEnableFocusMode}
-            />
-          </DraggableWindow>
-        )}
-
-        {/* Tasks */}
-        {windowState.tasks.open && (
-          <DraggableWindow
-            title="Task Checklist"
-            initialX={90}
-            initialY={180}
-            isMinimized={windowState.tasks.minimized}
-            isOnTop={topWindowId === "tasks"}
-            onClose={() => closeWindow("tasks")}
-            onToggleMinimize={() => toggleMinimizeWindow("tasks")}
-            onFocus={() => handleFocusWindow("tasks")}
-          >
-            <Tasks onBack={() => closeWindow("tasks")} />
-          </DraggableWindow>
-        )}
-
-        {/* Notebook */}
-        {windowState.notebook.open && (
-          <DraggableWindow
-            title="Notebook & Notes"
-            initialX={50}
-            initialY={90}
-            isMinimized={windowState.notebook.minimized}
-            isOnTop={topWindowId === "notebook"}
-            onClose={() => closeWindow("notebook")}
-            onToggleMinimize={() => toggleMinimizeWindow("notebook")}
-            onFocus={() => handleFocusWindow("notebook")}
-          >
-            <Notebook
-              onBack={() => closeWindow("notebook")}
-              autoSaveNotes={settings.autoSaveNotes}
-              quickNoteDraft={quickNoteDraft}
-              setQuickNoteDraft={setQuickNoteDraft}
-            />
-          </DraggableWindow>
-        )}
-
-        {/* Mood Assistant */}
-        {windowState.mood.open && (
-          <DraggableWindow
-            title="Mood Assistant"
-            initialX={70}
-            initialY={230}
-            isMinimized={windowState.mood.minimized}
-            isOnTop={topWindowId === "mood"}
-            onClose={() => closeWindow("mood")}
-            onToggleMinimize={() => toggleMinimizeWindow("mood")}
-            onFocus={() => handleFocusWindow("mood")}
-          >
-            <MoodAssistant
-              onBack={() => closeWindow("mood")}
-              currentMood={currentMood}
-              setCurrentMood={setCurrentMood}
-              onEnableFocusMode={handleEnableFocusMode}
-            />
-          </DraggableWindow>
-        )}
-
-        {/* Future You */}
-        {windowState.futureYou.open && (
-          <DraggableWindow
-            title="Future-You Messages"
-            initialX={40}
-            initialY={260}
-            isMinimized={windowState.futureYou.minimized}
-            isOnTop={topWindowId === "futureYou"}
-            onClose={() => closeWindow("futureYou")}
-            onToggleMinimize={() => toggleMinimizeWindow("futureYou")}
-            onFocus={() => handleFocusWindow("futureYou")}
-          >
-            <FutureYou onBack={() => closeWindow("futureYou")} />
-          </DraggableWindow>
-        )}
+      >
+        Logout
       </div>
-    </>
+    </div>
   );
 }

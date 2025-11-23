@@ -7,6 +7,9 @@ import styles from "./UserMenu.module.css";
 export default function UserMenu({ onClose }) {
   const navigate = useNavigate();
 
+  // State for logout confirmation popup
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
   const [openTools, setOpenTools] = useState([]);
 
   const [isMenuVisible, setIsMenuVisible] = useState(true);
@@ -105,6 +108,22 @@ export default function UserMenu({ onClose }) {
     setOpenTools((prev) => prev.filter((t) => t !== toolKey));
   };
 
+  // Handle Logout Confirmation
+  const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    navigate("/auth");
+    setShowLogoutConfirm(false);
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
   return (
     <>
       {/* ============================ USER MENU ============================ */}
@@ -155,13 +174,7 @@ export default function UserMenu({ onClose }) {
 
           <div
             className={`${styles.UserMenuItem} ${styles.LogoutItem}`}
-            onClick={() => {
-              if (confirm("Are you sure you want to log out?")) {
-                localStorage.removeItem("isLoggedIn");
-                localStorage.removeItem("user");
-                navigate("/auth");
-              }
-            }}
+            onClick={handleLogout} // 👈 Trigger custom popup
           >
             Logout
           </div>
@@ -829,6 +842,35 @@ export default function UserMenu({ onClose }) {
                   </>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================= CUSTOM LOGOUT CONFIRMATION POPUP ============================= */}
+      {showLogoutConfirm && (
+        <div className={styles.LogoutConfirmOverlay}>
+          <div className={styles.LogoutConfirmModal}>
+            <img
+              src="./assets/robot2.png"
+              alt="Robot mascot"
+              className={styles.LogoutConfirmImage}
+            />
+            <h3>Oh no! You're leaving...</h3>
+            <p>Are you sure?</p>
+            <div className={styles.LogoutConfirmButtons}>
+              <button
+                className={styles.LogoutConfirmCancel}
+                onClick={cancelLogout}
+              >
+                Naah, Just Kidding
+              </button>
+              <button
+                className={styles.LogoutConfirmConfirm}
+                onClick={confirmLogout}
+              >
+                Yes, Log Me Out
+              </button>
             </div>
           </div>
         </div>

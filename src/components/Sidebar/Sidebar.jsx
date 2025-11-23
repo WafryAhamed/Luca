@@ -105,7 +105,7 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
   ];
 
   // -----------------------------
-  // ⚙️ Settings Modal
+  // ⚙️ CLEAR Modal
   // -----------------------------
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -301,12 +301,12 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
             )}
           </div>
 
-          {/* Settings Modal Trigger */}
+          {/* CLEAR Modal Trigger */}
           <div
             className={styles.NavItem}
             onClick={() => setIsSettingsOpen(true)}
           >
-            ⚙️ Settings
+             CLEAR
           </div>
         </div>
 
@@ -317,12 +317,12 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
         </div>
       </div>
 
-      {/* Settings Modal */}
+      {/* clear Modal */}
       {isSettingsOpen && (
         <div className={styles.ModalOverlay}>
           <div className={styles.Modal}>
             <div className={styles.ModalHeader}>
-              <h2 className={styles.ModalTitle}>Settings</h2>
+              <h2 className={styles.ModalTitle}>Clear</h2>
               <button
                 className={styles.ModalClose}
                 onClick={() => setIsSettingsOpen(false)}

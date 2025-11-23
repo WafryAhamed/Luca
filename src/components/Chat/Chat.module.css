@@ -4,7 +4,7 @@
   gap: 1.2rem;
 }
 
-/* MESSAGE CONTAINER */
+/* MESSAGE WRAPPER */
 .Message {
   display: flex;
   flex-direction: column;
@@ -20,110 +20,122 @@
   align-self: flex-end;
 }
 
+/* WRAPPER */
 .BubbleWrapper {
   position: relative;
   display: flex;
   align-items: flex-start;
 }
 
-/* ============================================================
-   ASSISTANT BUBBLE — SAME THEME AS SETTING / USER MENU
-============================================================ */
-.assistant .Bubble {
+/* ========================================================
+   🟣 SAME THEME AS USERMENU + SETTINGS (GLASS + PURPLE)
+======================================================== */
+.Bubble {
   padding: 12px 15px;
   border-radius: 16px;
   line-height: 1.5;
+  word-break: break-word;
 
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.22),
+      transparent 55%
+    ),
+    rgba(13, 11, 26, 0.92);
+
+  border: 1px solid rgba(185, 103, 255, 0.45);
+  color: #eaddff;
+
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.75),
+    0 0 18px rgba(185, 103, 255, 0.33),
+    inset 0 0 8px rgba(255, 255, 255, 0.04);
+
+  min-width: 80px;
+}
+
+/* ASSISTANT BUBBLE */
+.assistant .Bubble {
   background: radial-gradient(
       circle at top left,
       rgba(185, 103, 255, 0.18),
       transparent 55%
     ),
-    rgba(18, 14, 35, 0.85);
+    rgba(13, 11, 26, 0.92);
 
-  border: 1px solid rgba(185, 103, 255, 0.35);
-  color: #e0d6ff;
-
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.55),
-    0 0 18px rgba(185, 103, 255, 0.35),
-    inset 0 0 8px rgba(255, 255, 255, 0.05);
-
-  text-shadow: none;
-  transition: all 0.25s ease;
+  border-color: rgba(185, 103, 255, 0.5);
+  color: #e8d8ff;
 }
 
-/* Hover effect */
-.assistant .Bubble:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.65),
-    0 0 22px rgba(185, 103, 255, 0.45);
-}
-
-
-/* ============================================================
-   USER BUBBLE — EXACT STYLE OF YOUR “nm” AVATAR BUBBLE
-============================================================ */
+/* ========================================================
+   🟣 USER BUBBLE — MATCH EXACT SAME DEEP NAVY THEME
+======================================================== */
 .user .Bubble {
-  padding: 14px 20px;
-  border-radius: 20px;
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.22),
+      transparent 55%
+    ),
+    rgba(13, 11, 26, 0.92);
 
-  background: linear-gradient(135deg, #8f5cff, #6c3ef8);
-  color: #ffffff;
+  border: 1px solid rgba(185, 103, 255, 0.5);
+  color: #eaddff;
 
-  border: none;
-  text-shadow: none;
-
+  /* same glass shadow */
   box-shadow:
-    0 0 22px rgba(140, 90, 255, 0.55),
-    0 8px 24px rgba(0, 0, 0, 0.55);
+    0 12px 28px rgba(0, 0, 0, 0.75),
+    0 0 18px rgba(185, 103, 255, 0.33),
+    inset 0 0 8px rgba(255, 255, 255, 0.04);
 
-  font-weight: 600;
-  transition: all 0.25s ease;
+  text-shadow: none;
 }
 
-/* Hover effect */
-.user .Bubble:hover {
+/* HOVER ELEVATION */
+.Bubble:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow:
-    0 0 30px rgba(140, 90, 255, 0.7),
-    0 10px 28px rgba(0, 0, 0, 0.65);
+    0 14px 28px rgba(185, 103, 255, 0.35),
+    0 0 25px rgba(185, 103, 255, 0.45);
 }
 
-/* ============================================================
-   TIME STAMP
-============================================================ */
+/* TIME */
 .Time {
   font-size: 0.75rem;
-  opacity: 0.75;
+  opacity: 0.7;
   margin-top: 4px;
   align-self: flex-end;
-  color: #c5b8ff;
+  color: #bba8ff;
 }
 
-/* ============================================================
-   COPY + EDIT BUTTONS (unchanged)
-============================================================ */
+/* COPY + EDIT BUTTONS */
 .CopyButton,
 .EditButton {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(185, 103, 255, 0.1);
+
+  background: rgba(185, 103, 255, 0.12);
   border: none;
   border-radius: 50%;
   width: 24px;
   height: 24px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   opacity: 0;
+
   transition: opacity 0.2s ease, background 0.2s ease;
-  color: #B967FF;
+
+  color: #d8c1ff;
   font-size: 12px;
-  box-shadow: 0 0 6px rgba(185, 103, 255, 0.2);
+
+  box-shadow: 0 0 8px rgba(185, 103, 255, 0.25);
   z-index: 10;
 }
 

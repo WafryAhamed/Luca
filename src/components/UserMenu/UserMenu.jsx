@@ -4,24 +4,25 @@ import FloatingToolWindow from "./FloatingToolWindow";
 import styles from "./UserMenu.module.css";
 
 export default function UserMenu({ onClose }) {
-  // MULTIPLE TOOLS OPEN AT SAME TIME
-  const [openTools, setOpenTools] = useState([]); // ["focus", "stopwatch", "notes"]
+  const [openTools, setOpenTools] = useState([]); // Persistent across menu visibility
 
-  // Show / hide the menu panel itself
+  // Menu visibility (only affects the launcher panel)
   const [isMenuVisible, setIsMenuVisible] = useState(true);
 
-  // Focus, Stopwatch, Notes
+  // Focus Timer
   const [focusMinutes, setFocusMinutes] = useState(25);
   const [focusSeconds, setFocusSeconds] = useState(0);
   const [isFocusActive, setIsFocusActive] = useState(false);
 
+  // Stopwatch
   const [stopwatchTime, setStopwatchTime] = useState(0);
   const [isStopwatchRunning, setIsStopwatchRunning] = useState(false);
 
+  // Notes
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
 
-  // Settings
+  // Settings & Help
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeSettingsTab, setActiveSettingsTab] = useState("general");
   const [settings, setSettings] = useState({
@@ -38,11 +39,10 @@ export default function UserMenu({ onClose }) {
     dataSharing: false,
   });
 
-  // Help Center modal state
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [activeHelpTab, setActiveHelpTab] = useState("help");
 
-  // ---------------- Focus Timer logic ----------------
+  // Focus Timer Effect
   useEffect(() => {
     let interval = null;
     if (isFocusActive) {
@@ -61,7 +61,7 @@ export default function UserMenu({ onClose }) {
     return () => clearInterval(interval);
   }, [isFocusActive, focusMinutes, focusSeconds]);
 
-  // ---------------- Stopwatch logic ----------------
+  // Stopwatch Effect
   useEffect(() => {
     let interval = null;
     if (isStopwatchRunning) {
@@ -78,14 +78,12 @@ export default function UserMenu({ onClose }) {
       setNewNote("");
     }
   };
-  const deleteNote = (id) => setNotes(notes.filter((note) => note.id !== id));
-  const formatTime = (s) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(
-      2,
-      "0"
-    )}`;
 
-  // ---------------- Tool open / close ----------------
+  const deleteNote = (id) => setNotes(notes.filter((note) => note.id !== id));
+
+  const formatTime = (s) =>
+    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+
   const openTool = (toolKey) => {
     if (!openTools.includes(toolKey)) {
       setOpenTools((prev) => [...prev, toolKey]);
@@ -96,12 +94,12 @@ export default function UserMenu({ onClose }) {
     setOpenTools((prev) => prev.filter((t) => t !== toolKey));
   };
 
+  // Only the menu panel is conditionally shown
   return (
     <>
-      {/* ------------------- MAIN MENU ------------------- */}
+      {/* ✅ MAIN MENU PANEL (can be hidden) */}
       {isMenuVisible && (
         <div className={styles.UserMenu}>
-          {/* Small header row for menu title + close */}
           <div className={styles.ToolSectionLabelRow}>
             <div className={styles.ToolSection}>User Menu</div>
             <button
@@ -145,7 +143,7 @@ export default function UserMenu({ onClose }) {
               localStorage.removeItem("isLoggedIn");
               localStorage.removeItem("user");
               alert("Logged out!");
-              onClose();
+              onClose(); // This closes the entire menu system (e.g., from App)
             }}
           >
             Logout
@@ -153,8 +151,7 @@ export default function UserMenu({ onClose }) {
         </div>
       )}
 
-      {/* ---------------- FLOATING TOOL WINDOWS (MULTIPLE) ---------------- */}
-
+      {/* ✅ FLOATING TOOLS: Rendered REGARDLESS of menu visibility */}
       {openTools.includes("focus") && (
         <FloatingToolWindow
           tool="Focus Timer"
@@ -247,7 +244,7 @@ export default function UserMenu({ onClose }) {
         </FloatingToolWindow>
       )}
 
-      {/* ------------------- SETTINGS MODAL (unchanged) ------------------- */}
+      {/* Settings & Help Modals — unchanged */}
       {isSettingsOpen && (
         <div
           className={styles.SettingsOverlay}
@@ -271,7 +268,6 @@ export default function UserMenu({ onClose }) {
             </div>
 
             <div className={styles.SettingsBody}>
-              {/* sidebar */}
               <div className={styles.SettingsSidebar}>
                 {[
                   ["general", "General"],
@@ -292,9 +288,7 @@ export default function UserMenu({ onClose }) {
                 ))}
               </div>
 
-              {/* content area */}
               <div className={styles.SettingsContent}>
-                {/* GENERAL */}
                 {activeSettingsTab === "general" && (
                   <>
                     <h4>General</h4>
@@ -317,14 +311,12 @@ export default function UserMenu({ onClose }) {
                     </div>
                   </>
                 )}
-                {/* other tabs can go here (appearance, notifications, etc.) */}
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* ------------------- HELP CENTER MODAL ------------------- */}
       {isHelpOpen && (
         <div
           className={styles.HelpOverlay}
@@ -348,7 +340,6 @@ export default function UserMenu({ onClose }) {
             </div>
 
             <div className={styles.HelpBody}>
-              {/* SIDEBAR */}
               <div className={styles.HelpSidebar}>
                 {[
                   ["help", "Help Center"],
@@ -368,7 +359,6 @@ export default function UserMenu({ onClose }) {
                 ))}
               </div>
 
-              {/* CONTENT */}
               <div className={styles.HelpContent}>
                 {activeHelpTab === "help" && (
                   <>
@@ -397,22 +387,12 @@ export default function UserMenu({ onClose }) {
                 )}
 
                 {activeHelpTab === "terms" && (
-                  <>
-                    <h4>Terms & Policies</h4>
-                    <p className={styles.HelpParagraph}>
-                      By using LUCA, you agree to our data policy, usage terms,
-                      and safety guidelines. We never sell your data and only
-                      store what is needed for your learning tools to function.
-                    </p>
-                  </>
+                  <h4>Terms & Policies</h4>
                 )}
 
                 {activeHelpTab === "bug" && (
                   <>
                     <h4>Report a Bug</h4>
-                    <p className={styles.HelpParagraph}>
-                      Found something not working? Help us improve LUCA!
-                    </p>
                     <textarea
                       className={styles.HelpTextarea}
                       placeholder="Describe the issue..."
@@ -426,7 +406,6 @@ export default function UserMenu({ onClose }) {
                 {activeHelpTab === "download" && (
                   <>
                     <h4>Download LUCA</h4>
-                    <p>Use LUCA anywhere, anytime.</p>
                     <div className={styles.DownloadButtons}>
                       <button className={styles.StoreButton}>📱 Android App</button>
                       <button className={styles.StoreButton}>📲 iOS App</button>

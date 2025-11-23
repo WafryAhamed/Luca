@@ -7,12 +7,13 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(1);
 
   const next = () => setStep(step + 1);
+
   const start = () => {
     localStorage.setItem("hasSeenOnboarding", "true");
     navigate("/auth");
   };
 
-  // Auto-fade-in for Step 2 bullet points
+  // Feature fade-in animation for step 2
   useEffect(() => {
     if (step === 2) {
       const items = document.querySelectorAll(`.${styles.FeatureItem}`);
@@ -27,30 +28,27 @@ export default function OnboardingPage() {
 
   return (
     <>
-      {/* === CLEAN GALAXY BACKGROUND — NO ANIMATIONS === */}
+      {/* === BACKGROUND === */}
       <div className={styles.Background3D}>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
-        <div className={`${styles.Cube} ${styles.FloatCube}`}></div>
+        <div className={`${styles.Cube}`}></div>
+        <div className={`${styles.Cube}`}></div>
+        <div className={`${styles.Cube}`}></div>
+        <div className={`${styles.Cube}`}></div>
       </div>
 
       <div className={styles.Container}>
         <div className={`${styles.Card} ${styles.FadeSlide}`}>
 
-          {/* === LOGO === */}
-          
-        
-          {/* === STEP 1 — “Study Smarter, Not Harder” === */}
+          {/* --------------------------------------------------------
+             STEP 1
+          ---------------------------------------------------------*/}
           {step === 1 && (
             <div className={styles.FadeSlide}>
-              {/* 50x50 Image */}
               
-              <img src="/images/page1.png" width="350" height="280"/>
-          
-
+              <img src="/images/page1.png" width="350" height="280" />
 
               <h2 className={styles.Title}>Stop stressing. Start understanding.</h2>
+
               <p className={styles.Subtext}>
                 Tired of endless re-reading? LUCA simplifies every concept so you learn once and remember forever.
               </p>
@@ -64,29 +62,33 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 2 — “Your Study Toolkit, in One Place” === */}
+          {/* --------------------------------------------------------
+             STEP 2
+          ---------------------------------------------------------*/}
           {step === 2 && (
             <div className={styles.FadeSlide}>
-              {/* 50x50 Image */}
-           <img src="/images/page2.png"  width="400" height="336" />
+              
+              <img src="/images/page2.png" width="400" height="336" />
 
               <h2 className={styles.Title}>All your study tools - in one place.</h2>
 
               <div className={styles.FeatureList}>
                 <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
-                  📚 Ask anything - Math,Science,English,Coding etc.
+                  📚 Ask anything - Math, Science, English, Coding etc.
                 </div>
+
                 <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
                   💬 Save your chats - like a personal study notebook
                 </div>
+
                 <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
-                  ⏰ Stay focused with the built-in 25-minute timer
+                  ⏰ Built-in focus timer to boost productivity
                 </div>
+
                 <div className={`${styles.FeatureItem} ${styles.SlideIn}`}>
-                  🌏 Works in Sinhala,Tamil & English - no language barrier
+                  🌏 Sinhala, Tamil & English — learn in your language
                 </div>
               </div>
-
 
               <button
                 className={`${styles.CtaButton} ${styles.Pulse}`}
@@ -97,16 +99,18 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* === STEP 3 — “Ready to Begin?” === */}
+          {/* --------------------------------------------------------
+             STEP 3
+          ---------------------------------------------------------*/}
           {step === 3 && (
             <div className={styles.FadeSlide}>
-              {/* 50x50 Image */}
-             <img src="/images/page3.png" width="450" height="279" />
+              
+              <img src="/images/page3.png" width="450" height="279" />
 
               <h2 className={styles.Title}>Begin your learning with LUCA.</h2>
 
               <p className={styles.Subtext}>
-                You’re not alone. Thousands of students like you are already using LUCA to feel confident,calm and in control - even before exams.
+                You’re not alone. Thousands of students like you already use LUCA to feel confident, calm and in control — even before exams.
               </p>
 
               <button

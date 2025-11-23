@@ -4,9 +4,8 @@ import FloatingToolWindow from "./FloatingToolWindow";
 import styles from "./UserMenu.module.css";
 
 export default function UserMenu({ onClose }) {
-  const [openTools, setOpenTools] = useState([]); // Persistent across menu visibility
+  const [openTools, setOpenTools] = useState([]);
 
-  // Menu visibility (only affects the launcher panel)
   const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   // Focus Timer
@@ -22,27 +21,33 @@ export default function UserMenu({ onClose }) {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
 
-  // Settings & Help
+  // Settings
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeSettingsTab, setActiveSettingsTab] = useState("general");
   const [settings, setSettings] = useState({
     language: "English",
     region: "Sri Lanka",
+    studyMode: "Standard",
     theme: "Dark",
+    bubbleStyle: "Glass",
     fontSize: "Medium",
-    autoSaveNotes: true,
     notifications: true,
-    pushAlerts: false,
-    soundAlerts: true,
+    focusAlerts: true,
+    noteAlerts: false,
     reduceMotion: false,
+    dyslexiaFont: false,
     highContrast: false,
     dataSharing: false,
+    cloudSync: true,
+    chatStorage: true,
+    aiPersonalization: true,
   });
 
+  // Help
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [activeHelpTab, setActiveHelpTab] = useState("help");
 
-  // Focus Timer Effect
+  // Focus Timer
   useEffect(() => {
     let interval = null;
     if (isFocusActive) {
@@ -61,7 +66,7 @@ export default function UserMenu({ onClose }) {
     return () => clearInterval(interval);
   }, [isFocusActive, focusMinutes, focusSeconds]);
 
-  // Stopwatch Effect
+  // Stopwatch
   useEffect(() => {
     let interval = null;
     if (isStopwatchRunning) {
@@ -82,7 +87,10 @@ export default function UserMenu({ onClose }) {
   const deleteNote = (id) => setNotes(notes.filter((note) => note.id !== id));
 
   const formatTime = (s) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(
+      2,
+      "0"
+    )}`;
 
   const openTool = (toolKey) => {
     if (!openTools.includes(toolKey)) {
@@ -94,10 +102,9 @@ export default function UserMenu({ onClose }) {
     setOpenTools((prev) => prev.filter((t) => t !== toolKey));
   };
 
-  // Only the menu panel is conditionally shown
   return (
     <>
-      {/* ✅ MAIN MENU PANEL (can be hidden) */}
+      {/* ============================ USER MENU ============================ */}
       {isMenuVisible && (
         <div className={styles.UserMenu}>
           <div className={styles.ToolSectionLabelRow}>
@@ -117,7 +124,10 @@ export default function UserMenu({ onClose }) {
             ⚙️ Settings
           </div>
 
-          <div className={styles.UserMenuItem} onClick={() => setIsHelpOpen(true)}>
+          <div
+            className={styles.UserMenuItem}
+            onClick={() => setIsHelpOpen(true)}
+          >
             ❓ Help
           </div>
 
@@ -128,7 +138,10 @@ export default function UserMenu({ onClose }) {
           <div className={styles.UserMenuItem} onClick={() => openTool("focus")}>
             ⏱️ Focus Timer
           </div>
-          <div className={styles.UserMenuItem} onClick={() => openTool("stopwatch")}>
+          <div
+            className={styles.UserMenuItem}
+            onClick={() => openTool("stopwatch")}
+          >
             🕒 Stopwatch
           </div>
           <div className={styles.UserMenuItem} onClick={() => openTool("notes")}>
@@ -143,7 +156,7 @@ export default function UserMenu({ onClose }) {
               localStorage.removeItem("isLoggedIn");
               localStorage.removeItem("user");
               alert("Logged out!");
-              onClose(); // This closes the entire menu system (e.g., from App)
+              onClose();
             }}
           >
             Logout
@@ -151,7 +164,7 @@ export default function UserMenu({ onClose }) {
         </div>
       )}
 
-      {/* ✅ FLOATING TOOLS: Rendered REGARDLESS of menu visibility */}
+      {/* ============================= FLOATING TOOLS ============================= */}
       {openTools.includes("focus") && (
         <FloatingToolWindow
           tool="Focus Timer"
@@ -161,6 +174,7 @@ export default function UserMenu({ onClose }) {
             {String(focusMinutes).padStart(2, "0")}:
             {String(focusSeconds).padStart(2, "0")}
           </div>
+
           <div className={styles.ToolButtons}>
             <button
               onClick={() => setIsFocusActive(!isFocusActive)}
@@ -168,6 +182,7 @@ export default function UserMenu({ onClose }) {
             >
               {isFocusActive ? "Pause" : "Start"}
             </button>
+
             <button
               onClick={() => {
                 setIsFocusActive(false);
@@ -179,6 +194,7 @@ export default function UserMenu({ onClose }) {
               Reset
             </button>
           </div>
+
           <p className={styles.ToolHint}>Stay focused 🌿</p>
         </FloatingToolWindow>
       )}
@@ -188,7 +204,10 @@ export default function UserMenu({ onClose }) {
           tool="Stopwatch"
           onClose={() => closeTool("stopwatch")}
         >
-          <div className={styles.TimerDisplay}>{formatTime(stopwatchTime)}</div>
+          <div className={styles.TimerDisplay}>
+            {formatTime(stopwatchTime)}
+          </div>
+
           <div className={styles.ToolButtons}>
             <button
               onClick={() => setIsStopwatchRunning(!isStopwatchRunning)}
@@ -196,6 +215,7 @@ export default function UserMenu({ onClose }) {
             >
               {isStopwatchRunning ? "Stop" : "Start"}
             </button>
+
             <button
               onClick={() => {
                 setIsStopwatchRunning(false);
@@ -210,16 +230,14 @@ export default function UserMenu({ onClose }) {
       )}
 
       {openTools.includes("notes") && (
-        <FloatingToolWindow
-          tool="Notes Saver"
-          onClose={() => closeTool("notes")}
-        >
+        <FloatingToolWindow tool="Notes Saver" onClose={() => closeTool("notes")}>
           <textarea
             value={newNote}
             onChange={(e) => setNewNote(e.target.value)}
             placeholder="Write your note..."
             className={styles.ToolTextarea}
           />
+
           <button onClick={addNote} className={styles.ToolButton}>
             Add Note
           </button>
@@ -238,13 +256,11 @@ export default function UserMenu({ onClose }) {
             ))}
           </div>
 
-          {notes.length === 0 && (
-            <p className={styles.ToolHint}>No notes yet</p>
-          )}
+          {notes.length === 0 && <p className={styles.ToolHint}>No notes yet</p>}
         </FloatingToolWindow>
       )}
 
-      {/* Settings Modal with FULL content */}
+      {/* ============================= SETTINGS MODAL ============================= */}
       {isSettingsOpen && (
         <div
           className={styles.SettingsOverlay}
@@ -259,6 +275,7 @@ export default function UserMenu({ onClose }) {
                 <h3>Settings</h3>
                 <p>Customize your study experience</p>
               </div>
+
               <button
                 className={styles.SettingsCloseBtn}
                 onClick={() => setIsSettingsOpen(false)}
@@ -288,15 +305,21 @@ export default function UserMenu({ onClose }) {
                 ))}
               </div>
 
+              {/* ========================= TAB CONTENT ========================= */}
               <div className={styles.SettingsContent}>
-                {/* GENERAL */}
+                
+                {/* ----------------------------- GENERAL ----------------------------- */}
                 {activeSettingsTab === "general" && (
                   <>
                     <h4>General</h4>
+
+                    {/* Language */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
                         <span>Language</span>
-                        <small>Choose your preferred language</small>
+                        <small>
+                          Choose your preferred language for the LUCA interface
+                        </small>
                       </div>
                       <select
                         className={styles.SettingSelect}
@@ -310,10 +333,12 @@ export default function UserMenu({ onClose }) {
                         <option>Sinhala</option>
                       </select>
                     </div>
+
+                    {/* Region */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
                         <span>Region</span>
-                        <small>Set your location for local content</small>
+                        <small>Content and examples will match your region</small>
                       </div>
                       <select
                         className={styles.SettingSelect}
@@ -324,13 +349,85 @@ export default function UserMenu({ onClose }) {
                       >
                         <option>Sri Lanka</option>
                         <option>India</option>
-                        <option>United States</option>
+                        <option>UK</option>
+                        <option>USA</option>
                       </select>
                     </div>
+
+                    {/* Study Mode */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Study Mode</span>
+                        <small>Choose how LUCA assists your learning</small>
+                      </div>
+
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.studyMode}
+                        onChange={(e) =>
+                          setSettings({ ...settings, studyMode: e.target.value })
+                        }
+                      >
+                        <option>Standard Guidance</option>
+                        <option>Exam Focused</option>
+                        <option>Assignment Helper</option>
+                        <option>Concept Understanding</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
+                {/* ----------------------------- APPEARANCE ----------------------------- */}
+                {activeSettingsTab === "appearance" && (
+                  <>
+                    <h4>Appearance</h4>
+
+                    {/* Theme */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Theme</span>
+                        <small>Switch between light, dark or AMOLED mode</small>
+                      </div>
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.theme}
+                        onChange={(e) =>
+                          setSettings({ ...settings, theme: e.target.value })
+                        }
+                      >
+                        <option>Dark</option>
+                        <option>Light</option>
+                        <option>AMOLED Black</option>
+                      </select>
+                    </div>
+
+                    {/* Chat Bubble Style */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Chat Bubble Style</span>
+                        <small>Choose the design of your chat messages</small>
+                      </div>
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.bubbleStyle}
+                        onChange={(e) =>
+                          setSettings({
+                            ...settings,
+                            bubbleStyle: e.target.value,
+                          })
+                        }
+                      >
+                        <option>Glass Neon</option>
+                        <option>Minimal Rounded</option>
+                        <option>Classic</option>
+                      </select>
+                    </div>
+
+                    {/* Font Size */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
                         <span>Font Size</span>
-                        <small>Adjust text readability</small>
+                        <small>Adjust readability for long sessions</small>
                       </div>
                       <select
                         className={styles.SettingSelect}
@@ -347,58 +444,20 @@ export default function UserMenu({ onClose }) {
                   </>
                 )}
 
-                {/* APPEARANCE */}
-                {activeSettingsTab === "appearance" && (
-                  <>
-                    <h4>Appearance</h4>
-                    <div className={styles.SettingRow}>
-                      <div className={styles.SettingText}>
-                        <span>Theme</span>
-                        <small>Choose your visual style</small>
-                      </div>
-                      <select
-                        className={styles.SettingSelect}
-                        value={settings.theme}
-                        onChange={(e) =>
-                          setSettings({ ...settings, theme: e.target.value })
-                        }
-                      >
-                        <option>Dark</option>
-                        <option>Light</option>
-                        <option>System</option>
-                      </select>
-                    </div>
-                    <div className={styles.SettingRow}>
-                      <div className={styles.SettingText}>
-                        <span>Auto-save Notes</span>
-                        <small>Save notes automatically</small>
-                      </div>
-                      <label className={styles.ToggleWrapper}>
-                        <input
-                          type="checkbox"
-                          checked={settings.autoSaveNotes}
-                          onChange={(e) =>
-                            setSettings({
-                              ...settings,
-                              autoSaveNotes: e.target.checked,
-                            })
-                          }
-                        />
-                        <span className={styles.ToggleSlider}></span>
-                      </label>
-                    </div>
-                  </>
-                )}
-
-                {/* NOTIFICATIONS */}
+                {/* --------------------------- NOTIFICATIONS --------------------------- */}
                 {activeSettingsTab === "notifications" && (
                   <>
                     <h4>Notifications</h4>
+
+                    {/* Study Reminders */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>Enable Notifications</span>
-                        <small>Get alerts for timers and reminders</small>
+                        <span>Study Reminders</span>
+                        <small>
+                          Receive gentle nudges to stay consistent with learning
+                        </small>
                       </div>
+
                       <label className={styles.ToggleWrapper}>
                         <input
                           type="checkbox"
@@ -413,38 +472,48 @@ export default function UserMenu({ onClose }) {
                         <span className={styles.ToggleSlider}></span>
                       </label>
                     </div>
+
+                    {/* Focus Alerts */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>Push Alerts</span>
-                        <small>Browser notifications</small>
+                        <span>Focus Timer Alerts</span>
+                        <small>
+                          Receive alerts when your Focus Timer ends
+                        </small>
                       </div>
+
                       <label className={styles.ToggleWrapper}>
                         <input
                           type="checkbox"
-                          checked={settings.pushAlerts}
+                          checked={settings.focusAlerts}
                           onChange={(e) =>
                             setSettings({
                               ...settings,
-                              pushAlerts: e.target.checked,
+                              focusAlerts: e.target.checked,
                             })
                           }
                         />
                         <span className={styles.ToggleSlider}></span>
                       </label>
                     </div>
+
+                    {/* Note Alerts */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>Sound Alerts</span>
-                        <small>Hear when focus session ends</small>
+                        <span>Note Alerts</span>
+                        <small>
+                          Get reminders if you forget to save important notes
+                        </small>
                       </div>
+
                       <label className={styles.ToggleWrapper}>
                         <input
                           type="checkbox"
-                          checked={settings.soundAlerts}
+                          checked={settings.noteAlerts}
                           onChange={(e) =>
                             setSettings({
                               ...settings,
-                              soundAlerts: e.target.checked,
+                              noteAlerts: e.target.checked,
                             })
                           }
                         />
@@ -454,33 +523,39 @@ export default function UserMenu({ onClose }) {
                   </>
                 )}
 
-                {/* ACCESSIBILITY */}
+                {/* --------------------------- ACCESSIBILITY --------------------------- */}
                 {activeSettingsTab === "accessibility" && (
                   <>
                     <h4>Accessibility</h4>
+
+                    {/* Dyslexia Font */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>Reduce Motion</span>
-                        <small>Minimize animations and transitions</small>
+                        <span>Dyslexia-Friendly Font</span>
+                        <small>Improves readability for dyslexic learners</small>
                       </div>
                       <label className={styles.ToggleWrapper}>
                         <input
                           type="checkbox"
-                          checked={settings.reduceMotion}
+                          checked={settings.dyslexiaFont}
                           onChange={(e) =>
                             setSettings({
                               ...settings,
-                              reduceMotion: e.target.checked,
+                              dyslexiaFont: e.target.checked,
                             })
                           }
                         />
                         <span className={styles.ToggleSlider}></span>
                       </label>
                     </div>
+
+                    {/* High Contrast */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>High Contrast</span>
-                        <small>Improve text visibility</small>
+                        <span>High Contrast Mode</span>
+                        <small>
+                          Improve visibility with sharper contrast colors
+                        </small>
                       </div>
                       <label className={styles.ToggleWrapper}>
                         <input
@@ -496,17 +571,108 @@ export default function UserMenu({ onClose }) {
                         <span className={styles.ToggleSlider}></span>
                       </label>
                     </div>
+
+                    {/* Reduce Motion */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Reduce Animations</span>
+                        <small>Removes visual motion for sensitive users</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.reduceMotion}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              reduceMotion: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
                   </>
                 )}
 
-                {/* PRIVACY */}
+                {/* ------------------------------- PRIVACY ------------------------------- */}
                 {activeSettingsTab === "privacy" && (
                   <>
                     <h4>Privacy</h4>
+
+                    {/* Cloud Sync */}
                     <div className={styles.SettingRow}>
                       <div className={styles.SettingText}>
-                        <span>Share Usage Data</span>
-                        <small>Help improve LUCA anonymously</small>
+                        <span>Cloud Sync</span>
+                        <small>Sync chats and notes across your devices</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.cloudSync}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              cloudSync: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+
+                    {/* Chat Storage */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Chat Storage</span>
+                        <small>Store your previous chats securely</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.chatStorage}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              chatStorage: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+
+                    {/* AI Personalization */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>AI Personalization</span>
+                        <small>
+                          Let LUCA personalize responses based on your study
+                          habits
+                        </small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.aiPersonalization}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              aiPersonalization: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+
+                    {/* Data Sharing */}
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Analytics & Data Sharing</span>
+                        <small>
+                          Share anonymous usage data to improve LUCA
+                        </small>
                       </div>
                       <label className={styles.ToggleWrapper}>
                         <input
@@ -522,13 +688,9 @@ export default function UserMenu({ onClose }) {
                         <span className={styles.ToggleSlider}></span>
                       </label>
                     </div>
-                    <button className={styles.DangerButton} onClick={() => {
-                      if (confirm("Clear all local data? This cannot be undone.")) {
-                        localStorage.clear();
-                        alert("All data cleared. Refresh to apply.");
-                      }
-                    }}>
-                      🔒 Clear Local Data
+
+                    <button className={styles.DangerButton}>
+                      Delete All Chat History
                     </button>
                   </>
                 )}
@@ -538,6 +700,7 @@ export default function UserMenu({ onClose }) {
         </div>
       )}
 
+      {/* ----------------------------- HELP CENTER ----------------------------- */}
       {isHelpOpen && (
         <div
           className={styles.HelpOverlay}
@@ -552,6 +715,7 @@ export default function UserMenu({ onClose }) {
                 <h3>Help Center</h3>
                 <p>Your guide to using LUCA</p>
               </div>
+
               <button
                 className={styles.HelpCloseBtn}
                 onClick={() => setIsHelpOpen(false)}
@@ -587,28 +751,34 @@ export default function UserMenu({ onClose }) {
                     <p className={styles.HelpParagraph}>
                       <strong>Stop stressing. Start understanding.</strong>
                       <br />
-                      Tired of re-reading the same things? LUCA simplifies
-                      every concept so you learn once and remember forever.
+                      LUCA simplifies every concept so you learn faster and
+                      retain better.
                     </p>
 
-                    <h4>All your study tools in one place</h4>
+                    <h4>Study Tools</h4>
                     <ul className={styles.HelpList}>
-                      <li>📚 Ask anything — Math, Science, English, Coding…</li>
-                      <li>💬 Save your chats like a personal study notebook</li>
-                      <li>⏰ Stay focused with built-in 25-minute Pomodoro</li>
-                      <li>🌏 Works in Sinhala, Tamil & English</li>
+                      <li>📚 Ask anything — subjects, concepts, coding…</li>
+                      <li>💬 Save your chats like a study notebook</li>
+                      <li>⏰ Built-in Pomodoro focus timer</li>
+                      <li>📝 Write and save unlimited notes</li>
                     </ul>
 
-                    <h4>Start your learning journey</h4>
+                    <h4>Why LUCA?</h4>
                     <p className={styles.HelpParagraph}>
-                      Thousands of students are using LUCA to feel confident,
-                      calm and in control — even before exams.
+                      LUCA adapts to your learning style, supports multiple
+                      languages, and helps you stay confident during exams.
                     </p>
                   </>
                 )}
 
                 {activeHelpTab === "terms" && (
-                  <h4>Terms & Policies</h4>
+                  <>
+                    <h4>Terms & Policies</h4>
+                    <p className={styles.HelpParagraph}>
+                      LUCA values your privacy and will never share personal data
+                      without permission.
+                    </p>
+                  </>
                 )}
 
                 {activeHelpTab === "bug" && (
@@ -628,9 +798,9 @@ export default function UserMenu({ onClose }) {
                   <>
                     <h4>Download LUCA</h4>
                     <div className={styles.DownloadButtons}>
-                      <button className={styles.StoreButton}>📱 Android App</button>
-                      <button className={styles.StoreButton}>📲 iOS App</button>
-                      <button className={styles.StoreButton}>🖥️ Desktop App</button>
+                      <button className={styles.StoreButton}>📱 Android</button>
+                      <button className={styles.StoreButton}>📲 iOS</button>
+                      <button className={styles.StoreButton}>🖥️ Desktop</button>
                     </div>
                   </>
                 )}

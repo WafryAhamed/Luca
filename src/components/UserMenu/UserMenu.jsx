@@ -1,9 +1,12 @@
 // UserMenu.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FloatingToolWindow from "./FloatingToolWindow";
 import styles from "./UserMenu.module.css";
 
 export default function UserMenu({ onClose }) {
+  const navigate = useNavigate();
+
   const [openTools, setOpenTools] = useState([]);
 
   const [isMenuVisible, setIsMenuVisible] = useState(true);
@@ -153,10 +156,11 @@ export default function UserMenu({ onClose }) {
           <div
             className={`${styles.UserMenuItem} ${styles.LogoutItem}`}
             onClick={() => {
-              localStorage.removeItem("isLoggedIn");
-              localStorage.removeItem("user");
-              alert("Logged out!");
-              onClose();
+              if (confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("user");
+                navigate("/auth");
+              }
             }}
           >
             Logout
@@ -775,8 +779,16 @@ export default function UserMenu({ onClose }) {
                   <>
                     <h4>Terms & Policies</h4>
                     <p className={styles.HelpParagraph}>
-                      LUCA values your privacy and will never share personal data
-                      without permission.
+                      By using LUCA, you agree to our <strong>Terms of Service</strong> and <strong>Privacy Policy</strong>.
+                    </p>
+                    <p className={styles.HelpParagraph}>
+                      We are committed to protecting your data. LUCA only stores what is necessary to provide and improve your learning experience.
+                    </p>
+                    <p className={styles.HelpParagraph}>
+                      You retain full ownership of your notes and chats. You can delete your data at any time from the Privacy section in Settings.
+                    </p>
+                    <p className={styles.HelpParagraph}>
+                      LUCA complies with global data protection standards and never sells your information to third parties.
                     </p>
                   </>
                 )}
@@ -784,24 +796,36 @@ export default function UserMenu({ onClose }) {
                 {activeHelpTab === "bug" && (
                   <>
                     <h4>Report a Bug</h4>
+                    <p className={styles.HelpParagraph}>
+                      Found something not working as expected? We’d love your help to make LUCA better!
+                    </p>
                     <textarea
                       className={styles.HelpTextarea}
-                      placeholder="Describe the issue..."
+                      placeholder="Describe the issue (e.g., 'Focus timer doesn't pause', 'Notes disappear after refresh', etc.)..."
                     ></textarea>
                     <button className={styles.HelpSubmitBtn}>
                       Submit Report
                     </button>
+                    <p className={styles.HelpParagraph} style={{ fontSize: '0.8rem', marginTop: '0.5rem', color: '#aaa' }}>
+                      📌 Tip: Include your device type and browser for faster resolution.
+                    </p>
                   </>
                 )}
 
                 {activeHelpTab === "download" && (
                   <>
                     <h4>Download LUCA</h4>
+                    <p className={styles.HelpParagraph}>
+                      Use LUCA anywhere — on your phone, tablet, or desktop.
+                    </p>
                     <div className={styles.DownloadButtons}>
-                      <button className={styles.StoreButton}>📱 Android</button>
-                      <button className={styles.StoreButton}>📲 iOS</button>
-                      <button className={styles.StoreButton}>🖥️ Desktop</button>
+                      <button className={styles.StoreButton}>📱 Android App</button>
+                      <button className={styles.StoreButton}>📲 iOS App</button>
+                      <button className={styles.StoreButton}>🖥️ Desktop App</button>
                     </div>
+                    <p className={styles.HelpParagraph} style={{ marginTop: '1rem' }}>
+                      All apps sync seamlessly with your account so you never lose progress.
+                    </p>
                   </>
                 )}
               </div>

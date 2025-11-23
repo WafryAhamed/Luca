@@ -852,24 +852,24 @@ export default function UserMenu({ onClose }) {
         <div className={styles.LogoutConfirmOverlay}>
           <div className={styles.LogoutConfirmModal}>
             <img
-              src="./assets/robot2.png"
-              alt="Robot mascot"
+               src="/images/logout.png" 
+            
               className={styles.LogoutConfirmImage}
             />
-            <h3>Oh no! You're leaving...</h3>
-            <p>Are you sure?</p>
+            <h3>Are you logging out?</h3>
+          
             <div className={styles.LogoutConfirmButtons}>
               <button
                 className={styles.LogoutConfirmCancel}
                 onClick={cancelLogout}
               >
-                Naah, Just Kidding
+                Cancel
               </button>
               <button
                 className={styles.LogoutConfirmConfirm}
                 onClick={confirmLogout}
               >
-                Yes, Log Me Out
+                Log Out
               </button>
             </div>
           </div>

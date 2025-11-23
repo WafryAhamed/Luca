@@ -1004,6 +1004,7 @@
 }
 
 
+
 /* ======================================================
    CUSTOM LOGOUT CONFIRMATION POPUP
 ====================================================== */
@@ -1016,7 +1017,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1400;
+  z-index: 4000;
   animation: fadeOverlay 0.2s ease-out;
 }
 
@@ -1030,7 +1031,7 @@
 }
 
 .LogoutConfirmModal {
-  width: 320px;
+  width: 390px;
   padding: 1.5rem;
   background: radial-gradient(
       circle at top left,
@@ -1062,8 +1063,8 @@
 }
 
 .LogoutConfirmImage {
-  width: 80px;
-  height: 80px;
+  width: 320px;
+  height: 290px;
   margin-bottom: 1rem;
   filter: drop-shadow(0 0 8px rgba(185, 103, 255, 0.4));
 }
@@ -1075,22 +1076,52 @@
   font-weight: 600;
 }
 
-.LogoutConfirmModal p {
+.LogoutConfirmSubtext {
   margin: 0.2rem 0 1rem;
   color: #bba8ff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.LogoutConfirmLink {
+  color: #700092;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.LogoutConfirmLink:hover {
+  color: #e00def;
 }
 
 .LogoutConfirmButtons {
   display: flex;
-  flex-direction: column;
   gap: 0.7rem;
   width: 100%;
+  justify-content: center;
 }
 
 .LogoutConfirmCancel {
   padding: 0.7rem 1rem;
-  background: linear-gradient(135deg, rgba(54, 120, 255, 0.8), rgba(30, 80, 200, 0.8));
+  background: transparent;
+  color: #f4ecff;
+  border: 1px solid rgba(185, 103, 255, 0.4);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.LogoutConfirmCancel:hover {
+  background: rgba(185, 103, 255, 0.1);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.LogoutConfirmConfirm {
+  padding: 0.7rem 1rem;
+  background: linear-gradient(135deg, rgba(185, 103, 255, 0.8), rgba(100, 50, 180, 0.8));
   color: white;
   border-radius: 12px;
   border: none;
@@ -1100,25 +1131,7 @@
   transition: all 0.2s ease;
 }
 
-.LogoutConfirmCancel:hover {
-  background: linear-gradient(135deg, rgba(70, 140, 255, 0.9), rgba(40, 100, 220, 0.9));
-  transform: translateY(-1px);
-}
-
-.LogoutConfirmConfirm {
-  padding: 0.7rem 1rem;
-  background: transparent;
-  color: #ff99cc;
-  border: 1px solid rgba(255, 153, 204, 0.6);
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
 .LogoutConfirmConfirm:hover {
-  background: rgba(255, 153, 204, 0.1);
-  color: #ff6699;
+  background: linear-gradient(135deg, rgba(200, 120, 255, 0.9), rgba(120, 60, 200, 0.9));
   transform: translateY(-1px);
 }

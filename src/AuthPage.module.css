@@ -110,7 +110,7 @@
 =============================================== */
 .Input {
   width: 100%;
-  padding: 0.9rem 1.2rem;
+  padding: 1rem 1.25rem;  /* ⬅ increased height */
 
   background: linear-gradient(
       135deg,
@@ -136,6 +136,13 @@
   box-shadow:
     0 0 0 1px rgba(185, 103, 255, 0.25),
     inset 0 0 30px rgba(0, 0, 0, 0.45);
+}
+
+/* More spacing between inputs */
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.45rem; /* ⬅ improved spacing */
 }
 
 /* PASSWORD TOGGLE */
@@ -164,8 +171,9 @@
    SUBMIT BUTTON — Node.js Glass Effect
 =============================================== */
 .SubmitButton {
-  margin-top: 0.4rem;
-  padding: 0.9rem;
+  margin-top: 0.8rem; /* ⬅ bigger spacing */
+  width: 100%;       /* ⬅ full width like LUCA */
+  padding: 1rem 1.2rem; /* ⬅ taller button */
 
   background: linear-gradient(
     135deg,
@@ -221,7 +229,7 @@
 .Divider {
   display: flex;
   align-items: center;
-  margin: 1.8rem 0;
+  margin: 2.2rem 0; /* ⬅ Better spacing */
   color: #aaa;
 }
 
@@ -238,11 +246,11 @@
 .SocialButtons {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem; /* ⬅ more spacing */
 }
 
 .SocialButton {
-  padding: 0.9rem;
+  padding: 1rem; /* ⬅ slightly taller */
   border-radius: 14px;
 
   background: linear-gradient(

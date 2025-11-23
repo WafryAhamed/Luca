@@ -4,9 +4,11 @@ import styles from "./Background.module.css";
 
 export default function Background() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const container = containerRef.current;
     const ctx = canvas.getContext("2d");
 
     let width = (canvas.width = window.innerWidth);
@@ -71,9 +73,9 @@ export default function Background() {
         const x = Math.random() * width;
         const y = Math.random() * height;
         const radius = Math.random() * 2.5 + 1;
-        const color = `rgba(${90 + Math.random() * 40}, ${40 + Math.random() * 20}, ${
-          160 + Math.random() * 40
-        }, 0.35)`;
+        const color = `rgba(${90 + Math.random() * 40}, ${
+          40 + Math.random() * 20
+        }, ${160 + Math.random() * 40}, 0.35)`;
         const speedX = (Math.random() - 0.5) * 0.4;
         const speedY = (Math.random() - 0.5) * 0.4;
         particles.push(new Particle(x, y, radius, color, speedX, speedY));
@@ -115,6 +117,24 @@ export default function Background() {
     const handleMouseMove = (e) => {
       mouse.x = e.x;
       mouse.y = e.y;
+
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        const relX = e.clientX - rect.left;
+        const relY = e.clientY - rect.top;
+
+        // For cursor glow
+        container.style.setProperty("--mouse-x", `${relX}px`);
+        container.style.setProperty("--mouse-y", `${relY}px`);
+
+        // For parallax (medium intensity)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const offsetX = (relX - centerX) / centerX; // -1 to 1
+        const offsetY = (relY - centerY) / centerY; // -1 to 1
+        container.style.setProperty("--parallax-x", offsetX.toString());
+        container.style.setProperty("--parallax-y", offsetY.toString());
+      }
     };
 
     const handleResize = () => {
@@ -136,12 +156,37 @@ export default function Background() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
+      {/* Parallax star field */}
+      <div className={`${styles.parallaxLayer} ${styles.starsLayer}`}>
+        <div className={`${styles.star} ${styles.small}`} />
+        <div className={`${styles.star} ${styles.medium}`} />
+        <div className={`${styles.star} ${styles.large}`} />
+        <div className={`${styles.star} ${styles.extraLarge}`} />
+        <div className={`${styles.star} ${styles.small}`} />
+        <div className={`${styles.star} ${styles.medium}`} />
+        <div className={`${styles.star} ${styles.large}`} />
+        <div className={`${styles.star} ${styles.small}`} />
+        <div className={`${styles.star} ${styles.medium}`} />
+        <div className={`${styles.star} ${styles.large}`} />
+        <div className={`${styles.star} ${styles.small}`} />
+        <div className={`${styles.star} ${styles.medium}`} />
+      </div>
+
+      {/* Soft fog / nebula layer */}
+      <div className={`${styles.parallaxLayerSlow} ${styles.fogLayer}`} />
+
+      {/* Cursor glow */}
+      <div className={styles.cursorGlow} />
+
+      {/* Existing overlay pulse */}
       <motion.div
         className={styles.overlay}
         animate={{ opacity: [0.7, 0.9, 0.7] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Particle canvas */}
       <canvas ref={canvasRef} className={styles.canvas} />
     </div>
   );

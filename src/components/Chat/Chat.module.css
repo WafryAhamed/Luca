@@ -4,6 +4,7 @@
   gap: 1.2rem;
 }
 
+/* MESSAGE CONTAINER */
 .Message {
   display: flex;
   flex-direction: column;
@@ -25,48 +26,85 @@
   align-items: flex-start;
 }
 
-.Bubble {
+/* ============================================================
+   ASSISTANT BUBBLE — SAME THEME AS SETTING / USER MENU
+============================================================ */
+.assistant .Bubble {
   padding: 12px 15px;
   border-radius: 16px;
   line-height: 1.5;
-  word-break: break-word;
-  background: rgba(13, 11, 26, 0.5);
-  border: 1px solid rgba(185, 103, 255, 0.1);
-  color: #fff;
-  font-weight: 500;
-  text-shadow: 0 0 4px rgba(185, 103, 255, 0.3);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  min-width: 80px;
-  
-}
 
-.assistant .Bubble {
-  background: rgba(185, 103, 255, 0.08);
-  border-color: rgba(185, 103, 255, 0.2);
+  background: radial-gradient(
+      circle at top left,
+      rgba(185, 103, 255, 0.18),
+      transparent 55%
+    ),
+    rgba(18, 14, 35, 0.85);
+
+  border: 1px solid rgba(185, 103, 255, 0.35);
   color: #e0d6ff;
-}
 
-.user .Bubble {
-  background: linear-gradient(135deg, #B967FF, #9A4DFF);
-  color: #fff;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(185, 103, 255, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.05);
+
   text-shadow: none;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.assistant .Bubble:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.65),
+    0 0 22px rgba(185, 103, 255, 0.45);
+}
+
+
+/* ============================================================
+   USER BUBBLE — EXACT STYLE OF YOUR “nm” AVATAR BUBBLE
+============================================================ */
+.user .Bubble {
+  padding: 14px 20px;
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #8f5cff, #6c3ef8);
+  color: #ffffff;
+
   border: none;
+  text-shadow: none;
+
+  box-shadow:
+    0 0 22px rgba(140, 90, 255, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.55);
+
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
-.Bubble:hover {
+/* Hover effect */
+.user .Bubble:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(185, 103, 255, 0.3);
+  box-shadow:
+    0 0 30px rgba(140, 90, 255, 0.7),
+    0 10px 28px rgba(0, 0, 0, 0.65);
 }
 
+/* ============================================================
+   TIME STAMP
+============================================================ */
 .Time {
   font-size: 0.75rem;
-  opacity: 0.7;
+  opacity: 0.75;
   margin-top: 4px;
   align-self: flex-end;
-  color: #aaa;
+  color: #c5b8ff;
 }
 
+/* ============================================================
+   COPY + EDIT BUTTONS (unchanged)
+============================================================ */
 .CopyButton,
 .EditButton {
   position: absolute;

@@ -244,7 +244,7 @@ export default function UserMenu({ onClose }) {
         </FloatingToolWindow>
       )}
 
-      {/* Settings & Help Modals — unchanged */}
+      {/* Settings Modal with FULL content */}
       {isSettingsOpen && (
         <div
           className={styles.SettingsOverlay}
@@ -289,6 +289,7 @@ export default function UserMenu({ onClose }) {
               </div>
 
               <div className={styles.SettingsContent}>
+                {/* GENERAL */}
                 {activeSettingsTab === "general" && (
                   <>
                     <h4>General</h4>
@@ -309,6 +310,226 @@ export default function UserMenu({ onClose }) {
                         <option>Sinhala</option>
                       </select>
                     </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Region</span>
+                        <small>Set your location for local content</small>
+                      </div>
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.region}
+                        onChange={(e) =>
+                          setSettings({ ...settings, region: e.target.value })
+                        }
+                      >
+                        <option>Sri Lanka</option>
+                        <option>India</option>
+                        <option>United States</option>
+                      </select>
+                    </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Font Size</span>
+                        <small>Adjust text readability</small>
+                      </div>
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.fontSize}
+                        onChange={(e) =>
+                          setSettings({ ...settings, fontSize: e.target.value })
+                        }
+                      >
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
+                {/* APPEARANCE */}
+                {activeSettingsTab === "appearance" && (
+                  <>
+                    <h4>Appearance</h4>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Theme</span>
+                        <small>Choose your visual style</small>
+                      </div>
+                      <select
+                        className={styles.SettingSelect}
+                        value={settings.theme}
+                        onChange={(e) =>
+                          setSettings({ ...settings, theme: e.target.value })
+                        }
+                      >
+                        <option>Dark</option>
+                        <option>Light</option>
+                        <option>System</option>
+                      </select>
+                    </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Auto-save Notes</span>
+                        <small>Save notes automatically</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.autoSaveNotes}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              autoSaveNotes: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                  </>
+                )}
+
+                {/* NOTIFICATIONS */}
+                {activeSettingsTab === "notifications" && (
+                  <>
+                    <h4>Notifications</h4>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Enable Notifications</span>
+                        <small>Get alerts for timers and reminders</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.notifications}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              notifications: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Push Alerts</span>
+                        <small>Browser notifications</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.pushAlerts}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              pushAlerts: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Sound Alerts</span>
+                        <small>Hear when focus session ends</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.soundAlerts}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              soundAlerts: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                  </>
+                )}
+
+                {/* ACCESSIBILITY */}
+                {activeSettingsTab === "accessibility" && (
+                  <>
+                    <h4>Accessibility</h4>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Reduce Motion</span>
+                        <small>Minimize animations and transitions</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.reduceMotion}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              reduceMotion: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>High Contrast</span>
+                        <small>Improve text visibility</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.highContrast}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              highContrast: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                  </>
+                )}
+
+                {/* PRIVACY */}
+                {activeSettingsTab === "privacy" && (
+                  <>
+                    <h4>Privacy</h4>
+                    <div className={styles.SettingRow}>
+                      <div className={styles.SettingText}>
+                        <span>Share Usage Data</span>
+                        <small>Help improve LUCA anonymously</small>
+                      </div>
+                      <label className={styles.ToggleWrapper}>
+                        <input
+                          type="checkbox"
+                          checked={settings.dataSharing}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              dataSharing: e.target.checked,
+                            })
+                          }
+                        />
+                        <span className={styles.ToggleSlider}></span>
+                      </label>
+                    </div>
+                    <button className={styles.DangerButton} onClick={() => {
+                      if (confirm("Clear all local data? This cannot be undone.")) {
+                        localStorage.clear();
+                        alert("All data cleared. Refresh to apply.");
+                      }
+                    }}>
+                      🔒 Clear Local Data
+                    </button>
                   </>
                 )}
               </div>

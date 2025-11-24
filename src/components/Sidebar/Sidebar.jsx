@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useBlur } from "../../contexts/BlurContext";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
@@ -99,9 +100,17 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
   // 🔖 Saved Sessions (static)
   // -----------------------------
   const savedSessions = [
-    { id: 101, title: "Algebra Revision Sheet" },
-    { id: 102, title: "Biology Exam Notes" },
-    { id: 103, title: "Essay: Climate Change" },
+   
+  { id: 101, title: "Algebra Revision Sheet" },
+  { id: 102, title: "Biology Exam Notes" },
+  { id: 103, title: "Essay: Climate Change" },
+  { id: 104, title: "Physics Formula Summary" },
+  { id: 105, title: "Python Programming Notes" },
+  { id: 106, title: "Chemistry Organic Reactions" },
+  { id: 107, title: "English Literature: Hamlet Analysis" },
+  { id: 108, title: "Computer Science – OOP Basics" },
+  { id: 109, title: "Business Studies – Marketing Mix" },
+  { id: 110, title: "Geography: Volcano Case Study" }
   ];
 
   // -----------------------------
@@ -149,6 +158,8 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
   // -----------------------------
   // JSX
   // -----------------------------
+  const { isBlurred } = useBlur();
+
   return (
     <>
       {/* Hamburger Button */}
@@ -166,7 +177,7 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
 
       {/* Sidebar */}
       <div
-        className={`${styles.Sidebar} ${isOpen ? styles.open : ""} ${styles.SidebarDark}`}
+        className={`${styles.Sidebar} ${isOpen ? styles.open : ""} ${styles.SidebarDark} ${isBlurred ? styles.Blurred : ""}`}
       >
         {/* Close Button */}
         <button
@@ -313,7 +324,7 @@ export default function Sidebar({ onNewChat, isOpen: initialOpen = true }) {
         {/* Footer */}
         <div className={styles.UserFooter}>
           <div className={styles.UserAvatar}>W</div>
-          <span>wfy ahmed</span>
+          <span>Wafry Ahamed</span>
         </div>
       </div>
 

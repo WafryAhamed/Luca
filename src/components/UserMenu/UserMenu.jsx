@@ -1,5 +1,7 @@
 // UserMenu.jsx
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useBlur } from "../../contexts/BlurContext";
 import { useNavigate } from "react-router-dom";
 import FloatingToolWindow from "./FloatingToolWindow";
 import styles from "./UserMenu.module.css";
@@ -112,6 +114,14 @@ export default function UserMenu({ onClose }) {
   const handleLogout = () => {
     setShowLogoutConfirm(true);
   };
+
+  // sync global blur with logout overlay visibility
+  const { setIsBlurred } = useBlur();
+
+  useEffect(() => {
+    setIsBlurred(showLogoutConfirm);
+    return () => setIsBlurred(false);
+  }, [showLogoutConfirm, setIsBlurred]);
 
   const confirmLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -471,7 +481,7 @@ export default function UserMenu({ onClose }) {
                       <div className={styles.SettingText}>
                         <span>Study Reminders</span>
                         <small>
-                          Receive gentle nudges to stay consistent with learning
+                          Receive gentle nudges to <br></br>stay consistent with learning
                         </small>
                       </div>
 
@@ -519,7 +529,7 @@ export default function UserMenu({ onClose }) {
                       <div className={styles.SettingText}>
                         <span>Note Alerts</span>
                         <small>
-                          Get reminders if you forget to save important notes
+                          Get reminders if you forget<br></br> to save important notes
                         </small>
                       </div>
 
@@ -664,8 +674,8 @@ export default function UserMenu({ onClose }) {
                       <div className={styles.SettingText}>
                         <span>AI Personalization</span>
                         <small>
-                          Let LUCA personalize responses based on your study
-                          habits
+                          Personalize responses based on <br></br>
+                          your study habits
                         </small>
                       </div>
                       <label className={styles.ToggleWrapper}>
@@ -774,7 +784,7 @@ export default function UserMenu({ onClose }) {
 
                     <h4>Study Tools</h4>
                     <ul className={styles.HelpList}>
-                      <li>📚 Ask anything — subjects, concepts, coding…</li>
+                      <li>📚 Ask anything — subjects, concepts, coding </li>
                       <li>💬 Save your chats like a study notebook</li>
                       <li>⏰ Built-in Pomodoro focus timer</li>
                       <li>📝 Write and save unlimited notes</li>
@@ -848,33 +858,31 @@ export default function UserMenu({ onClose }) {
       )}
 
       {/* ============================= CUSTOM LOGOUT CONFIRMATION POPUP ============================= */}
-      {showLogoutConfirm && (
-        <div className={styles.LogoutConfirmOverlay}>
-          <div className={styles.LogoutConfirmModal}>
-            <img
-               src="/images/logout.png" 
-            
-              className={styles.LogoutConfirmImage}
-            />
-            <h3>Are you logging out?</h3>
-          
-            <div className={styles.LogoutConfirmButtons}>
-              <button
-                className={styles.LogoutConfirmCancel}
-                onClick={cancelLogout}
-              >
-                Cancel
-              </button>
-              <button
-                className={styles.LogoutConfirmConfirm}
-                onClick={confirmLogout}
-              >
-                Log Out
-              </button>
+      {showLogoutConfirm &&
+        createPortal(
+          <div className={styles.LogoutConfirmOverlay}>
+            <div className={styles.LogoutConfirmModal}>
+              <img src="/images/logout_1.png" className={styles.LogoutConfirmImage} />
+              <h3>Are you logging out?</h3>
+
+              <div className={styles.LogoutConfirmButtons}>
+                <button
+                  className={styles.LogoutConfirmCancel}
+                  onClick={cancelLogout}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={styles.LogoutConfirmConfirm}
+                  onClick={confirmLogout}
+                >
+                  Log Out
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

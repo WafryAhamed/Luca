@@ -23,6 +23,9 @@
 
 
 **LUCA** is a smart, interactive study assistant built with **React + Vite**, crafted to deliver a clean, modern, and highly responsive learning experience. Designed with a strong focus on minimalism and clarity, LUCA transforms traditional study workflows into an intuitive, AI-powered environment.
+
+
+
 # 🎨 UI & Design System
 ## 💬 Chat Interface
 - Neon-purple theme  
@@ -38,6 +41,39 @@
   - Notes  
 - Multi-tool popups  
 - Blur-aware UI to prevent overlapping visual noise  
+
+## 📸 Luca Interface Preview
+
+<img width="960" height="433"  src="https://github.com/user-attachments/assets/9d701d89-22c0-4978-8aef-7db4649e0023" />
+
+<img  width="960" height="433" src="https://github.com/user-attachments/assets/ae1aaf3f-dc16-42c7-893f-d18ad188a343" />
+
+<img  width="960" height="433"  src="https://github.com/user-attachments/assets/f4f66f08-c3ed-4b99-befb-466e4c9da546" />
+
+<img width="960" height="433" src="https://github.com/user-attachments/assets/832f6d81-3320-41f9-867f-4da47fb82fc7" />
+
+
+
+
+
+<table>
+
+  <tr>
+    <td> <img  src="https://github.com/user-attachments/assets/cfa10fc0-76ba-4d5e-aabe-f206d7348817" width="453" /></td>
+    <td><img src="https://github.com/user-attachments/assets/915e9bf0-5a6b-4a53-a708-771823f56bca" width="453"/></td>
+  </tr>
+  <tr>
+    <td> <img src="https://github.com/user-attachments/assets/ceccf33d-c48a-4fc7-965b-95f328fe8091" width="453"/></td>
+    <td><img src="https://github.com/user-attachments/assets/4b084015-57c8-41a8-842e-55ee19bd85ab" width="453"/></td>
+  </tr>
+    <tr>
+    <td> <img src="https://github.com/user-attachments/assets/51b384cf-1f13-4ff5-98b3-1bb8303dd5a8" width="453"/></td>
+    <td><img src="https://github.com/user-attachments/assets/56d9f4cd-2e8f-49e7-bc1b-6be760cf0cc1" width="453"/></td>
+  </tr>
+
+</table>
+
+
 
 # 🛠️ Tech Stack
 
@@ -140,4 +176,5 @@ npm audit fix --force
   <em>Thank you for helping make this project better! 💖</em><br>
     <img src="https://img.shields.io/badge/Pull_Requests-Welcome-brightgreen?style=for-the-badge" alt="Pull Requests Welcome" /> 
 </p>
+
 

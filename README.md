@@ -98,7 +98,6 @@
   - Language, region, and study preferences
   - Appearance customization (theme, fonts, bubble styles)
   - Notification preferences (study reminders, focus alerts)
-  - Accessibility modes (reduced motion, readability, dyslexia mode)
   - Privacy & storage controls
 - **Floating UI elements**:
   - Draggable mini-panels
@@ -176,5 +175,6 @@ npm audit fix --force
   <em>Thank you for helping make this project better! 💖</em><br>
     <img src="https://img.shields.io/badge/Pull_Requests-Welcome-brightgreen?style=for-the-badge" alt="Pull Requests Welcome" /> 
 </p>
+
 
 

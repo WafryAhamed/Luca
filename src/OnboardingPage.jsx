@@ -44,7 +44,7 @@ export default function OnboardingPage() {
           {step === 1 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <img src="/images/page1.png" width="350" height="280" />
+              <img src="/images/page1.png" width="350" height="280" style={{ borderRadius: "10px" }}/>
 
               <h2 className={styles.Title}>Stop stressing. Start understanding.</h2>
               <p className={styles.Subtext}>
@@ -64,7 +64,7 @@ export default function OnboardingPage() {
           {step === 2 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <img src="/images/page2.png" width="400" height="336" />
+              <img src="/images/page2.png" width="400" height="336" style={{ borderRadius: "10px" }} />
 
               <h2 className={styles.Title}>All your study tools - in one place.</h2>
 
@@ -96,7 +96,7 @@ export default function OnboardingPage() {
           {step === 3 && (
             <div className={styles.FadeSlide}>
               {/* 50x50 Image */}
-              <img src="/images/page3.png" width="450" height="279" />
+              <img src="/images/page3.png" width="450" height="279" style={{ borderRadius: "10px" }} />
 
               <h2 className={styles.Title}>Begin your learning with LUCA.</h2>
 

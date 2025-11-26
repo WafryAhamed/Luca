@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Assistant } from "./assistants/googleai";
-import { Chat } from "./components/Chat/Chat";
-import Controls from "./components/Controls/Controls";
+import { Chat } from "./components/Chat/Chat.jsx";
+import Controls from "./components/Controls/Controls.jsx";
 import Background from "./components/Background/Background";
 import Features from "./components/Features/Features";
 import Sidebar from "./components/Sidebar/Sidebar";
 import UserMenu from "./components/UserMenu/UserMenu";
 import styles from "./App.module.css";
 import { useBlur } from "./contexts/BlurContext";
+import { createPortal } from "react-dom";
 
 function App() {
   const assistant = useRef(new Assistant()).current;
@@ -114,7 +115,12 @@ function App() {
           >
             W
           </button>
-          {showUserMenu && <UserMenu onClose={() => setShowUserMenu(false)} />}
+          {/* ✅ FIXED: Render UserMenu in document.body to avoid clipping on mobile */}
+          {showUserMenu &&
+            createPortal(
+              <UserMenu onClose={() => setShowUserMenu(false)} />,
+              document.body
+            )}
         </div>
       </div>
     </>

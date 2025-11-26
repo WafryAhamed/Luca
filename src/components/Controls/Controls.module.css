@@ -88,3 +88,55 @@
     height: 36px;
   }
 }
+
+
+/* === FULL MOBILE OPTIMIZATION — All Phones (iPhone, Samsung, Redmi, Vivo, etc.) === */
+
+@media (max-width: 767px) {
+  /* Prevent iOS zoom on textarea */
+  .TextArea {
+    font-size: 16px !important; /* critical for iOS */
+    padding: 0.85rem 1rem !important;
+  }
+
+  /* Reduce button size slightly for balance */
+  .IconButton,
+  .SendButton {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Adjust spacing */
+  .ButtonGroup {
+    gap: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+
+  /* Ensure container doesn’t overflow */
+  .Controls {
+    padding: 0.7rem 0.8rem !important;
+  }
+}
+
+/* Ultra-compact screens (iPhone SE, Redmi Go, etc.) */
+@media (max-width: 390px) {
+  .TextArea {
+    padding: 0.8rem 0.9rem !important;
+    font-size: 16px !important; /* still 16px to prevent zoom */
+  }
+
+  .IconButton,
+  .SendButton {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .ButtonGroup {
+    gap: 0.4rem !important;
+    margin-left: 0.4rem !important;
+  }
+
+  .Controls {
+    padding: 0.65rem 0.7rem !important;
+  }
+}

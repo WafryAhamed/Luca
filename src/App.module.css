@@ -201,8 +201,22 @@
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 20px rgba(185, 103, 255, 0.3);
-  z-index: 1000;
+  z-index: 1002;
   min-width: 180px;
+}
+
+/* Mobile: Override RightSidebar display to keep UserMenu visible */
+@media (max-width: 775px) {
+  .UserMenu {
+    z-index: 1002 !important;
+    position: fixed !important;
+  }
+  .RightSidebar {
+    display: flex !important;
+    position: fixed !important;
+    width: auto !important;
+    z-index: 1001 !important;
+  }
 }
 
 /* === CHAT CONTAINER === */
@@ -220,7 +234,7 @@
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   position: relative;
-  z-index: 5;
+  /* REMOVED: z-index: 5; ← this was causing UserMenu to appear behind */
   padding: 0.6rem 0.8rem;
   margin-left: -130px;
 }
@@ -345,4 +359,110 @@
   filter: blur(8px);
   opacity: 0.9;
   transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+/* === FULL MOBILE RESPONSIVENESS (All Phones: iPhone, Samsung, Vivo, Redmi, etc.) === */
+
+@media (max-width: 767px) {
+  /* Main App Layout: Stack vertically, remove fixed sidebars */
+  .App {
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Hide Left Sidebar by default on mobile */
+  .Sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    max-width: none;
+    min-width: auto;
+    height: 100vh;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Optional: Add open state if you later control it via JS */
+  .Sidebar.mobile-open {
+    left: 0;
+  }
+
+  /* Right Sidebar: Keep visible on mobile so UserMenu/ToolPanel remain accessible */
+  .RightSidebar {
+    display: flex !important;
+    position: fixed !important;
+    width: auto !important;
+    height: auto !important;
+    bottom: auto !important;
+    z-index: 1001 !important;
+    background: transparent !important;
+    border-left: none !important;
+    overflow: visible !important;
+  }
+  
+  .RightSidebar::before {
+    display: none !important;
+  }
+
+  /* Chat Container: Full width, no negative margin, no min-width */
+  .ChatContainer {
+    flex: 1;
+    width: 100% !important;
+    min-width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    height: calc(100vh - 40px); /* Adjust if needed */
+    box-sizing: border-box;
+    z-index: 1 !important;
+    position: relative !important;
+  }
+
+  /* Ensure chat body fills available space */
+  .ChatBody {
+    padding: 1rem 0.8rem !important;
+    height: calc(100% - 120px); /* Adjust based on header + controls height */
+    box-sizing: border-box;
+  }
+
+  /* Header: Keep centered, slightly smaller */
+  .Header {
+    padding: 0.5rem !important;
+    height: auto !important;
+  }
+
+  /* Prevent horizontal scroll */
+  body,
+  html,
+  #root,
+  .App {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Ensure no element overflows */
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* Extra safety for very small screens */
+@media (max-width: 390px) {
+  .ChatContainer {
+    padding: 0.4rem !important;
+  }
+  .Header {
+    padding: 0.4rem !important;
+  }
+  .Logo {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .Title {
+    font-size: 0.85rem !important;
+  }
 }

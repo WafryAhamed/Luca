@@ -25,8 +25,16 @@
   color: #f7f1ff;
   font-family: "Manrope", sans-serif;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 1002;
   animation: userMenuPop 0.22s ease-out;
+}
+
+/* Mobile: Ensure UserMenu stays on top of sidebar and chat */
+@media (max-width: 775px) {
+  .UserMenu {
+    z-index: 1002 !important;
+    position: fixed !important;
+  }
 }
 
 @keyframes userMenuPop {
@@ -182,7 +190,16 @@
     inset 0 0 10px rgba(255, 255, 255, 0.04);
   color: #fff;
   font-family: "Manrope", sans-serif;
+  z-index: 1002;
   animation: fadeIn 0.25s ease-in-out;
+}
+
+/* Mobile: Ensure ToolPanel stays on top of sidebar and chat */
+@media (max-width: 775px) {
+  .ToolPanel {
+    z-index: 1002 !important;
+    position: fixed !important;
+  }
 }
 
 @keyframes fadeIn {
@@ -329,8 +346,9 @@
 @media (max-width: 768px) {
   .UserMenu,
   .ToolPanel {
-    right: 50%;
-    transform: translateX(50%);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     width: 90%;
     max-width: 360px;
   }
@@ -910,9 +928,16 @@
   backdrop-filter: blur(18px);
   color: #fff;
   font-family: "Manrope", sans-serif;
-  z-index: 1050;
+  z-index: 1051;
   animation: fadeIn 0.25s ease-in-out;
   user-select: none;
+}
+
+/* Mobile: Ensure FloatingWindow stays on top of all elements */
+@media (max-width: 775px) {
+  .FloatingWindow {
+    z-index: 1051 !important;
+  }
 }
 
 .FloatingHeader {
@@ -991,15 +1016,93 @@
   transform: scale(1.01);
 }
 
-/* Responsive: On small screens, center floating window */
+/* Responsive: On small screens, make floating window compact */
 @media (max-width: 768px) {
   .FloatingWindow {
-    right: 50%;
-    left: auto;
-    transform: translateX(50%);
-    width: 90%;
-    max-width: 360px;
-    top: 320px;
+    position: fixed !important;
+    width: 140px !important;
+    height: auto !important;
+    max-height: 180px !important;
+    bottom: 60px !important;
+    right: 10px !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 1051 !important;
+    border-radius: 18px;
+    overflow-y: auto !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.82), 0 0 25px rgba(185, 103, 255, 0.45);
+  }
+
+  .FloatingWindow .FloatingHeader {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 0.5rem 0.6rem 0.4rem !important;
+  }
+
+  .FloatingWindow .FloatingHeader span {
+    font-size: 0.8rem !important;
+  }
+
+  .FloatingWindow .FloatingCloseBtn {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .FloatingWindow .FloatingHeader:active {
+    cursor: grabbing;
+  }
+
+  .FloatingBody {
+    overflow-y: auto !important;
+    padding: 0.5rem !important;
+    max-height: 150px !important;
+  }
+}
+
+/* Extra mobile optimization for very small screens */
+@media (max-width: 480px) {
+  .FloatingWindow {
+    width: 130px !important;
+    height: auto !important;
+    max-height: 170px !important;
+    bottom: 50px !important;
+    right: 5px !important;
+    left: 5px !important;
+  }
+
+  .FloatingWindow .FloatingHeader {
+    padding: 0.4rem 0.5rem 0.3rem !important;
+  }
+
+  .FloatingWindow .FloatingHeader span {
+    font-size: 0.75rem !important;
+  }
+
+  .FloatingWindow .FloatingCloseBtn {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .FloatingBody {
+    max-height: 140px !important;
+    padding: 0.4rem !important;
+  }
+
+  .TimerDisplay {
+    font-size: 1.3rem !important;
+  }
+
+  .ToolButton {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.5rem !important;
+  }
+
+  .ToolHint {
+    font-size: 0.7rem !important;
   }
 }
 
@@ -1134,4 +1237,235 @@
 .LogoutConfirmConfirm:hover {
   background: linear-gradient(135deg, rgba(200, 120, 255, 0.9), rgba(120, 60, 200, 0.9));
   transform: translateY(-1px);
+}
+
+/* === FULL MOBILE OPTIMIZATION — All Phones (iPhone, Samsung, Vivo, Redmi, etc.) === */
+
+@media (max-width: 767px) {
+  /* USER MENU — ✅ FIXED: Correct centering */
+  .UserMenu {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 360px !important;
+    top: 70px !important;
+    padding: 0.8rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .UserMenuItem {
+    padding: 0.6rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .ToolSection {
+    font-size: 0.75rem !important;
+  }
+
+  .MenuCloseBtn {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 1rem !important;
+  }
+
+  /* FLOATING TOOLS — ✅ FIXED: Correct centering */
+  .FloatingWindow {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 94% !important;
+    max-width: 340px !important;
+    top: 280px !important;
+    padding: 0.7rem !important;
+  }
+
+  .FloatingHeader {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .FloatingHeader span {
+    font-size: 1.05rem !important;
+  }
+
+  .FloatingCloseBtn {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .TimerDisplay {
+    font-size: 2rem !important;
+  }
+
+  .ToolButton,
+  .ToolTextarea {
+    padding: 0.55rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .ToolTextarea {
+    font-size: 0.95rem !important;
+  }
+
+  /* SETTINGS MODAL — Full mobile adaptation */
+  .SettingsOverlay {
+    padding-right: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .SettingsModal {
+    width: 95% !important;
+    max-width: 95vw !important;
+    max-height: 88vh !important;
+    padding: 1rem !important;
+  }
+
+  .SettingsBody {
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+  }
+
+  .SettingsSidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding-right: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .SettingsTab {
+    padding: 0.5rem 0.7rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .SettingsContent {
+    padding: 0.8rem !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+  }
+
+  .SettingRow {
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+  }
+
+  .SettingText {
+    flex: 1;
+    min-width: 160px !important;
+  }
+
+  .SettingSelect,
+  .ToggleWrapper {
+    width: auto !important;
+    min-width: 100px !important;
+  }
+
+  .SettingsCloseBtn {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 1rem !important;
+  }
+
+  /* HELP MODAL — Mobile-first */
+  .HelpOverlay {
+    align-items: flex-start !important;
+    padding-top: 20px !important;
+  }
+
+  .HelpModal {
+    width: 96% !important;
+    max-width: 96vw !important;
+    max-height: 90vh !important;
+    padding: 1rem !important;
+  }
+
+  .HelpBody {
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+  }
+
+  .HelpSidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+  }
+
+  .HelpTab {
+    padding: 0.65rem !important;
+    font-size: 0.85rem !important;
+    flex: none !important;
+    min-width: 120px !important;
+    text-align: center !important;
+  }
+
+  .HelpContent {
+    padding: 0.9rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .HelpHeader h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .HelpCloseBtn {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* LOGOUT CONFIRMATION — Mobile safe */
+  .LogoutConfirmModal {
+    width: 92% !important;
+    max-width: 360px !important;
+    padding: 1.2rem !important;
+  }
+
+  .LogoutConfirmImage {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+  }
+
+  .LogoutConfirmButtons {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .LogoutConfirmCancel,
+  .LogoutConfirmConfirm {
+    width: 100% !important;
+    padding: 0.65rem !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Ultra-compact for smallest screens (e.g., iPhone SE, Redmi A1) */
+@media (max-width: 390px) {
+  .UserMenu {
+    width: 94% !important;
+    top: 65px !important;
+  }
+
+  .FloatingWindow {
+    top: 240px !important;
+    width: 96% !important;
+  }
+
+  .TimerDisplay {
+    font-size: 1.8rem !important;
+  }
+
+  .SettingsModal,
+  .HelpModal,
+  .LogoutConfirmModal {
+    width: 96% !important;
+    padding: 0.9rem !important;
+  }
+
+  .LogoutConfirmImage {
+    max-height: 180px !important;
+  }
 }

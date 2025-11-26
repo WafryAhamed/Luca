@@ -160,3 +160,68 @@
     font-size: 0.68rem;
   }
 }
+
+
+/* === ULTRA-SAFE MOBILE LAYER — All Phones (2025 Devices) === */
+
+@media (max-width: 767px) {
+  /* Ensure subjects wrap cleanly and stay readable */
+  .Subjects {
+    justify-content: center !important;
+    padding: 0 4px !important;
+  }
+
+  .SubjectTag {
+    min-width: auto !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    padding: 0.25rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    height: auto !important;
+  }
+
+  /* Improve suggestion readability */
+  .Suggestions {
+    gap: 0.4rem !important;
+    padding: 0 2px !important;
+  }
+
+  .Suggestion {
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    padding: 0.25rem 0.55rem !important;
+    font-size: 0.72rem !important;
+    min-height: 28px !important;
+  }
+
+  .TryLabel {
+    font-size: 0.75rem !important;
+  }
+
+  /* Prevent any overflow */
+  .Features {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0.6rem 0.5rem !important;
+  }
+}
+
+/* Extra safety for smallest screens (e.g., iPhone SE, Redmi A1) */
+@media (max-width: 360px) {
+  .SubjectTag {
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  .Suggestion {
+    font-size: 0.68rem !important;
+    padding: 0.2rem 0.5rem !important;
+    min-height: 26px !important;
+  }
+
+  .Features {
+    padding: 0.5rem 0.4rem !important;
+  }
+}

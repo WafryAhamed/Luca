@@ -366,3 +366,125 @@
   font-size: 0.8rem;
   padding: 0 0.5rem;
 }
+
+
+/* === FULL MOBILE OPTIMIZATION — All Phones (iPhone, Samsung, Redmi, Vivo, etc.) === */
+
+@media (max-width: 767px) {
+  /* Prevent any horizontal overflow */
+  html, body, #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Shrink or hide floating robot on mobile to prevent overflow */
+  .RobotBackground {
+    width: 200px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    opacity: 0.7 !important;
+  }
+
+  /* Ensure card fits screen */
+  .Card {
+    padding: 2rem 1.4rem !important;
+    max-width: calc(100vw - 32px) !important; /* 16px margin each side */
+    width: 100% !important;
+  }
+
+  /* Adjust inputs */
+  .Input {
+    padding: 0.95rem 1.1rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Password toggle alignment */
+  .TogglePassword {
+    right: 1rem !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* Submit button */
+  .SubmitButton {
+    padding: 0.95rem !important;
+    font-size: 1.05rem !important;
+  }
+
+  /* Social buttons */
+  .SocialButton {
+    padding: 0.95rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .SocialIcon {
+    font-size: 1.1rem !important;
+  }
+
+  /* Divider */
+  .Divider {
+    margin: 1.8rem 0 !important;
+  }
+
+  .Divider span {
+    padding: 0 0.8rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Footer & toggle */
+  .Footer {
+    margin-top: 1.2rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .ToggleButton {
+    font-size: 0.95rem !important;
+  }
+
+  /* Error & hints */
+  .ErrorMessage {
+    font-size: 0.8rem !important;
+    padding: 0.35rem !important;
+  }
+
+  .PasswordHint {
+    font-size: 0.75rem !important;
+    padding: 0 0.3rem !important;
+  }
+
+  .TermsLabel {
+    font-size: 0.85rem !important;
+    gap: 0.4rem !important;
+  }
+
+  /* Prevent zoom on input focus (iOS Safari) */
+  .Input {
+    font-size: 16px !important; /* prevents auto-zoom */
+  }
+}
+
+/* Extra compact for small screens (e.g., iPhone SE, Redmi Go) */
+@media (max-width: 390px) {
+  .RobotBackground {
+    width: 160px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+
+  .Card {
+    padding: 1.8rem 1rem !important;
+  }
+
+  .Title {
+    font-size: 1.8rem !important;
+  }
+
+  .Input,
+  .SubmitButton,
+  .SocialButton {
+    font-size: 0.95rem !important;
+  }
+
+  .TermsLabel {
+    font-size: 0.8rem !important;
+  }
+}

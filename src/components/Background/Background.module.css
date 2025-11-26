@@ -65,3 +65,49 @@
   height: 8px;
 }
 
+
+
+/* === MOBILE SAFETY LAYER — Prevent overflow & ensure full compatibility === */
+
+@media (max-width: 767px) {
+  /* Fix 100vw overflow on iOS/Android */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Ensure canvas fills safely */
+  .canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+
+  /* Slightly reduce visual intensity for performance (optional but helpful) */
+  .overlay {
+    opacity: 0.85 !important;
+  }
+
+  /* Prevent any scrollbars */
+  body, html {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+}
+
+/* Ultra-compact screens */
+@media (max-width: 390px) {
+  .container {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

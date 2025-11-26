@@ -13,49 +13,110 @@ export default function FloatingToolWindow({ tool, children, onClose }) {
       pos2 = 0,
       pos3 = 0,
       pos4 = 0;
+    let isDragging = false;
 
     const dragMouseDown = (e) => {
-      e.preventDefault();
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      // Only start dragging if NOT clicking the close button
+      if (e.target.closest(`.${styles.FloatingCloseBtn}`)) {
+        return; // Let the close button handle its own click
+      }
+      
+      isDragging = true;
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+      
+      // Support both mouse and touch events
+      const clientX = e.clientX !== undefined ? e.clientX : e.touches?.[0]?.clientX;
+      const clientY = e.clientY !== undefined ? e.clientY : e.touches?.[0]?.clientY;
+      
+      if (clientX === undefined || clientY === undefined) return;
+      
+      pos3 = clientX;
+      pos4 = clientY;
+      
+      // Convert CSS properties to absolute positioning for dragging
+      const rect = el.getBoundingClientRect();
+      el.style.position = "fixed";
+      el.style.top = rect.top + "px";
+      el.style.left = rect.left + "px";
+      el.style.right = "auto";
+      el.style.bottom = "auto";
+      
+      if (e.type.includes("touch")) {
+        document.addEventListener("touchmove", elementDrag, { passive: false });
+        document.addEventListener("touchend", closeDragElement);
+      } else {
+        document.addEventListener("mousemove", elementDrag);
+        document.addEventListener("mouseup", closeDragElement);
+      }
     };
 
     const elementDrag = (e) => {
-      e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      el.style.top = el.offsetTop - pos2 + "px";
-      el.style.left = el.offsetLeft - pos1 + "px";
+      if (!isDragging) return;
+      
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+      
+      const clientX = e.clientX !== undefined ? e.clientX : e.touches?.[0]?.clientX;
+      const clientY = e.clientY !== undefined ? e.clientY : e.touches?.[0]?.clientY;
+      
+      if (clientX === undefined || clientY === undefined) return;
+      
+      pos1 = pos3 - clientX;
+      pos2 = pos4 - clientY;
+      pos3 = clientX;
+      pos4 = clientY;
+      
+      const newTop = el.offsetTop - pos2;
+      const newLeft = el.offsetLeft - pos1;
+      
+      // Keep within viewport bounds
+      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
+      const maxTop = Math.max(0, viewportHeight - el.offsetHeight);
+      const maxLeft = Math.max(0, viewportWidth - el.offsetWidth);
+      
+      el.style.top = Math.min(Math.max(0, newTop), maxTop) + "px";
+      el.style.left = Math.min(Math.max(0, newLeft), maxLeft) + "px";
     };
 
     const closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      isDragging = false;
+      document.removeEventListener("mousemove", elementDrag);
+      document.removeEventListener("mouseup", closeDragElement);
+      document.removeEventListener("touchmove", elementDrag);
+      document.removeEventListener("touchend", closeDragElement);
     };
 
     const header = el.querySelector(`.${styles.FloatingHeader}`);
     if (header) {
-      header.onmousedown = dragMouseDown;
+      header.addEventListener("mousedown", dragMouseDown);
+      header.addEventListener("touchstart", dragMouseDown, { passive: false });
     }
 
     return () => {
       if (header) {
-        header.onmousedown = null;
+        header.removeEventListener("mousedown", dragMouseDown);
+        header.removeEventListener("touchstart", dragMouseDown);
       }
-      document.onmouseup = null;
-      document.onmousemove = null;
+      closeDragElement();
     };
   }, []);
 
   return (
-    <div ref={winRef} className={styles.FloatingWindow}>
+    <div 
+      ref={winRef} 
+      className={styles.FloatingWindow}
+    >
       <div className={styles.FloatingHeader}>
         <span>{tool}</span>
-        <button className={styles.FloatingCloseBtn} onClick={onClose}>
+        <button 
+          className={styles.FloatingCloseBtn} 
+          onClick={onClose}
+          type="button"
+        >
           ✕
         </button>
       </div>

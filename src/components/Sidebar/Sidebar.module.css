@@ -446,3 +446,151 @@ font-size: 0.75rem;
 color: #bba8ff;
 margin-top: 4px;
 }
+
+
+/* === FULL MOBILE OPTIMIZATION — All Phones (iPhone, Samsung, Redmi, Vivo, etc.) === */
+
+@media (max-width: 767px) {
+  /* Sidebar width and padding */
+  .Sidebar {
+    width: 240px !important;
+    padding: 0.8rem 0 !important;
+  }
+
+  /* Scrollable area */
+  .SidebarScrollable {
+    padding: 0 1rem !important;
+    gap: 0.8rem !important;
+  }
+
+  /* Header & buttons */
+  .SidebarHeader {
+    padding-right: 28px !important;
+  }
+
+  .NewChatButton {
+    padding: 0.55rem 0.9rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .SearchInput {
+    padding: 0.55rem 0.9rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* Nav items */
+  .SectionHeader,
+  .ChatItem,
+  .NavItem,
+  .ToolItem {
+    padding: 0.55rem 0.9rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Chat item inner layout */
+  .ChatItemInner {
+    gap: 4px !important;
+  }
+
+  .ChatTitle {
+    font-size: 0.85rem !important;
+  }
+
+  .ChatTitleInput {
+    padding: 3px 5px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .IconButton {
+    font-size: 0.85rem !important;
+    padding: 2px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+  }
+
+  /* Footer */
+  .UserFooter {
+    padding: 0.8rem 1rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .UserAvatar {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Modal */
+  .Modal {
+    width: 90% !important;
+    max-width: 300px !important;
+    padding: 14px !important;
+  }
+
+  .ModalTitle {
+    font-size: 1.1rem !important;
+  }
+
+  .ModalClose {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 1rem !important;
+  }
+
+  .SecondaryButton,
+  .DangerButton {
+    padding: 6px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Hamburger button */
+  .MenuButton {
+    top: 12px !important;
+    left: 12px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .HamburgerIcon span {
+    width: 18px !important;
+    height: 2px !important;
+  }
+}
+
+/* Ultra-compact for smallest screens (e.g., iPhone SE, Redmi A1) */
+@media (max-width: 390px) {
+  .Sidebar {
+    width: 220px !important;
+  }
+
+  .SidebarScrollable {
+    padding: 0 0.8rem !important;
+  }
+
+  .NewChatButton,
+  .SearchInput,
+  .SectionHeader,
+  .ChatItem,
+  .NavItem {
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .ChatTitleInput {
+    font-size: 0.8rem !important;
+  }
+
+  .UserFooter {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .UserAvatar {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .Modal {
+    max-width: 280px !important;
+    padding: 12px !important;
+  }
+}
